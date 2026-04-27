@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeAndru Licita — Gana contratos del Estado sin leer 80 páginas</title>
+  <meta name="description" content="La herramienta que avisa cuando el Estado peruano necesita lo que vendes. Alertas en WhatsApp, IA que analiza los documentos. Gratis 30 días.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #16A34A;
+      --green-light: #22C55E;
+      --green-bg: #F0FDF4;
+      --green-border: #BBF7D0;
+      --dark: #0D0D0D;
+      --text: #1a1a1a;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+      --bg: #FAFAF9;
+      --white: #ffffff;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --radius-pill: 50px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex;
+      align-items: center;
+      padding: 14px 24px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+    .logo em { color: var(--green); font-style: normal; }
+    .logo-badge {
+      font-size: 10px;
+      background: var(--green);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-left: 8px;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+    }
+    .nav-link {
+      padding: 8px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover { color: var(--text); background: var(--bg); }
+    .btn { padding: 9px 20px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 700; cursor: pointer; border: none; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.15s; text-decoration: none; display: inline-block; }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-green:hover { background: #15803D; transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 72px 24px 64px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 24px;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green-light);
+      animation: livepulse 1.8s ease-in-out infinite;
+    }
+    @keyframes livepulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero h1 .serif {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--green);
+    }
+    .hero h1 .strike {
+      text-decoration: line-through;
+      color: #D1D5DB;
+      font-size: 0.75em;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-sub strong { color: var(--text); }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .btn-hero {
+      padding: 15px 32px;
+      font-size: 15px;
+      font-weight: 800;
+      border-radius: var(--radius-pill);
+      background: var(--green);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.2s;
+      letter-spacing: -0.2px;
+    }
+    .btn-hero:hover { background: #15803D; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(22,163,74,0.25); }
+    .btn-hero-sec {
+      padding: 15px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .btn-hero-sec:hover { border-color: var(--green); color: var(--green); }
+    .hero-trust {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+    .ht { display: flex; align-items: center; gap: 5px; }
+    .ht::before { content: "✓"; color: var(--green-light); font-weight: 800; }
+
+    /* ─── STATS ─── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--dark);
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 20px 12px;
+      border-right: 1px solid #1f1f1f;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-val { font-size: 28px; font-weight: 900; color: var(--green-light); }
+    .stat-lbl { font-size: 11px; color: #6B7280; margin-top: 3px; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 64px 24px; }
+    .section-inner { max-width: 640px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .section-h {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-section { background: var(--bg); }
+    .steps { display: flex; flex-direction: column; gap: 4px; }
+    .step {
+      display: flex;
+      gap: 18px;
+      padding: 18px;
+      border-radius: var(--radius);
+      transition: background 0.15s;
+      cursor: default;
+    }
+    .step:hover { background: var(--white); }
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .step-body p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .step-tag {
+      display: inline-block;
+      margin-top: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+    }
+
+    /* ─── PAIN VS GAIN ─── */
+    .pvg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pvg-col { border-radius: var(--radius); padding: 20px; }
+    .pvg-bad { background: #FEF2F2; border: 1.5px solid #FECACA; }
+    .pvg-good { background: var(--green-bg); border: 1.5px solid var(--green-border); }
+    .pvg-title {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1.5px solid;
+    }
+    .pvg-bad .pvg-title { color: #DC2626; border-color: #FECACA; }
+    .pvg-good .pvg-title { color: var(--green); border-color: var(--green-border); }
+    .pvg-item {
+      display: flex; gap: 8px;
+      font-size: 13px; padding: 7px 0;
+      border-bottom: 1px solid;
+    }
+    .pvg-bad .pvg-item { color: #7F1D1D; border-color: #FEE2E2; }
+    .pvg-good .pvg-item { color: #14532D; border-color: #DCFCE7; }
+    .pvg-item:last-child { border-bottom: none; }
+    .pvg-bad .pvg-item::before { content: "✗"; color: #EF4444; font-weight: 800; flex-shrink: 0; }
+    .pvg-good .pvg-item::before { content: "✓"; color: var(--green); font-weight: 800; flex-shrink: 0; }
+
+    /* ─── WHO ─── */
+    .who-section { background: var(--dark); }
+    .who-section .section-h { color: #fff; }
+    .who-section .section-sub { color: #6B7280; }
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .who-card {
+      background: #161616;
+      border: 1px solid #242424;
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .who-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .who-card.hot { background: #0D2818; border-color: #1a5c2e; }
+    .who-emoji { font-size: 28px; margin-bottom: 12px; }
+    .who-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+    .who-desc { font-size: 12px; color: #6B7280; line-height: 1.55; }
+    .who-card.hot .who-desc { color: #4ADE80; opacity: 0.85; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .testi {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: box-shadow 0.2s;
+    }
+    .testi:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .stars { color: #F59E0B; font-size: 13px; margin-bottom: 8px; }
+    .testi-text { font-size: 13px; color: #374151; line-height: 1.65; margin-bottom: 14px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-av {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--green-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--green);
+      flex-shrink: 0;
+    }
+    .testi-name { font-size: 12px; font-weight: 700; color: var(--text); }
+    .testi-role { font-size: 11px; color: var(--muted); }
+
+    /* ─── PLANS ─── */
+    .plans-section { background: var(--bg); }
+    .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px; }
+    .plan-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      position: relative;
+      transition: box-shadow 0.2s;
+    }
+    .plan-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .plan-card.feat { border-color: var(--green); background: var(--white); }
+    .plan-badge {
+      position: absolute;
+      top: -13px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .plan-name { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .plan-price { font-size: 40px; font-weight: 900; color: var(--text); line-height: 1; margin-bottom: 4px; }
+    .plan-price sup { font-size: 18px; font-weight: 600; color: var(--muted); vertical-align: top; margin-top: 8px; display: inline-block; }
+    .plan-price sub { font-size: 15px; font-weight: 400; color: var(--muted); }
+    .plan-trial { font-size: 12px; color: var(--green); font-weight: 600; margin-bottom: 20px; }
+    .plan-feats { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
+    .pf { font-size: 13px; color: #374151; display: flex; gap: 8px; line-height: 1.4; }
+    .pf::before { content: "✓"; color: var(--green-light); font-weight: 700; flex-shrink: 0; }
+    .pf.no { color: #D1D5DB; }
+    .pf.no::before { content: "—"; color: #E5E7EB; }
+    .plan-btn { width: 100%; padding: 13px; border-radius: var(--radius-pill); font-size: 14px; font-weight: 700; cursor: pointer; border: none; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.15s; }
+    .pb-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+    .pb-outline:hover { border-color: var(--green); color: var(--green); }
+    .pb-green { background: var(--green); color: #fff; }
+    .pb-green:hover { background: #15803D; transform: translateY(-1px); }
+
+    /* ─── FAQ ─── */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      padding: 16px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .faq-q:hover { color: var(--green); }
+    .faq-icon { font-size: 20px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+    .faq-icon.open { transform: rotate(45deg); }
+    .faq-a { font-size: 13px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; display: none; }
+    .faq-a.open { display: block; }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta {
+      background: var(--dark);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .final-cta h2 .serif {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--green-light);
+    }
+    .final-cta p { font-size: 15px; color: #6B7280; margin-bottom: 28px; line-height: 1.65; }
+    .final-note { margin-top: 14px; font-size: 12px; color: #374151; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0a0a0a;
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #374151;
+      border-top: 1px solid #161616;
+    }
+    footer a { color: var(--green); text-decoration: none; }
+
+    /* ─── REGISTER MODAL ─── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--bg);
+      border: none;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+    }
+    .modal h3 { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 6px; letter-spacing: -0.4px; }
+    .modal p { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .form-group { margin-bottom: 14px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 5px; display: block; }
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      font-size: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.15s;
+    }
+    .form-input:focus { outline: none; border-color: var(--green); }
+    .form-select {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      font-size: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      appearance: none;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--radius-pill);
+      background: var(--green);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.15s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: #15803D; transform: translateY(-1px); }
+    .form-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
+    .success-msg { display: none; text-align: center; padding: 20px 0; }
+    .success-msg.show { display: block; }
+    .success-icon { font-size: 48px; margin-bottom: 12px; }
+    .success-msg h4 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .success-msg p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero > * { animation: fadeUp 0.5s ease both; }
+    .hero > *:nth-child(1) { animation-delay: 0s; }
+    .hero > *:nth-child(2) { animation-delay: 0.08s; }
+    .hero > *:nth-child(3) { animation-delay: 0.16s; }
+    .hero > *:nth-child(4) { animation-delay: 0.22s; }
+    .hero > *:nth-child(5) { animation-delay: 0.28s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; }
+      .nav-link { display: none; }
+      .hero { padding: 48px 16px 40px; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .pvg-grid, .who-grid, .testi-grid, .plans-grid { grid-template-columns: 1fr; }
+      section { padding: 48px 16px; }
+      .modal { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">DeAndru<em>Licita</em><span class="logo-badge">30 DÍAS GRATIS</span></a>
+  <div class="nav-links">
+    <a href="#como-funciona" class="nav-link">Cómo funciona</a>
+    <a href="#planes" class="nav-link">Precios</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="login.html" class="btn btn-outline">Ingresar</a>
+    <a href="register.html" class="btn btn-green">Empieza gratis →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-chip">
+    <span class="live-dot"></span>
+    SEACE monitoreado ahora mismo — 47 oportunidades nuevas hoy
+  </div>
+  <h1>
+    Gana contratos del Estado<br>
+    sin leer <span class="strike">80 páginas</span><br>
+    <span class="serif">de documentos</span>
+  </h1>
+  <p class="hero-sub">
+    La herramienta que <strong>te avisa cuando el Estado peruano necesita lo que vendes</strong>
+    y te dice exactamente qué hacer para ganar. Alertas en WhatsApp.
+    IA que analiza los documentos. <strong>Sin experiencia previa.</strong>
+  </p>
+  <div class="hero-cta">
+    <a href="register.html" class="btn-hero">Crear cuenta gratis — 30 días →</a>
+    <button class="btn-hero-sec" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">Ver cómo funciona</button>
+  </div>
+  <div class="hero-trust">
+    <span class="ht">Sin tarjeta de crédito</span>
+    <span class="ht">Listo en 2 minutos</span>
+    <span class="ht">Cancela cuando quieras</span>
+    <span class="ht">Solo S/ 29 después</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-val">29K+</div><div class="stat-lbl">contratos monitoreados</div></div>
+  <div class="stat-item"><div class="stat-val">&lt;5 min</div><div class="stat-lbl">para tu primera alerta</div></div>
+  <div class="stat-item"><div class="stat-val">25</div><div class="stat-lbl">regiones del Perú</div></div>
+  <div class="stat-item"><div class="stat-val">S/ 0</div><div class="stat-lbl">para empezar hoy</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="como-funciona">
+  <div class="section-inner">
+    <div class="eyebrow">Cómo funciona</div>
+    <div class="section-h">Del aviso al contrato<br>en 4 pasos simples</div>
+    <div class="section-sub">Sin cursos, sin abogados, sin perderte en el SEACE por horas.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" style="background:#F0FDF4;">🔔</div>
+        <div class="step-body">
+          <h3>Te avisamos en WhatsApp y email</h3>
+          <p>Configuras una vez tu rubro y región. Cuando el Estado necesita lo que vendes, te llega una alerta directa. Sin buscar, sin esperar.</p>
+          <span class="step-tag">0 horas de búsqueda manual</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#EFF6FF;">🤖</div>
+        <div class="step-body">
+          <h3>La IA lee los documentos por ti</h3>
+          <p>Esos TDRs de 80 páginas que nadie quiere leer — nuestra IA los analiza en 30 segundos y te dice qué necesitas exactamente para participar.</p>
+          <span class="step-tag" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;">30 segundos vs 6 horas</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#FEF9C3;">📋</div>
+        <div class="step-body">
+          <h3>Checklist exacto de lo que necesitas</h3>
+          <p>"Para participar necesitas estas 3 cosas. Te falta esto. Así lo consigues." Sin adivinar, sin confusión, sin lenguaje legal.</p>
+          <span class="step-tag" style="background:#FEF9C3;color:#854D0E;border-color:#FDE68A;">Claridad total en minutos</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#FDF4FF;">🏆</div>
+        <div class="step-body">
+          <h3>Cotizas y ganas el contrato</h3>
+          <p>Con la información clara y el tiempo que ahorraste, preparas tu cotización y la presentas antes de que venza el plazo.</p>
+          <span class="step-tag" style="background:#FDF4FF;color:#7E22CE;border-color:#E9D5FF;">Tu ventaja competitiva</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN VS GAIN -->
+<section>
+  <div class="section-inner">
+    <div class="eyebrow">La diferencia real</div>
+    <div class="section-h">Sin vs Con DeAndru Licita</div>
+    <div class="section-sub">Lo que vive un proveedor hoy vs lo que vivirá contigo.</div>
+    <div class="pvg-grid">
+      <div class="pvg-col pvg-bad">
+        <div class="pvg-title">Sin la plataforma</div>
+        <div class="pvg-item">3-4 horas buscando en el SEACE</div>
+        <div class="pvg-item">Leer TDRs de 80 páginas</div>
+        <div class="pvg-item">No sabes si calificas</div>
+        <div class="pvg-item">El plazo venció sin enterarte</div>
+        <div class="pvg-item">Oportunidades perdidas</div>
+      </div>
+      <div class="pvg-col pvg-good">
+        <div class="pvg-title">Con DeAndru Licita</div>
+        <div class="pvg-item">Alerta en WhatsApp en 5 minutos</div>
+        <div class="pvg-item">IA analiza el TDR en 30 segundos</div>
+        <div class="pvg-item">Score claro: calificas o no</div>
+        <div class="pvg-item">Nunca más pierdes un plazo</div>
+        <div class="pvg-item">Contratos del Estado ganados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="who-section">
+  <div class="section-inner">
+    <div class="eyebrow" style="color:#4ADE80;">Para quién es</div>
+    <div class="section-h">Hecha para ti si eres...</div>
+    <div class="section-sub">No necesitas experiencia previa ni conocer el SEACE.</div>
+    <div class="who-grid">
+      <div class="who-card hot">
+        <div class="who-emoji">🚀</div>
+        <div class="who-name">Joven emprendedor</div>
+        <div class="who-desc">Tienes un negocio o quieres empezar uno. El Estado puede ser tu primer cliente grande y el más confiable.</div>
+      </div>
+      <div class="who-card hot">
+        <div class="who-emoji">💻</div>
+        <div class="who-name">Freelancer o independiente</div>
+        <div class="who-desc">Diseño, IT, consultoría, capacitación. El Estado contrata todo eso — y paga puntual.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-emoji">🏪</div>
+        <div class="who-name">Dueño de MYPE</div>
+        <div class="who-desc">Vendes productos o servicios y quieres nuevos clientes que paguen bien. El Estado compra S/ 42,000 millones al año.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-emoji">💰</div>
+        <div class="who-name">Buscas ingreso extra</div>
+        <div class="who-desc">Un contrato de S/ 15,000 puede cambiar tu mes. Sin jefe, sin horario fijo, desde tu negocio actual.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-inner">
+    <div class="eyebrow">Resultados reales</div>
+    <div class="section-h">Lo que dicen los usuarios</div>
+    <div class="section-sub">Personas como tú que empezaron desde cero.</div>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"Gané mi primer contrato del Estado el segundo mes. S/ 22,000. Nunca había licitado en mi vida antes."</div>
+        <div class="testi-author">
+          <div class="testi-av">AR</div>
+          <div><div class="testi-name">Ana R.</div><div class="testi-role">Freelancer IT · Lima</div></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"Antes perdía 3 horas diarias en el SEACE. Ahora me llega la alerta y en 20 minutos sé si me conviene participar."</div>
+        <div class="testi-author">
+          <div class="testi-av">CM</div>
+          <div><div class="testi-name">Carlos M.</div><div class="testi-role">Servicios de limpieza · Cusco</div></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"Tengo 24 años y ya gané 3 contratos. Mi familia no lo podía creer. Esta herramienta cambió mi vida."</div>
+        <div class="testi-author">
+          <div class="testi-av">MP</div>
+          <div><div class="testi-name">María P.</div><div class="testi-role">Emprendedora · Trujillo</div></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"El análisis de TDR es increíble. Me dice exactamente qué documentos necesito. Ya no le tengo miedo al proceso."</div>
+        <div class="testi-author">
+          <div class="testi-av">LH</div>
+          <div><div class="testi-name">Luis H.</div><div class="testi-role">Consultor de gestión · Arequipa</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans-section" id="planes">
+  <div class="section-inner">
+    <div class="eyebrow">Precios</div>
+    <div class="section-h">Empieza gratis.<br>Paga solo si te sirve.</div>
+    <div class="section-sub">30 días completos sin costo. Sin tarjeta. Después decides.</div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Explorador</div>
+        <div class="plan-price">S/ 0</div>
+        <div class="plan-trial">Para siempre gratis</div>
+        <ul class="plan-feats">
+          <li class="pf">Buscador de licitaciones SEACE</li>
+          <li class="pf">Ver contratos menores a 8 UIT</li>
+          <li class="pf">Dashboard de oportunidades</li>
+          <li class="pf no">Alertas WhatsApp + Email</li>
+          <li class="pf no">Análisis TDR con IA</li>
+          <li class="pf no">Comunidad WhatsApp exclusiva</li>
+        </ul>
+        <a href="register.html" class="plan-btn pb-outline" style="display:block;text-align:center;text-decoration:none;">Crear cuenta gratis</a>
+      </div>
+      <div class="plan-card feat">
+        <div class="plan-badge">30 días gratis incluidos</div>
+        <div class="plan-name">Proveedor</div>
+        <div class="plan-price"><sup>S/</sup>29<sub>/mes</sub></div>
+        <div class="plan-trial">Primer mes completamente gratis</div>
+        <ul class="plan-feats">
+          <li class="pf">Todo del plan Explorador</li>
+          <li class="pf">Alertas WhatsApp + Email personalizadas</li>
+          <li class="pf">Análisis TDR con IA ilimitado</li>
+          <li class="pf">Checklist exacto por cada proceso</li>
+          <li class="pf">Comunidad WhatsApp exclusiva</li>
+          <li class="pf">Score de oportunidad 0-100</li>
+        </ul>
+        <a href="register.html" class="plan-btn pb-green" style="display:block;text-align:center;text-decoration:none;">Empezar 30 días gratis →</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:12px;font-size:12px;color:#9CA3AF;">
+      Pago con Yape, Plin, tarjeta o transferencia · Sin permanencia · Cancela cuando quieras
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="eyebrow">Preguntas frecuentes</div>
+    <div class="section-h">Todo lo que necesitas saber</div>
+    <div class="section-sub" style="margin-bottom:24px;">Si tienes otra pregunta, escríbenos al WhatsApp.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Necesito experiencia para participar en licitaciones?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">No. Las contrataciones menores a 8 UIT (hasta S/ 41,200) son las más accesibles del Estado. Solo necesitas RNP vigente y habilidad tributaria. La plataforma te explica paso a paso cómo conseguirlos si no los tienes aún.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Qué es el RNP y cómo lo consigo?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">El RNP (Registro Nacional de Proveedores) es el registro que te habilita para vender al Estado. Se tramita en osce.gob.pe, cuesta S/ 38 y tarda 2-3 días hábiles. Es el primer paso y solo se hace una vez.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿El primer mes es realmente gratis?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Sí, 30 días completos con todas las funciones premium sin poner tarjeta. Al terminar el mes, si quieres seguir con las alertas y el análisis TDR con IA, activas el plan por S/ 29/mes con Yape, Plin o tarjeta. Si no, sigues con el plan gratuito sin problema.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Cuánto puedo ganar vendiendo al Estado?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Las contrataciones menores a 8 UIT van desde S/ 1,000 hasta S/ 41,200 por proceso. Un proveedor activo puede ganar 2-4 contratos por mes. Con un solo contrato de S/ 15,000 ya pagaste la suscripción anual completa más de 40 veces.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Puedo usar la plataforma desde cualquier región del Perú?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Sí. Monitoreamos los 25 departamentos del Perú. Puedes filtrar por tu región para ver solo las oportunidades cercanas, o expandirte a nivel nacional cuando te sientas listo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Tu primer contrato del Estado<br>empieza <span class="serif">hoy</span></h2>
+  <p>Miles de emprendedores peruanos ya están ganando contratos con el Estado.<br>Tú también puedes. Gratis por 30 días, sin tarjeta.</p>
+  <a href="register.html" class="btn-hero" style="font-size:16px;padding:17px 40px;display:inline-block;text-decoration:none;">
+    Crear mi cuenta gratis ahora →
+  </a>
+  <div class="final-note">Sin tarjeta · Sin compromisos · Cancela cuando quieras</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 DeAndru Licita · Hecho en Perú con 🤍 por Andrew Gonzales ·
+    <a href="mailto:hola@deandrulicita.pe">hola@deandrulicita.pe</a>
+  </p>
+</footer>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="form-content">
+      <h3>Empieza gratis hoy</h3>
+      <p>30 días con todas las funciones. Sin tarjeta de crédito.</p>
+      <div class="form-group">
+        <label class="form-label">Tu nombre completo</label>
+        <input class="form-input" type="text" placeholder="Ej: Carlos Mamani" id="reg-name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-input" type="email" placeholder="tucorreo@gmail.com" id="reg-email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp (para tus alertas)</label>
+        <input class="form-input" type="tel" placeholder="+51 987 654 321" id="reg-wsp">
+      </div>
+      <div class="form-group">
+        <label class="form-label">¿Qué vende o hace tu empresa?</label>
+        <select class="form-select" id="reg-rubro">
+          <option value="">Selecciona tu rubro</option>
+          <option>Limpieza y mantenimiento</option>
+          <option>Tecnología y cómputo</option>
+          <option>Alimentos y catering</option>
+          <option>Construcción y obras</option>
+          <option>Consultoría y servicios</option>
+          <option>Materiales y suministros</option>
+          <option>Otro rubro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">¿En qué región operas?</label>
+        <select class="form-select" id="reg-region">
+          <option value="">Selecciona tu región</option>
+          <option>Lima Metropolitana</option>
+          <option>Cusco</option>
+          <option>Arequipa</option>
+          <option>La Libertad</option>
+          <option>Junín / Centro</option>
+          <option>Otra región</option>
+        </select>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Crear mi cuenta gratis →</button>
+      <p class="form-note">Al registrarte aceptas los términos de uso. Sin spam, prometido.</p>
+    </div>
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">🎉</div>
+      <h4>¡Ya estás dentro!</h4>
+      <p>Revisa tu correo — te enviamos el acceso.<br>En menos de 5 minutos recibes tu primera alerta de oportunidades en WhatsApp.<br><br>Bienvenido a la comunidad DeAndru Licita.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+  function submitForm() {
+    const name = document.getElementById('reg-name').value;
+    const email = document.getElementById('reg-email').value;
+    const wsp = document.getElementById('reg-wsp').value;
+    const rubro = document.getElementById('reg-rubro').value;
+    if (!name || !email || !wsp || !rubro) {
+      alert('Por favor completa todos los campos para continuar.');
+      return;
+    }
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('success-msg').classList.add('show');
+  }
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('open'));
+    if (!isOpen) {
+      answer.classList.add('open');
+      icon.classList.add('open');
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
