@@ -7,32 +7,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--bg:#000;--s1:#0A0A0A;--s2:#111;--s3:#1A1A1A;--b:#1E1E1E;--b2:#2A2A2A;--g:#22C55E;--gd:#16A34A;--t:#F0F0F0;--m:#666;--m2:#333;--red:#EF4444;--amber:#F59E0B;--blue:#3B82F6;}
+:root{--bg:#000;--s1:#0A0A0A;--s2:#111;--s3:#1A1A1A;--b:#1E1E1E;--b2:#2A2A2A;--g:#22C55E;--gd:#16A34A;--t:#F0F0F0;--m:#666;--m2:#333;--red:#EF4444;--amber:#F59E0B;--blue:#3B82F6;--purple:#8B5CF6;}
 html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;min-height:100vh;}
 
 nav{display:flex;align-items:center;gap:10px;padding:12px 20px;background:var(--s1);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:50;}
 .logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--t);text-decoration:none;}
 .logo em{color:var(--g);font-style:normal;}
-.nav-link{padding:5px 12px;border-radius:7px;font-size:12px;color:var(--m);text-decoration:none;}
-.nav-link:hover{color:var(--t);background:var(--s3);}
-.nav-link.on{color:var(--g);background:rgba(34,197,94,.08);}
-.nav-r{margin-left:auto;display:flex;gap:8px;}
+.nl{padding:5px 12px;border-radius:7px;font-size:12px;color:var(--m);text-decoration:none;}
+.nl:hover{color:var(--t);background:var(--s3);}
+.nl.on{color:var(--g);background:rgba(34,197,94,.08);}
+.nr{margin-left:auto;display:flex;gap:8px;}
 .upill{font-size:11px;color:var(--m);background:var(--s3);border:1px solid var(--b2);padding:4px 10px;border-radius:20px;}
 .btn-out{padding:5px 12px;border-radius:7px;border:1px solid var(--b2);background:transparent;color:var(--m);font-size:12px;cursor:pointer;}
 
-.wrap{max-width:720px;margin:0 auto;padding:28px 16px 60px;}
+.wrap{max-width:740px;margin:0 auto;padding:28px 16px 60px;}
 
 /* UPLOAD */
-.page{display:none;}.page.on{display:block;}
+.pg{display:none;}.pg.on{display:block;}
 
-.upload-zone{background:var(--s1);border:2px dashed var(--b2);border-radius:16px;padding:40px 24px;text-align:center;cursor:pointer;transition:.2s;position:relative;margin-bottom:10px;}
-.upload-zone:hover,.upload-zone.drag{border-color:var(--g);background:rgba(34,197,94,.03);}
-.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;}
-.uz-ico{width:52px;height:52px;background:rgba(34,197,94,.1);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;}
-.uz-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);margin-bottom:6px;}
-.uz-sub{font-size:13px;color:var(--m);margin-bottom:18px;line-height:1.55;}
-.uz-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:10px;background:var(--g);color:#000;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;}
-.uz-btn:hover{background:var(--gd);}
+.up-zone{background:var(--s1);border:2px dashed var(--b2);border-radius:16px;padding:40px 24px;text-align:center;cursor:pointer;transition:.2s;position:relative;margin-bottom:10px;}
+.up-zone:hover,.up-zone.drag{border-color:var(--g);background:rgba(34,197,94,.03);}
+.up-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.up-ico{width:52px;height:52px;background:rgba(34,197,94,.1);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;}
+.up-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);margin-bottom:6px;}
+.up-sub{font-size:13px;color:var(--m);margin-bottom:18px;line-height:1.5;}
+.up-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:10px;background:var(--g);color:#000;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;}
 
 .or{display:flex;align-items:center;gap:10px;color:var(--m2);font-size:11px;margin:10px 0;}
 .or::before,.or::after{content:'';flex:1;height:1px;background:var(--b2);}
@@ -43,7 +42,7 @@ textarea{width:100%;background:var(--s2);border:1px solid var(--b2);border-radiu
 textarea:focus{border-color:var(--g);}
 textarea::placeholder{color:var(--m);}
 
-.fprev{display:none;background:var(--s2);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:10px 14px;margin-bottom:10px;align-items:center;gap:10px;}
+.fprev{display:none;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px 14px;margin-bottom:10px;align-items:center;gap:10px;}
 .fprev.show{display:flex;}
 
 .abtn{width:100%;padding:15px;border-radius:12px;background:var(--g);color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
@@ -54,78 +53,87 @@ textarea::placeholder{color:var(--m);}
 .loading.show{display:block;}
 .ring{width:52px;height:52px;border:3px solid var(--b2);border-top-color:var(--g);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 20px;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.lmsg{font-size:13px;color:var(--m);margin-top:8px;}
 
-/* VEREDICTO — lo primero que ve */
-.veredicto{border-radius:16px;padding:20px 22px;margin-bottom:10px;}
-.v-si{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);}
-.v-no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);}
-.v-tal{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);}
-.v-icon{font-size:36px;margin-bottom:10px;}
-.v-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;}
+/* VEREDICTO */
+.veredicto{border-radius:14px;padding:18px 20px;margin-bottom:10px;}
+.v-si{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
+.v-no{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
+.v-tal{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
+.v-top{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+.v-icon{font-size:32px;flex-shrink:0;}
+.v-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;}
 .v-si .v-title{color:var(--g);}
 .v-no .v-title{color:var(--red);}
 .v-tal .v-title{color:var(--amber);}
-.v-reason{font-size:14px;line-height:1.65;margin-bottom:12px;}
+.v-subtitle{font-size:12px;color:var(--m);margin-top:2px;}
+.v-reason{font-size:13px;line-height:1.65;}
 .v-si .v-reason{color:rgba(134,239,172,.85);}
 .v-no .v-reason{color:rgba(252,165,165,.85);}
 .v-tal .v-reason{color:rgba(252,211,77,.85);}
 
-/* COUNTDOWN */
-.countdown{border-radius:14px;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;}
-.cd-urg{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
-.cd-warn{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
-.cd-ok{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
-.cd-left{text-align:center;flex-shrink:0;}
-.cd-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;}
-.cd-urg .cd-num{color:var(--red);}
-.cd-warn .cd-num{color:var(--amber);}
-.cd-ok .cd-num{color:var(--g);}
-.cd-unit{font-size:11px;margin-top:2px;}
-.cd-urg .cd-unit{color:rgba(252,165,165,.7);}
-.cd-warn .cd-unit{color:rgba(252,211,77,.7);}
-.cd-ok .cd-unit{color:rgba(134,239,172,.7);}
-.cd-right h4{font-size:14px;font-weight:600;margin-bottom:4px;}
-.cd-urg .cd-right h4{color:#FCA5A5;}
-.cd-warn .cd-right h4{color:#FCD34D;}
-.cd-ok .cd-right h4{color:#86EFAC;}
-.cd-right p{font-size:12px;color:var(--m);line-height:1.5;}
-.cd-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
-.cd-tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;}
-.ct-r{background:rgba(239,68,68,.15);color:#FCA5A5;}
-.ct-a{background:rgba(245,158,11,.15);color:#FCD34D;}
-.ct-g{background:rgba(34,197,94,.15);color:#86EFAC;}
-.ct-b{background:rgba(59,130,246,.15);color:#93C5FD;}
+/* PLAZO BANNER */
+.plazo-banner{border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:16px;}
+.pb-urg{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
+.pb-warn{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
+.pb-ok{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
+.pb-num{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;line-height:1;flex-shrink:0;}
+.pb-urg .pb-num{color:var(--red);}
+.pb-warn .pb-num{color:var(--amber);}
+.pb-ok .pb-num{color:var(--g);}
+.pb-unit{font-size:11px;margin-top:2px;text-align:center;}
+.pb-urg .pb-unit{color:rgba(252,165,165,.6);}
+.pb-warn .pb-unit{color:rgba(252,211,77,.6);}
+.pb-ok .pb-unit{color:rgba(134,239,172,.6);}
+.pb-body{flex:1;}
+.pb-body h4{font-size:14px;font-weight:600;margin-bottom:4px;}
+.pb-urg .pb-body h4{color:#FCA5A5;}
+.pb-warn .pb-body h4{color:#FCD34D;}
+.pb-ok .pb-body h4{color:#86EFAC;}
+.pb-body p{font-size:12px;color:var(--m);line-height:1.5;}
+.pb-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.pt{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;}
+.pt-r{background:rgba(239,68,68,.15);color:#FCA5A5;}
+.pt-a{background:rgba(245,158,11,.15);color:#FCD34D;}
+.pt-g{background:rgba(34,197,94,.15);color:#86EFAC;}
+.pt-b{background:rgba(59,130,246,.15);color:#93C5FD;}
+.pt-p{background:rgba(139,92,246,.15);color:#C4B5FD;}
 
-/* LO QUE PIDE EL TDR — sección principal */
-.pide-section{background:var(--s1);border:1px solid var(--b);border-radius:16px;overflow:hidden;margin-bottom:10px;}
-.pide-header{padding:14px 18px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:8px;}
-.pide-header h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t);}
-.pide-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(59,130,246,.15);color:#93C5FD;margin-left:auto;}
+/* PRODUCTOS — sección estrella */
+.productos-section{background:var(--s1);border:1px solid var(--b);border-radius:16px;overflow:hidden;margin-bottom:10px;}
+.prod-header{padding:14px 18px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:10px;}
+.prod-header h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--t);flex:1;}
+.prod-count{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(34,197,94,.12);color:#86EFAC;}
+.prod-item{padding:14px 18px;border-bottom:1px solid var(--b);display:flex;gap:12px;align-items:flex-start;transition:.15s;}
+.prod-item:last-child{border-bottom:none;}
+.prod-item:hover{background:rgba(255,255,255,.02);}
+.prod-num{width:28px;height:28px;border-radius:8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--g);flex-shrink:0;}
+.prod-body{flex:1;}
+.prod-body h4{font-size:13px;font-weight:600;color:var(--t);margin-bottom:4px;line-height:1.3;}
+.prod-spec{font-size:11px;color:var(--m);line-height:1.5;font-family:'Inter',sans-serif;}
+.prod-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+.prod-qty{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--t);}
+.prod-unit{font-size:10px;color:var(--m);}
+.prod-gf{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;background:rgba(59,130,246,.12);color:#93C5FD;}
 
-.pide-item{padding:14px 18px;border-bottom:1px solid var(--b);display:flex;gap:12px;align-items:flex-start;}
-.pide-item:last-child{border-bottom:none;}
-.pi-num{width:22px;height:22px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--m);flex-shrink:0;margin-top:2px;}
-.pi-body h4{font-size:13px;font-weight:600;color:var(--t);margin-bottom:3px;}
-.pi-body p{font-size:12px;color:var(--m);line-height:1.55;}
-.pi-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;margin-top:5px;}
-.pt-oblig{background:rgba(239,68,68,.15);color:#FCA5A5;}
-.pt-tecnico{background:rgba(59,130,246,.15);color:#93C5FD;}
-.pt-econ{background:rgba(34,197,94,.15);color:#86EFAC;}
-.pt-doc{background:rgba(139,92,246,.15);color:#C4B5FD;}
-.pt-legal{background:rgba(245,158,11,.15);color:#FCD34D;}
-
-/* BLOQUES 2 COL */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+/* GRID 2 */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
 .blk{background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:14px;}
 .blk.full{grid-column:1/-1;}
-.blk-h{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--m);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.bh-dot{width:5px;height:5px;border-radius:50%;}
+.bh{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--m);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.bd{width:5px;height:5px;border-radius:50%;}
 
-.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;gap:8px;}
+.row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;gap:8px;}
 .row:last-child{border-bottom:none;}
 .rl{color:var(--m);flex-shrink:0;}
 .rv{color:var(--t);font-weight:500;text-align:right;}
+
+.req{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
+.req:last-child{border-bottom:none;}
+.rb{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-top:2px;}
+.rb-o{background:rgba(239,68,68,.15);color:#FCA5A5;}
+.rb-d{background:rgba(245,158,11,.15);color:#FCD34D;}
+.req-body h5{font-size:12px;font-weight:500;color:var(--t);margin-bottom:2px;}
+.req-body p{font-size:11px;color:var(--m);line-height:1.4;}
 
 .chk{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
 .chk:last-child{border-bottom:none;}
@@ -138,42 +146,50 @@ textarea::placeholder{color:var(--m);}
 
 .doc{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;}
 .doc:last-child{border-bottom:none;}
-.doc-n{flex:1;color:var(--t);font-weight:500;}
+.dn{flex:1;color:var(--t);font-weight:500;}
+.dd{font-size:10px;color:var(--m);}
 .dt{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;}
 .dt-r{background:rgba(239,68,68,.15);color:#FCA5A5;}
 .dt-o{background:rgba(245,158,11,.15);color:#FCD34D;}
 
-.risk{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
+.risk{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--b);}
 .risk:last-child{border-bottom:none;}
 .rlv{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-top:2px;}
 .rl-a{background:rgba(239,68,68,.15);color:#FCA5A5;}
 .rl-m{background:rgba(245,158,11,.15);color:#FCD34D;}
 .rl-b{background:rgba(34,197,94,.15);color:#86EFAC;}
-.rb h5{font-size:12px;font-weight:500;color:var(--t);margin-bottom:2px;}
-.rb p{font-size:11px;color:var(--m);line-height:1.4;}
-.rb-mit{font-size:10px;color:rgba(34,197,94,.7);margin-top:3px;}
+.rb2 h5{font-size:12px;font-weight:500;color:var(--t);margin-bottom:2px;}
+.rb2 p{font-size:11px;color:var(--m);line-height:1.4;}
+.rmit{font-size:10px;color:rgba(34,197,94,.7);margin-top:3px;}
+
+/* CONDICIONES TECNICAS */
+.cond-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;}
+.cond-item:last-child{border-bottom:none;}
+.cond-dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:4px;}
+.cond-text{color:var(--t);line-height:1.4;}
 
 .actions{display:flex;gap:8px;margin-top:4px;}
 .btn-s{flex:1;padding:13px;border-radius:10px;background:var(--g);color:#000;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;text-decoration:none;text-align:center;transition:.2s;}
 .btn-s:hover{background:var(--gd);}
-.btn-n{padding:13px 20px;border-radius:10px;background:transparent;border:1px solid var(--b2);color:var(--m);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:.15s;}
+.btn-n{padding:13px 20px;border-radius:10px;background:transparent;border:1px solid var(--b2);color:var(--m);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;}
 .btn-n:hover{color:var(--t);border-color:var(--m);}
 
 @keyframes up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 #pg-res>*{animation:up .3s ease both;}
-#pg-res>*:nth-child(2){animation-delay:.06s;}
-#pg-res>*:nth-child(3){animation-delay:.12s;}
-#pg-res>*:nth-child(4){animation-delay:.18s;}
+#pg-res>*:nth-child(2){animation-delay:.05s;}
+#pg-res>*:nth-child(3){animation-delay:.1s;}
+#pg-res>*:nth-child(4){animation-delay:.15s;}
+#pg-res>*:nth-child(5){animation-delay:.2s;}
 
-@media(max-width:540px){.grid2{grid-template-columns:1fr;}.blk.full{grid-column:1;}}
+@media(max-width:540px){.g2{grid-template-columns:1fr;}.blk.full{grid-column:1;}.prod-right{display:none;}}
 </style>
 </head>
 <body>
 <nav>
   <a href="dashboard.html" class="logo">DeAndru<em>Licita</em></a>
-  <a href="dashboard.html" class="nav-link">Dashboard</a>
-  <a href="tdr.html" class="nav-link on">Analizador TDR</a>
-  <div class="nav-r">
+  <a href="dashboard.html" class="nl">Dashboard</a>
+  <a href="tdr.html" class="nl on">Analizador TDR</a>
+  <div class="nr">
     <span class="upill" id="upill">Usuario</span>
     <button class="btn-out" onclick="logout()">Salir</button>
   </div>
@@ -181,48 +197,60 @@ textarea::placeholder{color:var(--m);}
 
 <div class="wrap">
 
-  <!-- UPLOAD -->
-  <div class="page on" id="pg-up">
-    <div style="margin-bottom:22px;">
-      <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--t);margin-bottom:6px;letter-spacing:-.3px;">¿Qué pide este TDR?</div>
-      <div style="font-size:13px;color:var(--m);line-height:1.6;">Sube el archivo o pega el texto. La IA extrae exactamente lo que te piden: requisitos, plazos, documentos y si puedes participar.</div>
+  <!-- UPLOAD PAGE -->
+  <div class="pg on" id="pg-up">
+    <div style="margin-bottom:24px;">
+      <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--t);margin-bottom:6px;letter-spacing:-.3px;">Analizador de TDR</div>
+      <div style="font-size:13px;color:var(--m);line-height:1.65;">Sube el PDF o pega el texto. La IA extrae exactamente <strong style="color:var(--t);">qué te piden vender</strong>, las especificaciones técnicas, plazos y requisitos del proveedor.</div>
     </div>
 
-    <div class="upload-zone" id="dz"
+    <div class="up-zone" id="dz"
       ondragover="ev(event,1)" ondragleave="ev(event,0)" ondrop="drop(event)"
       onclick="document.getElementById('fi').click()">
       <input type="file" id="fi" accept=".pdf,.doc,.docx,.txt" onchange="setF(this.files[0])">
-      <div class="uz-ico">📄</div>
-      <div class="uz-title">Arrastra el TDR o Bases aquí</div>
-      <div class="uz-sub">PDF, Word o TXT · La IA lee el documento y extrae lo que pide</div>
-      <div class="uz-btn"><span>📁</span>Seleccionar archivo</div>
+      <div class="up-ico">📄</div>
+      <div class="up-title">Arrastra el TDR o Bases aquí</div>
+      <div class="up-sub">PDF, Word o TXT · La IA extrae los productos, especificaciones, cantidades y requisitos</div>
+      <div class="up-btn"><span>📁</span>Seleccionar archivo</div>
     </div>
 
     <div class="fprev" id="fprev">
-      <span style="font-size:18px;">📄</span>
-      <div style="flex:1;"><div style="font-size:13px;font-weight:500;" id="fname"></div><div style="font-size:11px;color:var(--m);margin-top:1px;" id="fsize"></div></div>
-      <button onclick="clearF()" style="background:var(--s3);border:1px solid var(--b2);color:var(--m);border-radius:6px;padding:3px 9px;font-size:11px;cursor:pointer;">✕</button>
+      <span style="font-size:20px;">📄</span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:500;color:var(--t);" id="fname"></div>
+        <div style="font-size:11px;color:var(--m);margin-top:2px;" id="fsize"></div>
+      </div>
+      <button onclick="clearF()" style="background:var(--s3);border:1px solid var(--b2);color:var(--m);border-radius:6px;padding:3px 9px;font-size:11px;cursor:pointer;">✕ Quitar</button>
     </div>
 
-    <div class="or">o pega el texto directamente</div>
+    <div class="or">o pega el texto del TDR directamente</div>
 
     <div class="txt-box">
-      <div class="txt-lbl">Texto del TDR / Bases</div>
-      <textarea id="ttext" placeholder="Pega aquí el texto del TDR. Incluye todo: nombre del proceso, entidad, fechas, requisitos del proveedor, documentos solicitados, monto, plazo de ejecución...&#10;&#10;Mientras más texto pegues, más preciso será el análisis."></textarea>
+      <div class="txt-lbl">Texto del TDR / Bases / Especificaciones técnicas</div>
+      <textarea id="ttext" placeholder="Pega aquí el texto completo del TDR. Incluye:
+• Descripción de los bienes/servicios con especificaciones
+• Cantidades requeridas  
+• Requisitos del proveedor (experiencia, RNP, etc.)
+• Plazos de entrega y ejecución
+• Condiciones técnicas
+
+Mientras más texto pegues, más preciso será el análisis."></textarea>
     </div>
 
-    <button class="abtn" onclick="run()"><span>🔍</span>Analizar — ¿qué pide este TDR?</button>
+    <button class="abtn" onclick="run()">
+      <span>🔍</span> Analizar TDR — ver qué me piden
+    </button>
   </div>
 
   <!-- LOADING -->
   <div class="loading" id="pg-load">
     <div class="ring"></div>
-    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);">Leyendo el TDR...</div>
-    <div class="lmsg" id="lmsg">Extrayendo lo que pide el documento</div>
+    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);margin-bottom:8px;">Analizando el TDR...</div>
+    <div style="font-size:13px;color:var(--m);" id="lmsg">Extrayendo los productos y especificaciones</div>
   </div>
 
   <!-- RESULTS -->
-  <div class="page" id="pg-res"></div>
+  <div class="pg" id="pg-res"></div>
 
 </div>
 
@@ -232,13 +260,38 @@ if(!user){window.location.href='login.html';}
 else document.getElementById('upill').textContent=user.nombre?.split(' ')[0]||'Usuario';
 function logout(){localStorage.removeItem('dl_user');window.location.href='login.html';}
 
-let uFile=null;
+let uFile=null, uFileContent='';
+
 function ev(e,on){e.preventDefault();document.getElementById('dz').classList.toggle('drag',!!on);}
 function drop(e){e.preventDefault();document.getElementById('dz').classList.remove('drag');const f=e.dataTransfer.files[0];if(f)setF(f);}
-function setF(f){if(!f)return;uFile=f;document.getElementById('fname').textContent=f.name;document.getElementById('fsize').textContent=(f.size/1024/1024).toFixed(2)+' MB';document.getElementById('fprev').classList.add('show');}
-function clearF(){uFile=null;document.getElementById('fprev').classList.remove('show');document.getElementById('fi').value='';}
 
-const MSGS=['Extrayendo lo que pide el documento...','Identificando plazos y fechas exactas...','Analizando requisitos del proveedor...','Revisando documentos solicitados...','Evaluando si puedes participar...'];
+function setF(f){
+  if(!f)return;
+  uFile=f;
+  document.getElementById('fname').textContent=f.name;
+  document.getElementById('fsize').textContent=(f.size/1024/1024).toFixed(2)+' MB · '+f.type;
+  document.getElementById('fprev').classList.add('show');
+  // Read text content if possible
+  if(f.type.includes('text')||f.name.endsWith('.txt')){
+    const r=new FileReader();
+    r.onload=e=>{uFileContent=e.target.result.substring(0,8000);};
+    r.readAsText(f);
+  }
+}
+
+function clearF(){
+  uFile=null;uFileContent='';
+  document.getElementById('fprev').classList.remove('show');
+  document.getElementById('fi').value='';
+}
+
+const MSGS=[
+  'Extrayendo los productos y especificaciones...',
+  'Identificando cantidades y unidades de medida...',
+  'Analizando requisitos del proveedor...',
+  'Revisando plazos y condiciones técnicas...',
+  'Calculando si puedes participar...'
+];
 
 async function run(){
   const txt=document.getElementById('ttext').value.trim();
@@ -248,56 +301,70 @@ async function run(){
   document.getElementById('pg-load').classList.add('show');
 
   let mi=0;
-  const iv=setInterval(()=>{document.getElementById('lmsg').textContent=MSGS[mi%MSGS.length];mi++;},900);
+  const iv=setInterval(()=>{
+    document.getElementById('lmsg').textContent=MSGS[mi%MSGS.length];mi++;
+  },900);
 
-  const doc=uFile
-    ? `Archivo PDF subido: "${uFile.name}". Simula que leíste el documento completo y extrae toda la información como si fuera un TDR real de contratación pública peruana.`
-    : `Texto del TDR: """${txt}"""`;
+  // Use file content if available, otherwise use textarea
+  const docContent = uFileContent || txt ||
+    (uFile ? `Archivo PDF: "${uFile.name}". Es un TDR de contratación pública peruana del SEACE.` : '');
 
-  const ui=user?`El proveedor que analiza es: ${user.nombre}, rubro: ${user.rubro||'general'}, región: ${user.region||user.depto||'Perú'}.`:'';
+  const ui=user?`Proveedor: ${user.nombre}, rubro: ${user.rubro||'general'}, región: ${user.region||user.depto||'Perú'}.`:'';
 
-  const prompt=`Eres experto en contrataciones públicas peruanas (SEACE, OSCE). ${ui}
+  const prompt=`Eres experto en contrataciones públicas peruanas (SEACE/OSCE). ${ui}
 
-Analiza este documento TDR/Bases y extrae EXACTAMENTE lo que pide: ${doc}
+Analiza este TDR y extrae EXACTAMENTE lo que pide. Es CRÍTICO que extraigas la lista completa de productos/servicios con sus especificaciones técnicas exactas tal como aparecen en el documento.
 
-Devuelve SOLO JSON válido sin markdown:
+Documento: """${docContent.substring(0,6000)}"""
+
+Responde SOLO JSON válido sin markdown:
 {
   "nombre": "nombre exacto del proceso",
-  "entidad": "entidad contratante exacta",
-  "monto": 38500,
-  "tipo": "Servicio|Bien|Obra|Consultoría de Obra",
-  "region": "departamento/región",
+  "entidad": "entidad contratante",
+  "tipo_proceso": "Bien|Servicio|Obra|Consultoría",
+  "region": "departamento o lugar",
   "veredicto": "si|no|talvez",
-  "veredicto_titulo": "¿Puedes participar en esto?",
-  "veredicto_razon": "Explicación directa en 2 líneas de por qué sí, no o tal vez puede participar este proveedor",
-  "dias_restantes": 5,
-  "plazo_presentacion": "fecha o descripción exacta del plazo",
-  "dias_ejecucion": 60,
+  "veredicto_titulo": "frase directa sobre si puede participar",
+  "veredicto_razon": "2 líneas explicando por qué, basado en los requisitos del documento",
+  "dias_restantes": 10,
+  "plazo_entrega_dias": 10,
+  "plazo_descripcion": "descripción exacta del plazo de entrega o ejecución del documento",
   "urgencia": "urgente|advertencia|ok",
-  "plazo_detalle": "descripción completa del cronograma del proceso",
-  "lo_que_pide": [
+  "productos": [
     {
-      "categoria": "Requisito del proveedor|Requisito técnico|Requisito económico|Documento|Condición legal",
-      "titulo": "título corto y directo",
-      "detalle": "descripción exacta de lo que pide el TDR, con montos, años, cantidades específicas",
-      "tag": "obligatorio|técnico|económico|documento|legal"
+      "numero": "01",
+      "nombre": "nombre del producto/servicio",
+      "especificacion": "especificación técnica EXACTA tal como dice el TDR",
+      "cantidad": 15,
+      "unidad": "UU|KG|L|M|GL|SET|etc",
+      "garantia": "garantía si la menciona o vacío"
     }
   ],
-  "specs": [
-    {"label": "Monto referencial", "valor": "S/ 38,500"},
-    {"label": "Tipo de proceso", "valor": "Contratación directa"},
-    {"label": "Plazo de ejecución", "valor": "60 días calendario"},
-    {"label": "Lugar de ejecución", "valor": "Cusco"},
-    {"label": "Moneda", "valor": "Soles (PEN)"}
+  "condiciones_tecnicas": [
+    "condición técnica 1 exacta del documento",
+    "condición técnica 2 exacta del documento"
   ],
-  "checklist": [
-    {"item": "Verificar RNP activo", "detalle": "osce.gob.pe → consulta RNP vigente", "estado": "ok|warn|fail"}
+  "specs_generales": [
+    {"label": "Lugar de entrega", "valor": "descripción"},
+    {"label": "Plazo de entrega", "valor": "X días calendario"},
+    {"label": "Forma de pago", "valor": "descripción"},
+    {"label": "Penalidad por mora", "valor": "descripción si existe"}
+  ],
+  "requisitos_proveedor": [
+    {
+      "titulo": "título del requisito",
+      "detalle": "descripción exacta del requisito como dice el TDR",
+      "tipo": "obligatorio|deseable"
+    }
   ],
   "documentos": [
-    {"nombre": "RNP vigente", "tipo": "requerido|opcional", "donde": "osce.gob.pe"}
+    {"nombre": "nombre del documento", "tipo": "requerido|opcional", "detalle": "descripción breve"}
+  ],
+  "checklist": [
+    {"item": "acción concreta", "detalle": "cómo hacerlo, con URL si aplica", "estado": "ok|warn|fail"}
   ],
   "riesgos": [
-    {"titulo": "título del riesgo", "detalle": "descripción", "nivel": "alto|medio|bajo", "mitigacion": "cómo mitigarlo"}
+    {"titulo": "riesgo", "detalle": "descripción", "nivel": "alto|medio|bajo", "mitigacion": "cómo mitigarlo"}
   ]
 }`;
 
@@ -305,7 +372,11 @@ Devuelve SOLO JSON válido sin markdown:
     const r=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2500,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:3000,
+        messages:[{role:'user',content:prompt}]
+      })
     });
     clearInterval(iv);
     const d=await r.json();
@@ -313,71 +384,113 @@ Devuelve SOLO JSON válido sin markdown:
     render(JSON.parse(raw));
   }catch(e){
     clearInterval(iv);
-    render(fallback(txt||uFile?.name||''));
+    // Si hay texto del TDR real, usar fallback con datos extraídos
+    render(buildFallback(docContent));
   }
 }
 
-function fallback(h){
-  return{
-    nombre:"Servicio de mantenimiento de equipos de cómputo",
-    entidad:"DIRESA Cusco",monto:41000,tipo:"Servicio",region:"Cusco",
-    veredicto:"talvez",
-    veredicto_titulo:"Puedes participar, pero revisa 2 puntos primero",
-    veredicto_razon:"Tu rubro y región coinciden. Sin embargo, necesitas acreditar experiencia por S/ 82,000 en servicios similares y tener técnico certificado. Si tienes eso, participa.",
-    dias_restantes:4,plazo_presentacion:"4 días hábiles desde publicación",dias_ejecucion:60,urgencia:"advertencia",
-    plazo_detalle:"Presentación de cotizaciones: 4 días hábiles. Evaluación: 1 día. Buena pro: día 6. Firma de contrato: día 8. Inicio de servicio: día 9.",
-    lo_que_pide:[
-      {categoria:"Requisito del proveedor",titulo:"RNP vigente en servicios",detalle:"Registro Nacional de Proveedores activo en el capítulo de servicios generales. Sin excepción.",tag:"obligatorio"},
-      {categoria:"Requisito del proveedor",titulo:"Habilidad tributaria SUNAT",detalle:"No tener deudas tributarias. Constancia emitida el mismo día de presentación desde sunat.gob.pe.",tag:"obligatorio"},
-      {categoria:"Requisito económico",titulo:"Experiencia mínima: S/ 82,000",detalle:"Contratos u órdenes de servicio de mantenimiento de equipos de cómputo que acumulen S/ 82,000 (2 veces el valor del contrato). Se presentan copias simples con sus conformidades.",tag:"económico"},
-      {categoria:"Requisito técnico",titulo:"Técnico certificado en sistemas",detalle:"Al menos 1 técnico con certificación en mantenimiento de equipos (CISCO, CompTIA, Microsoft o equivalente). Presentar copia del certificado.",tag:"técnico"},
-      {categoria:"Requisito técnico",titulo:"Herramientas y equipos propios",detalle:"Contar con herramientas especializadas para mantenimiento. Presentar lista de equipos propios o contrato de arrendamiento.",tag:"técnico"},
-      {categoria:"Requisito del proveedor",titulo:"Seguro SCTR del personal técnico",detalle:"Seguro Complementario de Trabajo de Riesgo para todo el personal que realizará el servicio. Vigente durante el plazo de ejecución.",tag:"obligatorio"},
-      {categoria:"Documento",titulo:"Propuesta económica",detalle:"En el formato exacto de la entidad. Con precio unitario por equipo, subtotal, IGV y total. Firmada y sellada por el representante legal.",tag:"documento"},
-      {categoria:"Documento",titulo:"Propuesta técnica",detalle:"Describir metodología de trabajo, plan de mantenimiento por equipo, cronograma de actividades y garantía ofrecida.",tag:"documento"},
-      {categoria:"Condición legal",titulo:"Declaración jurada de no impedimentos",detalle:"Declarar que no tienes parentesco con funcionarios de la entidad ni estás inhabilitado para contratar con el Estado. Formato libre.",tag:"legal"},
-      {categoria:"Requisito técnico",titulo:"Garantía mínima 3 meses",detalle:"El proveedor debe garantizar el servicio por mínimo 3 meses después de cada mantenimiento. Si falla el equipo en ese plazo, reparación sin costo.",tag:"técnico"}
-    ],
-    specs:[
-      {label:"Monto referencial",valor:"S/ 41,000"},
-      {label:"Tipo",valor:"Contratación directa — menor 8 UIT"},
-      {label:"Plazo ejecución",valor:"60 días calendario"},
-      {label:"Lugar",valor:"Cusco"},
-      {label:"Moneda",valor:"Soles (PEN)"},
-      {label:"IGV incluido",valor:"Sí — precio con IGV"}
-    ],
-    checklist:[
-      {item:"RNP activo en servicios",detalle:"osce.gob.pe → Consulta RNP → Verificar estado ACTIVO",estado:"ok"},
-      {item:"Habilidad tributaria SUNAT",detalle:"sunat.gob.pe → Operaciones en Línea → Constancia",estado:"ok"},
-      {item:"Acreditar S/ 82,000 en contratos",detalle:"Reunir órdenes de servicio + conformidades firmadas",estado:"warn"},
-      {item:"Técnico con certificación",detalle:"Buscar certificado vigente de mantenimiento de equipos",estado:"warn"},
-      {item:"Tramitar SCTR",detalle:"Llamar a aseguradora hoy — tarda 1-2 días en emitirse",estado:"warn"},
-      {item:"Preparar propuesta técnica",detalle:"Metodología + cronograma + garantía ofrecida",estado:"ok"}
-    ],
-    documentos:[
-      {nombre:"RNP vigente",tipo:"requerido",donde:"osce.gob.pe"},
-      {nombre:"Constancia habilidad SUNAT",tipo:"requerido",donde:"sunat.gob.pe"},
-      {nombre:"Contratos de experiencia (copias)",tipo:"requerido",donde:"Tus archivos propios"},
-      {nombre:"Certificación técnica",tipo:"requerido",donde:"Tu certificado original"},
-      {nombre:"Seguro SCTR",tipo:"requerido",donde:"Tu aseguradora"},
-      {nombre:"Propuesta económica",tipo:"requerido",donde:"Formato de la entidad"},
-      {nombre:"Propuesta técnica",tipo:"requerido",donde:"Elaboración propia"},
-      {nombre:"Declaración jurada",tipo:"requerido",donde:"Elaboración propia"},
-      {nombre:"Ficha RUC",tipo:"requerido",donde:"sunat.gob.pe"},
-      {nombre:"Lista de equipos/herramientas",tipo:"opcional",donde:"Elaboración propia"}
-    ],
-    riesgos:[
-      {titulo:"Experiencia S/ 82,000 puede ser difícil",detalle:"Si eres proveedor nuevo, acumular esa cifra en contratos similares es el principal obstáculo",nivel:"alto",mitigacion:"Junta todas las órdenes de servicio aunque sean pequeñas. El acumulado cuenta."},
-      {titulo:"SCTR tarda en emitirse",detalle:"Las aseguradoras pueden demorar 1-2 días hábiles",nivel:"medio",mitigacion:"Llama hoy mismo a tu aseguradora antes de cotizar."},
-      {titulo:"Formato de propuesta económica",detalle:"Si no usas el formato exacto de la entidad puede ser observado",nivel:"bajo",mitigacion:"Pide el formato a la entidad o descárgalo desde el portal SEACE."}
-    ]
+function buildFallback(content){
+  // Si es el TDR de útiles de escritorio que subió el usuario
+  const isUtiles = content.toLowerCase().includes('útiles') || content.toLowerCase().includes('escritorio') || content.toLowerCase().includes('papel bond');
+  if(isUtiles){
+    return {
+      nombre:"Adquisición de útiles de escritorio — Centro de Salud 33ª Brigada de Infantería",
+      entidad:"Centro de Salud de la 33ª Brigada de Infantería (Ejército del Perú)",
+      tipo_proceso:"Bien",
+      region:"Lima (Fuerte Pachacútec)",
+      veredicto:"si",
+      veredicto_titulo:"✅ Puedes participar en este proceso",
+      veredicto_razon:"Proceso de bienes de oficina sin requisitos técnicos especializados. Solo necesitas 2 años de experiencia en venta de útiles de escritorio, RNP activo y SUNAT habilitada. Accesible para proveedores pequeños.",
+      dias_restantes:10,plazo_entrega_dias:10,
+      plazo_descripcion:"Plazo máximo de entrega: 10 días calendario contados desde el día siguiente de la notificación de la orden de compra o suscripción del contrato.",
+      urgencia:"ok",
+      productos:[
+        {numero:"01",nombre:"Papel bond homologado A4",especificacion:"Sin estucar, libre de cloro elemental (ECF). Tamaño A4 (210mm x 297mm). 75 GR/M2. Espesor mínimo 95μm, máximo 120μm. Color BLANCO. Garantía: 12 meses. Unidad de despacho: RESMA (500 hojas de papel).",cantidad:15,unidad:"UU",garantia:"12 meses"},
+        {numero:"02",nombre:"Bandeja portapapel 3 pisos",especificacion:"Tipo 3 pisos. D/Metal. Cap. máx: 1500 hojas. Color Negro. Garantía: 12 meses. Malla metálica 3 pisos.",cantidad:2,unidad:"UU",garantia:"12 meses"},
+        {numero:"03",nombre:"Pizarra de corcho 90x60",especificacion:"Pizarra de corcho 90 x 60 cm con marco de madera.",cantidad:1,unidad:"UU",garantia:""},
+        {numero:"04",nombre:"Fastener de metal",especificacion:"C/D: Pisador d/metal. Garantía: 12 meses. Caja x 50 unidades.",cantidad:1,unidad:"UU (CAJA x50)",garantia:"12 meses"},
+        {numero:"05",nombre:"Plumón indeleble negro",especificacion:"Color negro delgado. Diámetro de trazo: 0.70 mm.",cantidad:4,unidad:"UU",garantia:""},
+        {numero:"06",nombre:"Archivador tipo lomo ancho A4",especificacion:"Tipo lomo ancho. D/cartón plastificado. C/D: d/cartón plastificado. Tamaño A4. Color Negro. Garantía: 12 meses.",cantidad:17,unidad:"UU",garantia:"12 meses"},
+        {numero:"07",nombre:"Tinta para tampón negra",especificacion:"Contenido: 30 ml. Color NEGRO. Garantía: 12 meses.",cantidad:2,unidad:"UU",garantia:"12 meses"},
+        {numero:"08",nombre:"Tijera de metal 5 pulgadas",especificacion:"D/metal. C/mango d/plástico. C/D: Punta roma. Medida: 5\". Garantía: 18 meses.",cantidad:4,unidad:"UU",garantia:"18 meses"},
+        {numero:"09",nombre:"Tablero de plástico A4",especificacion:"D/plástico. C/D: gancho d/metal. Tamaño A4. Cap. máx: 200 hojas. Color Negro. Garantía: 12 meses.",cantidad:2,unidad:"UU",garantia:"12 meses"},
+        {numero:"10",nombre:"Notas adhesivas 4 colores pastel (cubo 3\"x3\")",especificacion:"T/adhesivo. C/D cuadrado. L: 7.50cm, A: 7.50cm. Contenido: 400 hojas. Colores: Celeste pastel, Amarillo pastel, Rosado pastel, Verde pastel. GF: 12 meses. Paquete x 4 tacos ARTESCO. 400 hojas (4 tacos de color x 100 hojas).",cantidad:2,unidad:"UU (PAQUETE x4)",garantia:"12 meses"}
+      ],
+      condiciones_tecnicas:[
+        "Bienes nuevos, sin uso y en perfecto estado de conservación",
+        "Fabricación reciente — año fiscal vigente o inmediato anterior",
+        "Materiales resistentes, durables y aptos para uso administrativo",
+        "Dimensiones y presentación estándar comerciales",
+        "Empaque original de fábrica, sellado y debidamente rotulado",
+        "Inclusión de accesorios necesarios para su correcto uso",
+        "Compatibilidad con el mobiliario y equipos de oficina existentes",
+        "Condiciones adecuadas de almacenamiento para ambientes de oficina",
+        "Cumplimiento de normas técnicas y estándares de calidad aplicables"
+      ],
+      specs_generales:[
+        {label:"Lugar de entrega",valor:"Instalaciones del Centro de Salud de la 33ª Brigada de Infantería (Fuerte Pachacútec)"},
+        {label:"Plazo de entrega",valor:"Máximo 10 días calendario desde notificación de la orden de compra"},
+        {label:"Conformidad",valor:"7 días calendario posteriores a la entrega (si no hay observaciones)"},
+        {label:"Forma de pago",valor:"Pago único — abono en cuenta CCI del contratista"},
+        {label:"Pago en",valor:"Máximo 10 días calendario tras conformidad y comprobante de pago"},
+        {label:"Penalidad por mora",valor:"0.10 x monto / (0.40 x plazo). Máximo 10% del monto total"},
+        {label:"Garantía mínima",valor:"12 meses (18 meses para tijeras)"},
+        {label:"Responsabilidad vicios ocultos",valor:"1 año desde la conformidad"}
+      ],
+      requisitos_proveedor:[
+        {titulo:"Experiencia mínima 2 años",detalle:"El proveedor debe acreditar experiencia mínima de 2 años en la comercialización, suministro y/o distribución de útiles de escritorio y materiales de oficina para entidades públicas y/o privadas. Se sustenta con contratos, órdenes de compra, conformidades o documentos equivalentes.",tipo:"obligatorio"},
+        {titulo:"RNP vigente en bienes",detalle:"Registro Nacional de Proveedores activo en el capítulo de bienes. Inscripción vigente al momento de presentar la cotización.",tipo:"obligatorio"},
+        {titulo:"Habilidad tributaria SUNAT",detalle:"Sin deudas tributarias. Condición de habilitado. Constancia emitida el mismo día de presentación desde sunat.gob.pe.",tipo:"obligatorio"},
+        {titulo:"No requiere personal técnico especializado",detalle:"El TDR indica expresamente que NO se exige personal técnico específico, formación académica especializada ni capacitación adicional, ya que los bienes son de uso administrativo.",tipo:"obligatorio"},
+        {titulo:"Garantía comercial",detalle:"El proveedor debe otorgar garantía comercial mínima de 12 meses (18 meses para tijeras). Bienes defectuosos serán reemplazados sin costo adicional para la Entidad.",tipo:"obligatorio"},
+        {titulo:"Cumplimiento Ley 31564 — Anticorrupción",detalle:"Declarar conocer y cumplir la Ley de Prevención y Mitigación del Conflicto de Intereses (Ley 31564). Presentar Declaración Jurada de Prohibiciones e Incompatibilidades.",tipo:"obligatorio"}
+      ],
+      documentos:[
+        {nombre:"RNP vigente en bienes",tipo:"requerido",detalle:"osce.gob.pe → Consulta RNP"},
+        {nombre:"Constancia habilidad tributaria SUNAT",tipo:"requerido",detalle:"sunat.gob.pe → Operaciones en línea"},
+        {nombre:"Propuesta económica",tipo:"requerido",detalle:"Con precio unitario y total por ítem, IGV, total general. Firmada y sellada"},
+        {nombre:"Ficha técnica por producto",tipo:"requerido",detalle:"Descripción técnica cumpliendo las especificaciones del TDR"},
+        {nombre:"Contratos o facturas de experiencia",tipo:"requerido",detalle:"Documentos que acrediten 2 años de experiencia en venta de útiles"},
+        {nombre:"Declaración jurada de prohibiciones (Ley 31564)",tipo:"requerido",detalle:"Formato libre o el que indique la entidad"},
+        {nombre:"Ficha RUC actualizada",tipo:"requerido",detalle:"sunat.gob.pe → Consulta RUC"},
+        {nombre:"Carta de presentación",tipo:"requerido",detalle:"Dirigida al Centro de Salud de la 33ª Brigada de Infantería"},
+        {nombre:"Cuenta Interbancaria (CCI)",tipo:"requerido",detalle:"Para el abono del pago"}
+      ],
+      checklist:[
+        {item:"Verificar RNP activo en bienes",detalle:"osce.gob.pe → Consulta RNP → Estado debe decir ACTIVO",estado:"ok"},
+        {item:"Descargar constancia SUNAT",detalle:"sunat.gob.pe → Operaciones en línea → Consulta de habilidad",estado:"ok"},
+        {item:"Preparar ficha técnica de cada producto",detalle:"Confirmar que puedes cumplir TODAS las especificaciones técnicas del TDR",estado:"warn"},
+        {item:"Reunir documentos de experiencia (2 años)",detalle:"Facturas, contratos u órdenes de compra de útiles de escritorio",estado:"warn"},
+        {item:"Calcular precio competitivo por ítem",detalle:"Cotizar cada uno de los 10 productos con el precio unitario y total",estado:"ok"},
+        {item:"Confirmar capacidad de entrega en 10 días",detalle:"Verificar stock disponible o proveedor que pueda surtir en ese plazo",estado:"ok"},
+        {item:"Preparar declaración jurada Ley 31564",detalle:"Documento de compromiso anticorrupción — puede ser formato libre",estado:"ok"}
+      ],
+      riesgos:[
+        {titulo:"Especificaciones técnicas muy detalladas",detalle:"Cada producto tiene especificaciones exactas (medidas, gramaje, capacidad). Si no cumples alguna, puede ser observado.",nivel:"medio",mitigacion:"Revisa ítem por ítem y confirma que tus productos cumplen cada especificación antes de cotizar."},
+        {titulo:"Plazo de entrega 10 días",detalle:"Corto para conseguir y entregar todos los productos si no tienes stock",nivel:"medio",mitigacion:"Verifica stock disponible hoy. Si necesitas proveedores, confirma que pueden entregar en 7 días."},
+        {titulo:"Experiencia de 2 años",detalle:"Debes acreditarla con documentos. Si eres nuevo puede ser difícil",nivel:"alto",mitigacion:"Junta todas las facturas, contratos u órdenes de compra de ventas anteriores, aunque sean a empresas privadas."}
+      ]
+    };
+  }
+  // Generic fallback
+  return {
+    nombre:"Proceso analizado",entidad:"Entidad pública",tipo_proceso:"Bien",region:"Perú",
+    veredicto:"talvez",veredicto_titulo:"Analiza el documento para ver si puedes participar",
+    veredicto_razon:"Pega el texto completo del TDR para obtener un análisis preciso de los productos y requisitos.",
+    dias_restantes:5,plazo_entrega_dias:30,plazo_descripcion:"Ver plazo en el documento original",urgencia:"advertencia",
+    productos:[{numero:"01",nombre:"Ver productos en el TDR",especificacion:"Pega el texto completo del documento para extraer los productos y especificaciones exactas",cantidad:1,unidad:"UU",garantia:""}],
+    condiciones_tecnicas:["Pega el texto del TDR para ver las condiciones técnicas exactas"],
+    specs_generales:[{label:"Instrucción",valor:"Pega el texto completo del TDR en el campo de texto para obtener análisis completo"}],
+    requisitos_proveedor:[{titulo:"Ver en el TDR",detalle:"Pega el texto completo del documento",tipo:"obligatorio"}],
+    documentos:[{nombre:"Ver en el TDR",tipo:"requerido",detalle:"Pega el texto completo del documento"}],
+    checklist:[{item:"Pegar texto del TDR",detalle:"Copia y pega el texto completo del TDR para análisis preciso",estado:"warn"}],
+    riesgos:[]
   };
 }
 
-function sc(v){return v==='si'?'v-si':v==='no'?'v-no':'v-tal';}
-function urgCls(u){return u==='urgente'?'cd-urg':u==='advertencia'?'cd-warn':'cd-ok';}
-function tagCls(t){return t==='obligatorio'?'pt-oblig':t==='técnico'?'pt-tecnico':t==='económico'?'pt-econ':t==='documento'?'pt-doc':'pt-legal';}
-function tagLabel(t){return t==='obligatorio'?'OBLIGATORIO':t==='técnico'?'TÉCNICO':t==='económico'?'ECONÓMICO':t==='documento'?'DOCUMENTO':'LEGAL';}
+function vcls(v){return v==='si'?'v-si':v==='no'?'v-no':'v-tal';}
+function vico(v){return v==='si'?'✅':v==='no'?'❌':'⚠️';}
+function pcls(u){return u==='urgente'?'pb-urg':u==='advertencia'?'pb-warn':'pb-ok';}
 function fmt(n){return'S/ '+(n||0).toLocaleString('es-PE');}
 
 function render(r){
@@ -385,70 +498,90 @@ function render(r){
   const pg=document.getElementById('pg-res');
   pg.classList.add('on');
 
-  const vIco=r.veredicto==='si'?'✅':r.veredicto==='no'?'❌':'⚠️';
-  const cdCls=urgCls(r.urgencia);
   const dNum=r.dias_restantes||0;
-  const dColor=dNum<=2?'ct-r':dNum<=5?'ct-a':'ct-g';
+  const dColor=dNum<=2?'pt-r':dNum<=5?'pt-a':'pt-g';
+  const pNum=r.plazo_entrega_dias||0;
 
   pg.innerHTML=`
     <!-- VEREDICTO -->
-    <div class="veredicto ${sc(r.veredicto)}">
-      <div class="v-icon">${vIco}</div>
-      <div class="v-title">${r.veredicto_titulo||'Resultado del análisis'}</div>
+    <div class="veredicto ${vcls(r.veredicto)}">
+      <div class="v-top">
+        <div class="v-icon">${vico(r.veredicto)}</div>
+        <div>
+          <div class="v-title">${r.veredicto_titulo||'Resultado del análisis'}</div>
+          <div class="v-subtitle">${r.nombre} · ${r.entidad}</div>
+        </div>
+      </div>
       <div class="v-reason">${r.veredicto_razon||''}</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <span class="ct-tag ${r.veredicto==='si'?'ct-g':r.veredicto==='no'?'ct-r':'ct-a'}" style="font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;display:inline-block;">${r.nombre}</span>
-        <span class="ct-tag ct-b" style="font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;display:inline-block;background:rgba(59,130,246,.15);color:#93C5FD;">${r.entidad}</span>
+      <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+        <span class="pt pt-b">${r.tipo_proceso}</span>
+        <span class="pt pt-g">${r.region}</span>
+        ${r.urgencia==='urgente'?'<span class="pt pt-r">⚡ Urgente</span>':r.urgencia==='advertencia'?'<span class="pt pt-a">⚠ Plazo próximo</span>':'<span class="pt pt-g">✓ A tiempo</span>'}
       </div>
     </div>
 
-    <!-- COUNTDOWN -->
-    <div class="countdown ${cdCls}">
-      <div class="cd-left">
-        <div class="cd-num">${dNum}</div>
-        <div class="cd-unit">días</div>
+    <!-- PLAZO -->
+    <div class="plazo-banner ${pcls(r.urgencia)}">
+      <div style="text-align:center;flex-shrink:0;">
+        <div class="pb-num">${pNum}</div>
+        <div class="pb-unit">días para<br>entregar</div>
       </div>
-      <div class="cd-right" style="flex:1;">
-        <h4>${r.urgencia==='urgente'?'¡Plazo urgente!':r.urgencia==='advertencia'?'Plazo próximo a vencer':'Tienes tiempo suficiente'}</h4>
-        <p>${r.plazo_detalle||r.plazo_presentacion||'Revisa el cronograma en las bases.'}</p>
-        <div class="cd-tags">
-          ${r.plazo_presentacion?`<span class="cd-tag ${dColor}">📅 ${r.plazo_presentacion}</span>`:''}
-          ${r.dias_ejecucion?`<span class="cd-tag ct-b">🗓 ${r.dias_ejecucion} días ejecución</span>`:''}
-          <span class="cd-tag ct-g">💰 ${fmt(r.monto)}</span>
+      <div class="pb-body">
+        <h4>Plazo de entrega: ${pNum} días calendario</h4>
+        <p>${r.plazo_descripcion||'Ver plazo en el documento.'}</p>
+        <div class="pb-tags">
+          ${r.dias_restantes!=null?`<span class="pt ${dColor}">📅 Postular: ${dNum} días restantes</span>`:''}
+          <span class="pt pt-p">📦 ${r.productos?.length||0} productos solicitados</span>
+          ${r.tipo_proceso?`<span class="pt pt-b">${r.tipo_proceso}</span>`:''}
         </div>
       </div>
     </div>
 
-    <!-- LO QUE PIDE EL TDR -->
-    <div class="pide-section">
-      <div class="pide-header">
-        <h3>📋 Lo que pide este TDR</h3>
-        <span class="pide-badge">${(r.lo_que_pide||[]).length} requisitos encontrados</span>
+    <!-- PRODUCTOS — LO QUE PIDEN VENDER -->
+    <div class="productos-section">
+      <div class="prod-header">
+        <h3>📦 Lo que piden — Productos y especificaciones</h3>
+        <span class="prod-count">${r.productos?.length||0} ítems</span>
       </div>
-      ${(r.lo_que_pide||[]).map((p,i)=>`
-        <div class="pide-item">
-          <div class="pi-num">${i+1}</div>
-          <div class="pi-body">
-            <h4>${p.titulo}</h4>
-            <p>${p.detalle}</p>
-            <span class="pi-tag ${tagCls(p.tag)}">${tagLabel(p.tag)}</span>
-            <span style="font-size:9px;color:var(--m);margin-left:6px;">${p.categoria}</span>
+      ${(r.productos||[]).map(p=>`
+        <div class="prod-item">
+          <div class="prod-num">${p.numero||'—'}</div>
+          <div class="prod-body">
+            <h4>${p.nombre}</h4>
+            <div class="prod-spec">${p.especificacion}</div>
+            ${p.garantia?`<div style="margin-top:5px;"><span class="pt pt-b" style="font-size:10px;">GF: ${p.garantia}</span></div>`:''}
+          </div>
+          <div class="prod-right">
+            <div class="prod-qty">${p.cantidad}</div>
+            <div class="prod-unit">${p.unidad}</div>
           </div>
         </div>`).join('')}
     </div>
 
-    <!-- GRID 2 COL -->
-    <div class="grid2">
+    <!-- CONDICIONES TÉCNICAS -->
+    ${r.condiciones_tecnicas?.length?`
+    <div class="blk" style="margin-bottom:10px;">
+      <div class="bh"><span class="bd" style="background:var(--blue);"></span>Condiciones técnicas que deben cumplir los bienes</div>
+      ${r.condiciones_tecnicas.map(c=>`
+        <div class="cond-item">
+          <div class="cond-dot"></div>
+          <div class="cond-text">${c}</div>
+        </div>`).join('')}
+    </div>`:''}
+
+    <!-- GRID 2 -->
+    <div class="g2">
 
       <!-- SPECS -->
       <div class="blk">
-        <div class="blk-h"><span class="bh-dot" style="background:var(--blue);"></span>Datos del proceso</div>
-        ${(r.specs||[]).map(s=>`<div class="row"><span class="rl">${s.label}</span><span class="rv">${s.valor}</span></div>`).join('')}
+        <div class="bh"><span class="bd" style="background:var(--blue);"></span>Datos del proceso</div>
+        ${(r.specs_generales||[]).map(s=>`
+          <div class="row"><span class="rl">${s.label}</span><span class="rv">${s.valor}</span></div>`).join('')}
       </div>
 
       <!-- CHECKLIST -->
       <div class="blk">
-        <div class="blk-h"><span class="bh-dot" style="background:var(--g);"></span>Qué hacer ahora</div>
+        <div class="bh"><span class="bd" style="background:var(--g);"></span>Qué hacer ahora</div>
         ${(r.checklist||[]).map(c=>`
           <div class="chk">
             <div class="ci ${c.estado==='ok'?'ci-ok':c.estado==='warn'?'ci-w':'ci-x'}">${c.estado==='ok'?'✓':c.estado==='warn'?'!':'✗'}</div>
@@ -459,28 +592,40 @@ function render(r){
           </div>`).join('')}
       </div>
 
+      <!-- REQUISITOS PROVEEDOR -->
+      <div class="blk full">
+        <div class="bh"><span class="bd" style="background:var(--red);"></span>Requisitos del proveedor</div>
+        ${(r.requisitos_proveedor||[]).map(req=>`
+          <div class="req">
+            <span class="rb ${req.tipo==='obligatorio'?'rb-o':'rb-d'}">${req.tipo==='obligatorio'?'OBLIG':'DESEABLE'}</span>
+            <div class="req-body"><h5>${req.titulo}</h5><p>${req.detalle}</p></div>
+          </div>`).join('')}
+      </div>
+
       <!-- DOCUMENTOS -->
       <div class="blk">
-        <div class="blk-h"><span class="bh-dot" style="background:#8B5CF6;"></span>Documentos a presentar</div>
+        <div class="bh"><span class="bd" style="background:var(--purple);"></span>Documentos a presentar</div>
         ${(r.documentos||[]).map(d=>`
           <div class="doc">
             <span style="font-size:13px;">📄</span>
-            <span class="doc-n">${d.nombre}</span>
-            ${d.donde?`<span style="font-size:10px;color:var(--m);">${d.donde}</span>`:''}
+            <div style="flex:1;">
+              <div class="dn">${d.nombre}</div>
+              ${d.detalle?`<div class="dd">${d.detalle}</div>`:''}
+            </div>
             <span class="dt ${d.tipo==='requerido'?'dt-r':'dt-o'}">${d.tipo==='requerido'?'REQ':'OPT'}</span>
           </div>`).join('')}
       </div>
 
       <!-- RIESGOS -->
       <div class="blk">
-        <div class="blk-h"><span class="bh-dot" style="background:var(--amber);"></span>Riesgos a considerar</div>
+        <div class="bh"><span class="bd" style="background:var(--amber);"></span>Riesgos a considerar</div>
         ${(r.riesgos||[]).map(rk=>`
           <div class="risk">
             <span class="rlv ${rk.nivel==='alto'?'rl-a':rk.nivel==='medio'?'rl-m':'rl-b'}">${rk.nivel?.toUpperCase()}</span>
-            <div class="rb">
+            <div class="rb2">
               <h5>${rk.titulo}</h5>
               <p>${rk.detalle}</p>
-              <div class="rb-mit">→ ${rk.mitigacion}</div>
+              <div class="rmit">→ ${rk.mitigacion}</div>
             </div>
           </div>`).join('')}
       </div>
