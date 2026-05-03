@@ -8,402 +8,143 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Plus Jakarta Sans',sans-serif;background:#F9FAFB;color:#111;}
-    nav{display:flex;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #E5E7EB;position:sticky;top:0;z-index:100;}
+    nav{display:flex;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #E5E7EB;position:sticky;top:0;z-index:10;}
     .logo{font-size:16px;font-weight:900;color:#111;text-decoration:none;}
     .logo em{color:#16A34A;font-style:normal;}
-    .nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
-    .user-chip{font-size:12px;color:#6B7280;background:#F9FAFB;padding:6px 12px;border-radius:20px;border:1px solid #E5E7EB;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-    .btn-sm{padding:7px 14px;border-radius:20px;border:1.5px solid #E5E7EB;background:transparent;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:#6B7280;text-decoration:none;display:inline-block;}
-    .btn-sm:hover{border-color:#EF4444;color:#EF4444;}
-    .main{max-width:860px;margin:0 auto;padding:20px 16px;}
-
-    /* WELCOME */
-    .welcome{background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;padding:16px 20px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-    .welcome-avatar{width:42px;height:42px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#16A34A;flex-shrink:0;}
-    .welcome-body h2{font-size:16px;font-weight:800;color:#111;margin-bottom:2px;}
-    .welcome-body p{font-size:12px;color:#6B7280;}
-    .trial-pill{display:inline-flex;align-items:center;gap:5px;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-left:auto;}
-
-    /* STATS */
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
-    .stat{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:14px 16px;}
-    .stat-label{font-size:11px;color:#9CA3AF;margin-bottom:4px;}
-    .stat-val{font-size:22px;font-weight:800;color:#111;}
-    .stat-sub{font-size:11px;color:#16A34A;margin-top:2px;}
-
-    /* FILTROS */
-    .filters-section{background:#fff;border:1.5px solid #E5E7EB;border-radius:14px;padding:16px;margin-bottom:14px;}
-    .filters-title{font-size:12px;font-weight:700;color:#374151;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
-    .filters-title span{font-size:11px;color:#16A34A;cursor:pointer;font-weight:600;}
-    .filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
-    .filter-label{font-size:11px;font-weight:600;color:#9CA3AF;width:60px;flex-shrink:0;}
-    .filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
-    .chip{padding:5px 12px;border-radius:20px;border:1.5px solid #E5E7EB;font-size:12px;font-weight:500;cursor:pointer;background:#fff;color:#6B7280;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;}
-    .chip.on{background:#16A34A;color:#fff;border-color:#16A34A;}
-    .chip:hover{border-color:#16A34A;color:#16A34A;}
-
-    /* REGION SELECTOR */
-    .region-panel{display:none;border-top:1px solid #F3F4F6;margin-top:10px;padding-top:14px;}
-    .region-panel.open{display:block;}
-    .region-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin-bottom:12px;}
-    .region-btn{padding:7px 10px;border-radius:8px;border:1.5px solid #E5E7EB;font-size:12px;cursor:pointer;background:#fff;color:#374151;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:all .15s;}
-    .region-btn.on{background:#DCFCE7;border-color:#16A34A;color:#166534;font-weight:600;}
-    .region-btn:hover{border-color:#16A34A;}
-    .search-input{width:100%;padding:8px 12px;border-radius:20px;border:1.5px solid #E5E7EB;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:#111;margin-bottom:10px;}
-    .search-input:focus{outline:none;border-color:#16A34A;}
-    .save-btn{padding:8px 20px;border-radius:20px;background:#16A34A;color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
-
-    /* LICITACIONES */
-    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-    .section-title{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;}
-    .licit-card{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:16px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
-    .licit-card:hover{border-color:#16A34A;box-shadow:0 2px 12px rgba(22,163,74,.08);}
+    .nav-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+    .user-chip{font-size:12px;color:#6B7280;background:#F9FAFB;padding:6px 12px;border-radius:20px;border:1px solid #E5E7EB;}
+    .btn-logout{padding:7px 16px;border-radius:20px;border:1.5px solid #E5E7EB;background:transparent;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:#6B7280;}
+    .btn-logout:hover{border-color:#EF4444;color:#EF4444;}
+    .main{max-width:800px;margin:0 auto;padding:24px 16px;}
+    .welcome{background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;padding:24px;margin-bottom:16px;}
+    .trial-badge{display:inline-block;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+    .welcome h2{font-size:22px;font-weight:800;color:#111;margin-bottom:6px;letter-spacing:-.3px;}
+    .welcome p{font-size:13px;color:#6B7280;line-height:1.6;}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+    .card{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:16px;}
+    .card-label{font-size:11px;color:#9CA3AF;margin-bottom:5px;}
+    .card-val{font-size:20px;font-weight:800;color:#111;}
+    .card-sub{font-size:11px;color:#16A34A;margin-top:3px;}
+    .section{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:18px;margin-bottom:12px;}
+    .section-title{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;margin-bottom:14px;}
+    .licit-card{border:1.5px solid #F3F4F6;border-radius:10px;padding:14px;margin-bottom:8px;cursor:pointer;transition:border-color .15s;}
+    .licit-card:hover{border-color:#16A34A;}
     .licit-card.hot{border-left:3px solid #16A34A;}
-    .licit-card.urgent{border-left:3px solid #EF4444;}
-    .lc-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;}
-    .lc-title{flex:1;font-size:13px;font-weight:600;color:#111;line-height:1.4;}
-    .lc-score{width:42px;height:42px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
-    .score-hi{background:#DCFCE7;color:#166534;}
-    .score-md{background:#FEF9C3;color:#854D0E;}
-    .score-lo{background:#FEF2F2;color:#991B1B;}
-    .lc-score-num{font-size:16px;font-weight:800;}
-    .lc-score-lbl{font-size:8px;opacity:.7;}
-    .lc-entity{font-size:11px;color:#9CA3AF;margin-bottom:7px;}
-    .lc-pills{display:flex;gap:5px;flex-wrap:wrap;}
-    .pill{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;}
-    .p-green{background:#DCFCE7;color:#166534;}
-    .p-blue{background:#DBEAFE;color:#1E40AF;}
-    .p-red{background:#FEF2F2;color:#991B1B;}
-    .p-amber{background:#FEF9C3;color:#854D0E;}
-    .p-gray{background:#F3F4F6;color:#6B7280;}
-    .lc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:8px;border-top:1px solid #F9FAFB;}
-    .lc-date{font-size:11px;color:#9CA3AF;}
-    .btn-ver{padding:5px 12px;border-radius:8px;background:#16A34A;color:#fff;font-size:11px;font-weight:600;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
-
-    /* MODAL */
-    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:16px;}
-    .modal-overlay.show{display:flex;}
-    .modal{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;position:relative;}
-    .modal-close{position:absolute;top:14px;right:14px;background:#F9FAFB;border:none;width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#6B7280;}
-    .modal-title{font-size:17px;font-weight:800;color:#111;margin-bottom:6px;line-height:1.4;letter-spacing:-.2px;}
-    .modal-entity{font-size:12px;color:#9CA3AF;margin-bottom:14px;}
-    .modal-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
-    .modal-sec-title{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;margin-bottom:8px;margin-top:14px;}
-    .modal-desc{font-size:13px;color:#374151;line-height:1.65;background:#F9FAFB;border-radius:10px;padding:12px;}
-    .check-row{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:12px;align-items:flex-start;}
-    .check-row:last-child{border-bottom:none;}
-    .chk{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;margin-top:1px;}
-    .chk-ok{background:#DCFCE7;color:#16A34A;}
-    .chk-w{background:#FEF9C3;color:#854D0E;}
-    .data-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:13px;}
-    .data-row:last-child{border-bottom:none;}
-    .d-label{color:#9CA3AF;}
-    .d-val{font-weight:600;color:#111;}
-    .score-bar-bg{background:#F3F4F6;border-radius:20px;height:8px;overflow:hidden;margin:8px 0;}
-    .score-bar-fill{height:100%;border-radius:20px;transition:width .8s ease;}
-    .btn-seace{width:100%;padding:13px;border-radius:50px;background:#16A34A;color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:14px;text-decoration:none;display:block;text-align:center;}
-    .btn-seace:hover{background:#15803D;}
-    .empty-state{text-align:center;padding:40px;color:#9CA3AF;font-size:13px;background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;}
-    .empty-icon{font-size:32px;margin-bottom:8px;}
-
-    /* PERFIL */
-    .profile-card{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:16px;margin-bottom:10px;}
-    .profile-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:13px;}
+    .lc-title{font-size:13px;font-weight:600;color:#111;margin-bottom:5px;line-height:1.4;}
+    .lc-meta{display:flex;gap:6px;flex-wrap:wrap;}
+    .lpill{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;}
+    .lp-g{background:#DCFCE7;color:#166534;}
+    .lp-b{background:#DBEAFE;color:#1E40AF;}
+    .lp-n{background:#F3F4F6;color:#6B7280;}
+    .lc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:8px;border-top:1px solid #F9FAFB;font-size:11px;color:#9CA3AF;}
+    .profile-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F9FAFB;font-size:13px;}
     .profile-row:last-child{border-bottom:none;}
-    .p-label{color:#9CA3AF;}
-    .p-val{font-weight:500;color:#111;}
-    .upgrade-box{background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:12px;padding:18px;text-align:center;margin-bottom:10px;}
-    .upgrade-box h4{font-size:15px;font-weight:700;color:#166534;margin-bottom:5px;}
-    .upgrade-box p{font-size:12px;color:#15803D;margin-bottom:14px;line-height:1.55;}
+    .profile-label{color:#9CA3AF;}
+    .profile-val{font-weight:500;color:#111;}
+    .upgrade-box{background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:12px;padding:16px;text-align:center;}
+    .upgrade-box h4{font-size:15px;font-weight:700;color:#166534;margin-bottom:6px;}
+    .upgrade-box p{font-size:12px;color:#15803D;margin-bottom:14px;line-height:1.5;}
     .btn-upgrade{padding:11px 24px;border-radius:50px;background:#16A34A;color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
-    @media(max-width:600px){.stats{grid-template-columns:1fr 1fr;}.welcome{flex-wrap:wrap;}.trial-pill{margin-left:0;}}
+    @media(max-width:600px){.cards{grid-template-columns:1fr 1fr;}}
   </style>
 </head>
 <body>
-<nav>
-  <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
-  <div class="nav-right">
-    <span class="user-chip" id="nav-user">Usuario</span>
-    <a href="login.html" class="btn-sm" onclick="logout();return false;">Salir</a>
-  </div>
-</nav>
+  <nav>
+    <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
+    <div class="nav-right">
+      <span class="user-chip" id="user-name">Usuario</span>
+      <button class="btn-logout" onclick="logout()">Salir</button>
+    </div>
+  </nav>
 
-<div class="main">
-  <div class="welcome">
-    <div class="welcome-avatar" id="welcome-avatar">?</div>
-    <div class="welcome-body">
-      <h2 id="welcome-msg">¡Hola!</h2>
-      <p id="welcome-sub">Bienvenido a DeAndru Licita</p>
-    </div>
-    <div class="trial-pill">⏱ 30 días gratis</div>
-  </div>
-
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-label">Oportunidades</div>
-      <div class="stat-val" id="stat-count">0</div>
-      <div class="stat-sub" id="stat-sub">con tus filtros</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Alertas recibidas</div>
-      <div class="stat-val">0</div>
-      <div class="stat-sub">esta semana</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Días restantes</div>
-      <div class="stat-val">30</div>
-      <div class="stat-sub">de tu prueba gratis</div>
-    </div>
-  </div>
-
-  <!-- FILTROS INTELIGENTES -->
-  <div class="filters-section">
-    <div class="filters-title">
-      Mis filtros de búsqueda
-      <span onclick="toggleRegionPanel()">⚙️ Cambiar regiones</span>
+  <div class="main">
+    <div class="welcome">
+      <span class="trial-badge">30 días gratis activos</span>
+      <h2 id="welcome-msg">¡Hola! Bienvenido a DeAndru Licita</h2>
+      <p>Tu dashboard personalizado según tu rubro y región. Estas son las oportunidades más recientes para ti.</p>
     </div>
 
-    <div class="filter-row">
-      <span class="filter-label">Tipo:</span>
-      <div class="filter-chips">
-        <button class="chip on" onclick="setTipo(this,'todos')">Todos</button>
-        <button class="chip" onclick="setTipo(this,'Bien')">Bien</button>
-        <button class="chip" onclick="setTipo(this,'Servicio')">Servicio</button>
-        <button class="chip" onclick="setTipo(this,'Obra')">Obra</button>
-        <button class="chip" onclick="setTipo(this,'Consultoría de Obra')">Consultoría</button>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Oportunidades hoy</div>
+        <div class="card-val">7</div>
+        <div class="card-sub">en tu región</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Alertas recibidas</div>
+        <div class="card-val">0</div>
+        <div class="card-sub">esta semana</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Días restantes</div>
+        <div class="card-val">30</div>
+        <div class="card-sub">de tu prueba gratis</div>
       </div>
     </div>
 
-    <div class="filter-row">
-      <span class="filter-label">Buscar:</span>
-      <input class="search-input" style="margin-bottom:0;flex:1;" placeholder="Buscar por nombre o entidad..." id="search-q" oninput="renderLicit()">
-    </div>
-
-    <!-- PANEL DE REGIONES -->
-    <div class="region-panel" id="region-panel">
-      <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:8px;">
-        Selecciona los departamentos que te interesan:
-        <span style="font-size:11px;color:#9CA3AF;font-weight:400;"> (puedes elegir varios)</span>
-      </div>
-      <div class="region-grid" id="region-grid"></div>
-      <button class="save-btn" onclick="saveRegions()">Guardar preferencias</button>
-    </div>
-  </div>
-
-  <div class="section-header">
-    <div class="section-title" id="licit-title">Oportunidades para ti</div>
-  </div>
-  <div id="licit-list"></div>
-
-  <div class="section-title" style="margin-top:20px;margin-bottom:10px;">Tu perfil</div>
-  <div class="profile-card" id="profile-card"></div>
-
-  <div class="upgrade-box" style="margin-top:10px;">
-    <h4>🔔 Activa tus alertas WhatsApp</h4>
-    <p>Cuando el Estado publique algo para tu rubro en tus regiones, te avisamos al instante en WhatsApp.</p>
-    <button class="btn-upgrade">Activar plan completo — S/ 29/mes</button>
-  </div>
-</div>
-
-<!-- MODAL DETALLE -->
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModalBtn()">✕</button>
-    <div id="modal-body"></div>
-  </div>
-</div>
-
-<script>
-const DEPARTAMENTOS = ["Amazonas","Áncash","Apurímac","Arequipa","Ayacucho","Cajamarca","Callao","Cusco","Huancavelica","Huánuco","Ica","Junín","La Libertad","Lambayeque","Lima","Loreto","Madre de Dios","Moquegua","Pasco","Piura","Puno","San Martín","Tacna","Tumbes","Ucayali"];
-
-const LICITACIONES = [
-  {id:1,nombre:'Servicio de limpieza y desinfección — Municipalidad Miraflores',entidad:'Mun. Miraflores',monto:38500,tipo:'Servicio',depto:'Lima',score:94,urgente:false,fecha:'Hoy',plazo:'2 días',desc:'Servicio de limpieza, desinfección y mantenimiento de ambientes administrativos y áreas comunes.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Habilidad tributaria SUNAT',ok:true},{t:'Propuesta económica firmada',ok:true},{t:'Seguro SCTR del personal',ok:false}]},
-  {id:2,nombre:'Adquisición de útiles de escritorio y materiales de oficina',entidad:'UGEL 07 Lima',monto:18200,tipo:'Bien',depto:'Lima',score:87,urgente:false,fecha:'Hoy',plazo:'3 días',desc:'Adquisición de útiles de escritorio, papel bond, archivadores y materiales de oficina.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Habilidad tributaria SUNAT',ok:true},{t:'Cotización con RUC y firma',ok:true},{t:'Garantía de productos',ok:false}]},
-  {id:3,nombre:'Mantenimiento de equipos de cómputo — DIRESA Cusco',entidad:'DIRESA Cusco',monto:41000,tipo:'Servicio',depto:'Cusco',score:91,urgente:false,fecha:'Ayer',plazo:'4 días',desc:'Mantenimiento preventivo y correctivo de equipos de cómputo, impresoras y periféricos.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Técnico certificado',ok:true},{t:'Herramientas propias',ok:true},{t:'Seguro responsabilidad civil',ok:false}]},
-  {id:4,nombre:'Servicio de catering para evento institucional aniversario',entidad:'Gobierno Regional Cusco',monto:35600,tipo:'Servicio',depto:'Cusco',score:88,urgente:true,fecha:'Ayer',plazo:'1 día',desc:'Servicio de catering completo para evento de 200 personas, menú de 3 tiempos y bebidas.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Carnets de sanidad vigentes',ok:true},{t:'Registro sanitario DIGESA',ok:false},{t:'Seguro del personal',ok:false}]},
-  {id:5,nombre:'Adquisición de mobiliario para sala de reuniones',entidad:'Municipalidad de Wanchaq',monto:24800,tipo:'Bien',depto:'Cusco',score:79,urgente:false,fecha:'Hace 2 días',plazo:'5 días',desc:'Adquisición de sillas ejecutivas, mesa de reuniones y estantes metálicos.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Ficha técnica detallada',ok:true},{t:'Garantía documentada',ok:true},{t:'Entrega máximo 7 días',ok:true}]},
-  {id:6,nombre:'Consultoría para elaboración de plan operativo institucional 2026',entidad:'UGEL Cusco',monto:39500,tipo:'Consultoría de Obra',depto:'Cusco',score:72,urgente:false,fecha:'Hace 2 días',plazo:'6 días',desc:'Elaboración del Plan Operativo Institucional 2026 aplicando metodología CEPLAN v.02.',checklist:[{t:'RNP activo en consultoría',ok:true},{t:'Título profesional colegiado',ok:true},{t:'Experiencia en CEPLAN v.02',ok:false},{t:'Contratos previos sector público',ok:false}]},
-  {id:7,nombre:'Servicio de vigilancia y seguridad — sede MINSA Lima',entidad:'Ministerio de Salud',monto:40800,tipo:'Servicio',depto:'Lima',score:83,urgente:false,fecha:'Hoy',plazo:'3 días',desc:'Vigilancia y seguridad física para sede central del MINSA, turnos diurno y nocturno.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Licencia funcionamiento vigente',ok:true},{t:'Personal con SUCAMEC',ok:false},{t:'Seguro SCTR del personal',ok:false}]},
-  {id:8,nombre:'Adquisición de medicamentos e insumos — Hospital Regional',entidad:'Hospital Regional Arequipa',monto:38900,tipo:'Bien',depto:'Arequipa',score:61,urgente:true,fecha:'Hoy',plazo:'1 día',desc:'Medicamentos esenciales e insumos médicos para el servicio de emergencias del hospital.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Registro DIGEMID vigente',ok:false},{t:'Cadena de frío certificada',ok:false},{t:'Técnico farmacéutico responsable',ok:false}]},
-  {id:9,nombre:'Servicio de limpieza institucional — Municipalidad Arequipa',entidad:'Municipalidad de Arequipa',monto:36000,tipo:'Servicio',depto:'Arequipa',score:85,urgente:false,fecha:'Hoy',plazo:'3 días',desc:'Servicio de limpieza de ambientes administrativos de la municipalidad provincial.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Habilidad tributaria SUNAT',ok:true},{t:'Personal uniformado',ok:true},{t:'Seguro SCTR',ok:false}]},
-  {id:10,nombre:'Adquisición de equipos de cómputo — UGEL Trujillo',entidad:'UGEL Trujillo',monto:39800,tipo:'Bien',depto:'La Libertad',score:80,urgente:false,fecha:'Hoy',plazo:'4 días',desc:'Compra de laptops, impresoras y accesorios para uso administrativo de la UGEL.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Ficha técnica con specs',ok:true},{t:'Garantía mínima 1 año',ok:true},{t:'Soporte técnico post venta',ok:false}]},
-  {id:11,nombre:'Servicio de capacitación en gestión pública — Cajamarca',entidad:'Gobierno Regional Cajamarca',monto:28000,tipo:'Servicio',depto:'Cajamarca',score:76,urgente:false,fecha:'Ayer',plazo:'5 días',desc:'Capacitación en gestión pública y administración para funcionarios regionales.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Curriculum del capacitador',ok:true},{t:'Material didáctico',ok:false},{t:'Certificado al finalizar',ok:false}]},
-  {id:12,nombre:'Mantenimiento de infraestructura vial — Piura',entidad:'Municipalidad de Piura',monto:40000,tipo:'Obra',depto:'Piura',score:68,urgente:false,fecha:'Hace 2 días',plazo:'7 días',desc:'Mantenimiento y reparación de calles y veredas del distrito de Piura.',checklist:[{t:'RNP activo en obras',ok:true},{t:'Expediente técnico',ok:false},{t:'Residente de obra certificado',ok:false},{t:'Seguro de obra',ok:false}]},
-];
-
-// USER
-const user = JSON.parse(localStorage.getItem('dl_user')||'null');
-if(!user){window.location.href='login.html';}
-else if(user.role==='admin'){window.location.href='admin.html';}
-
-// REGIONES ACTIVAS — por defecto la del registro + posibilidad de agregar más
-let activeRegions = JSON.parse(localStorage.getItem('dl_regions_'+user?.email)||'null') || [user?.depto || user?.region || 'Lima'];
-
-// Normalizar región del usuario al departamento
-function normalizarDepto(region){
-  if(!region)return'Lima';
-  if(region.includes('Lima'))return'Lima';
-  if(region.includes('Cusco'))return'Cusco';
-  if(region.includes('Arequipa'))return'Arequipa';
-  if(region.includes('La Libertad'))return'La Libertad';
-  if(region.includes('Piura'))return'Piura';
-  if(region.includes('Cajamarca'))return'Cajamarca';
-  if(region.includes('Junín')||region.includes('Junin'))return'Junín';
-  if(region.includes('Callao'))return'Lima';
-  if(region==='Todo el Perú')return null;
-  return region;
-}
-
-if(user){
-  const depto=normalizarDepto(user.region||user.depto);
-  if(depto&&!activeRegions.includes(depto))activeRegions=[depto];
-  document.getElementById('welcome-avatar').textContent=user.nombre?.charAt(0)||'?';
-  document.getElementById('nav-user').textContent=user.nombre?.split(' ')[0]||'Usuario';
-  document.getElementById('welcome-msg').textContent='¡Hola, '+( user.nombre?.split(' ')[0]||'bienvenido')+'!';
-  document.getElementById('welcome-sub').textContent='Licitaciones para '+( user.rubro||'tu negocio')+' · '+activeRegions.join(', ');
-  document.getElementById('profile-card').innerHTML=`
-    <div class="profile-row"><span class="p-label">Nombre</span><span class="p-val">${user.nombre}</span></div>
-    <div class="profile-row"><span class="p-label">Email</span><span class="p-val">${user.email}</span></div>
-    <div class="profile-row"><span class="p-label">WhatsApp</span><span class="p-val">${user.wsp}</span></div>
-    <div class="profile-row"><span class="p-label">Rubro</span><span class="p-val">${user.rubro||'—'}</span></div>
-    <div class="profile-row"><span class="p-label">Regiones activas</span><span class="p-val" style="color:#16A34A;">${activeRegions.join(', ')}</span></div>
-    <div class="profile-row"><span class="p-label">Plan</span><span class="p-val" style="color:#16A34A;">Trial gratis — 30 días ✓</span></div>`;
-}
-
-// RENDER REGION PANEL
-function renderRegionGrid(){
-  document.getElementById('region-grid').innerHTML=DEPARTAMENTOS.map(d=>`
-    <button class="region-btn ${activeRegions.includes(d)?'on':''}" onclick="toggleRegion('${d}')" id="rb-${d.replace(/\s/g,'-')}">${d}</button>`).join('');
-}
-
-function toggleRegion(d){
-  const idx=activeRegions.indexOf(d);
-  if(idx>=0){
-    if(activeRegions.length>1)activeRegions.splice(idx,1);
-  } else {
-    activeRegions.push(d);
-  }
-  renderRegionGrid();
-}
-
-function toggleRegionPanel(){
-  const panel=document.getElementById('region-panel');
-  panel.classList.toggle('open');
-  if(panel.classList.contains('open'))renderRegionGrid();
-}
-
-function saveRegions(){
-  localStorage.setItem('dl_regions_'+user.email,JSON.stringify(activeRegions));
-  document.getElementById('welcome-sub').textContent='Licitaciones para '+(user.rubro||'tu negocio')+' · '+activeRegions.join(', ');
-  if(user){
-    const updated={...user, region:activeRegions.join(', ')};
-    localStorage.setItem('dl_user',JSON.stringify(updated));
-  }
-  document.getElementById('region-panel').classList.remove('open');
-  renderLicit();
-  // Update profile
-  document.querySelector('.p-val[style*="16A34A"]').textContent=activeRegions.join(', ');
-  showToast('✓ Preferencias guardadas');
-}
-
-function showToast(msg){
-  let t=document.getElementById('toast');
-  if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;';document.body.appendChild(t);}
-  t.textContent=msg;t.style.opacity='1';
-  setTimeout(()=>{t.style.opacity='0';},2500);
-}
-
-let tipoFiltro='todos';
-function fmt(n){return'S/ '+n.toLocaleString('es-PE');}
-function scoreClass(s){return s>=80?'score-hi':s>=60?'score-md':'score-lo';}
-function scoreColor(s){return s>=80?'#16A34A':s>=60?'#D97706':'#DC2626';}
-
-function renderLicit(){
-  const q=(document.getElementById('search-q').value||'').toLowerCase();
-  const showAll=activeRegions.length===0;
-  const fil=LICITACIONES.filter(l=>{
-    if(tipoFiltro!=='todos'&&l.tipo!==tipoFiltro)return false;
-    if(q&&!l.nombre.toLowerCase().includes(q)&&!l.entidad.toLowerCase().includes(q))return false;
-    if(!showAll&&!activeRegions.includes(l.depto))return false;
-    return true;
-  }).sort((a,b)=>b.score-a.score);
-
-  document.getElementById('stat-count').textContent=fil.length;
-  document.getElementById('stat-sub').textContent=activeRegions.join(', ');
-  document.getElementById('licit-title').textContent=fil.length+' oportunidades — '+activeRegions.join(', ');
-
-  if(!fil.length){
-    document.getElementById('licit-list').innerHTML=`<div class="empty-state"><div class="empty-icon">🔍</div><div>No hay licitaciones con estos filtros.</div><div style="margin-top:6px;font-size:12px;color:#16A34A;cursor:pointer;" onclick="toggleRegionPanel()">Agregar más departamentos →</div></div>`;
-    return;
-  }
-  document.getElementById('licit-list').innerHTML=fil.map((l,i)=>`
-    <div class="licit-card ${l.urgente?'urgent':l.score>=80?'hot':''}" onclick="openModal(${l.id})">
-      <div class="lc-top">
-        <div style="flex:1;">
-          <div class="lc-title">${l.nombre}</div>
-          <div class="lc-entity">${l.entidad}</div>
+    <div class="section">
+      <div class="section-title">Oportunidades recientes para ti</div>
+      <div class="licit-card hot">
+        <div class="lc-title">Servicio de limpieza y desinfección — Municipalidad de Miraflores</div>
+        <div class="lc-meta">
+          <span class="lpill lp-g">S/ 38,500</span>
+          <span class="lpill lp-b">Servicios</span>
+          <span class="lpill lp-n">Lima</span>
+          <span class="lpill lp-g">Score: 94/100</span>
         </div>
-        <div class="lc-score ${scoreClass(l.score)}">
-          <div class="lc-score-num">${l.score}</div>
-          <div class="lc-score-lbl">score</div>
+        <div class="lc-foot"><span>Publicado hoy · Menor 8 UIT</span><span style="color:#16A34A;font-weight:600;">Ver detalles →</span></div>
+      </div>
+      <div class="licit-card">
+        <div class="lc-title">Adquisición de útiles de escritorio — UGEL 07 Lima</div>
+        <div class="lc-meta">
+          <span class="lpill lp-g">S/ 18,200</span>
+          <span class="lpill lp-b">Bienes</span>
+          <span class="lpill lp-n">Lima</span>
+          <span class="lpill lp-g">Score: 87/100</span>
         </div>
+        <div class="lc-foot"><span>Publicado hoy · Menor 8 UIT</span><span style="color:#16A34A;font-weight:600;">Ver detalles →</span></div>
       </div>
-      <div class="lc-pills">
-        <span class="pill p-green">${fmt(l.monto)}</span>
-        <span class="pill p-blue">${l.tipo}</span>
-        <span class="pill p-gray">${l.depto}</span>
-        ${l.urgente?'<span class="pill p-red">⚡ Urgente</span>':''}
-        ${l.score>=80&&!l.urgente?'<span class="pill p-green">⭐ Recomendado</span>':''}
+      <div class="licit-card">
+        <div class="lc-title">Servicio de catering para evento institucional — GORE Arequipa</div>
+        <div class="lc-meta">
+          <span class="lpill lp-g">S/ 35,600</span>
+          <span class="lpill lp-b">Servicios</span>
+          <span class="lpill lp-n">Arequipa</span>
+          <span class="lpill lp-g">Score: 81/100</span>
+        </div>
+        <div class="lc-foot"><span>Publicado ayer · Menor 8 UIT</span><span style="color:#16A34A;font-weight:600;">Ver detalles →</span></div>
       </div>
-      <div class="lc-foot">
-        <span class="lc-date">Publicado ${l.fecha} · Plazo: ${l.plazo} · Menor 8 UIT</span>
-        <button class="btn-ver" onclick="event.stopPropagation();openModal(${l.id})">Ver detalles →</button>
-      </div>
-    </div>`).join('');
-}
-
-function setTipo(btn,tipo){
-  document.querySelectorAll('.chip').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');tipoFiltro=tipo;renderLicit();
-}
-
-function openModal(id){
-  const l=LICITACIONES.find(x=>x.id===id);if(!l)return;
-  const sc=scoreColor(l.score);
-  document.getElementById('modal-body').innerHTML=`
-    <div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;background:${l.score>=80?'#DCFCE7':l.score>=60?'#FEF9C3':'#FEF2F2'};color:${sc};">Score ${l.score}/100</div>
-    <div class="modal-title">${l.nombre}</div>
-    <div class="modal-entity">${l.entidad}</div>
-    <div class="modal-pills">
-      <span class="pill p-green">${fmt(l.monto)}</span>
-      <span class="pill p-blue">${l.tipo}</span>
-      <span class="pill p-gray">${l.depto}</span>
-      ${l.urgente?'<span class="pill p-red">⚡ Urgente · '+l.plazo+'</span>':'<span class="pill p-gray">Plazo: '+l.plazo+'</span>'}
+      <div style="text-align:center;padding:12px;font-size:13px;color:#16A34A;cursor:pointer;font-weight:600;">Ver todas las oportunidades →</div>
     </div>
-    <div class="modal-sec-title">Resumen del proceso</div>
-    <div class="modal-desc">${l.desc}</div>
-    <div class="modal-sec-title">Probabilidad de ganar</div>
-    <div style="font-size:28px;font-weight:800;color:${sc};">${l.score}<span style="font-size:14px;font-weight:400;color:#9CA3AF;"> / 100</span></div>
-    <div class="score-bar-bg"><div class="score-bar-fill" style="width:${l.score}%;background:${sc};"></div></div>
-    <div class="modal-sec-title">Checklist — lo que necesitas</div>
-    ${l.checklist.map(c=>`<div class="check-row"><div class="chk ${c.ok?'chk-ok':'chk-w'}">${c.ok?'✓':'!'}</div><div style="color:${c.ok?'#111':'#92400E'};">${c.t}${!c.ok?' <span style="font-size:10px;color:#D97706;">— verificar</span>':''}</div></div>`).join('')}
-    <div class="modal-sec-title">Datos del proceso</div>
-    <div class="data-row"><span class="d-label">Monto</span><span class="d-val">${fmt(l.monto)}</span></div>
-    <div class="data-row"><span class="d-label">Tipo</span><span class="d-val">${l.tipo}</span></div>
-    <div class="data-row"><span class="d-label">Departamento</span><span class="d-val">${l.depto}</span></div>
-    <div class="data-row"><span class="d-label">Plazo para cotizar</span><span class="d-val" style="color:#DC2626;">${l.plazo}</span></div>
-    <div class="data-row"><span class="d-label">Modalidad</span><span class="d-val">Contratación directa · menor 8 UIT</span></div>
-    <a href="https://prod6.seace.gob.pe/buscador-publico/contrataciones?descripcion=${encodeURIComponent(l.nombre.substring(0,50))}" target="_blank" class="btn-seace">Ver en SEACE →</a>
-    <div style="text-align:center;font-size:11px;color:#9CA3AF;margin-top:8px;">Abre el portal oficial del Estado peruano</div>`;
-  document.getElementById('modal').classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function closeModal(e){if(e.target===document.getElementById('modal'))closeModalBtn();}
-function closeModalBtn(){document.getElementById('modal').classList.remove('show');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
-function logout(){localStorage.removeItem('dl_user');window.location.href='login.html';}
 
-renderLicit();
-</script>
+    <div class="section">
+      <div class="section-title">Tu perfil</div>
+      <div id="profile-data"></div>
+    </div>
+
+    <div class="upgrade-box">
+      <h4>Activa tus alertas WhatsApp</h4>
+      <p>Cuando el Estado publique algo para tu rubro, te avisamos al instante en WhatsApp. No pierdas ningún plazo.</p>
+      <button class="btn-upgrade">Activar plan completo — S/ 29/mes</button>
+    </div>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('dl_user') || 'null');
+    if (!user) { window.location.href = 'login.html'; }
+    else if (user.role === 'admin') { window.location.href = 'admin.html'; }
+    else {
+      document.getElementById('user-name').textContent = user.nombre;
+      document.getElementById('welcome-msg').textContent = '¡Hola, ' + user.nombre.split(' ')[0] + '! Bienvenido a DeAndru Licita';
+      document.getElementById('profile-data').innerHTML = `
+        <div class="profile-row"><span class="profile-label">Nombre</span><span class="profile-val">${user.nombre}</span></div>
+        <div class="profile-row"><span class="profile-label">Email</span><span class="profile-val">${user.email}</span></div>
+        <div class="profile-row"><span class="profile-label">WhatsApp</span><span class="profile-val">${user.wsp}</span></div>
+        <div class="profile-row"><span class="profile-label">Rubro</span><span class="profile-val">${user.rubro}</span></div>
+        <div class="profile-row"><span class="profile-label">Región</span><span class="profile-val">${user.region}</span></div>
+        <div class="profile-row"><span class="profile-label">Plan</span><span class="profile-val" style="color:#16A34A;">Trial gratis — 30 días</span></div>`;
+    }
+    function logout() { localStorage.removeItem('dl_user'); window.location.href = 'login.html'; }
+  </script>
 </body>
 </html>
