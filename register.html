@@ -1,389 +1,492 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeAndru Licita — Crear cuenta gratis</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Plus Jakarta Sans',sans-serif;background:#F9FAFB;color:#111;min-height:100vh;display:flex;flex-direction:column;}
-    nav{display:flex;align-items:center;padding:14px 24px;background:#fff;border-bottom:1px solid #E5E7EB;}
-    .logo{font-size:18px;font-weight:900;color:#111;text-decoration:none;}
-    .logo em{color:#16A34A;font-style:normal;}
-    .main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px;}
-    .card{background:#fff;border:1.5px solid #E5E7EB;border-radius:20px;padding:32px;width:100%;max-width:460px;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeAndru Licita — Crear cuenta</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0A0A;--surface:#111111;--surface2:#1A1A1A;--border:#2A2A2A;
+  --green:#22C55E;--green-dim:#16A34A;--green-glow:rgba(34,197,94,0.15);
+  --text:#F5F5F5;--muted:#888;--muted2:#555;
+  --red:#EF4444;--amber:#F59E0B;
+}
+html{height:100%;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
 
-    /* PROGRESS */
-    .progress-wrap{margin-bottom:28px;}
-    .progress-steps{display:flex;align-items:center;gap:0;margin-bottom:10px;}
-    .pstep{display:flex;align-items:center;gap:0;flex:1;}
-    .pstep-circle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;transition:all .3s;}
-    .pstep-line{flex:1;height:2px;background:#E5E7EB;transition:background .3s;}
-    .pstep-circle.active{background:#16A34A;color:#fff;}
-    .pstep-circle.done{background:#DCFCE7;color:#16A34A;}
-    .pstep-circle.pending{background:#F3F4F6;color:#9CA3AF;}
-    .pstep-line.done{background:#16A34A;}
-    .progress-labels{display:flex;justify-content:space-between;font-size:11px;color:#9CA3AF;margin-top:6px;}
-    .progress-labels span.active{color:#16A34A;font-weight:600;}
+/* BACKGROUND */
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -20%,rgba(34,197,94,0.07),transparent);pointer-events:none;z-index:0;}
 
-    .step-header{margin-bottom:24px;}
-    .step-badge{display:inline-block;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:8px;}
-    .step-title{font-size:22px;font-weight:800;color:#111;letter-spacing:-.4px;margin-bottom:4px;}
-    .step-sub{font-size:13px;color:#6B7280;}
+/* NAV */
+nav{display:flex;align-items:center;padding:16px 28px;background:rgba(10,10,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-0.5px;}
+.logo em{color:var(--green);font-style:normal;}
+.nav-right{margin-left:auto;font-size:13px;color:var(--muted);}
+.nav-right a{color:var(--green);text-decoration:none;font-weight:500;}
 
-    .form-group{margin-bottom:16px;}
-    .form-label{font-size:12px;font-weight:700;color:#374151;margin-bottom:6px;display:block;}
-    .form-input{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #E5E7EB;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:#111;background:#fff;transition:border-color .15s;}
-    .form-input:focus{outline:none;border-color:#16A34A;box-shadow:0 0 0 3px rgba(22,163,74,0.08);}
-    .form-input::placeholder{color:#D1D5DB;}
+/* MAIN */
+.main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px 60px;position:relative;z-index:1;}
+.wrapper{width:100%;max-width:480px;}
 
-    /* OPCIONES TIPO CHIP */
-    .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-    .options-grid.cols3{grid-template-columns:1fr 1fr 1fr;}
-    .opt-btn{padding:10px 12px;border-radius:10px;border:1.5px solid #E5E7EB;font-size:12px;font-weight:500;color:#374151;cursor:pointer;background:#fff;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:all .15s;line-height:1.3;}
-    .opt-btn:hover{border-color:#16A34A;color:#16A34A;background:#F0FDF4;}
-    .opt-btn.selected{background:#16A34A;color:#fff;border-color:#16A34A;}
-    .opt-btn .opt-icon{font-size:16px;display:block;margin-bottom:4px;}
-    .opt-btn .opt-label{font-weight:600;display:block;}
-    .opt-btn .opt-sub{font-size:10px;opacity:.7;display:block;margin-top:1px;}
+/* STEPS INDICATOR */
+.steps-indicator{display:flex;align-items:center;margin-bottom:32px;}
+.step-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all 0.3s;}
+.step-dot.active{background:var(--green);box-shadow:0 0 12px var(--green-glow);}
+.step-dot.done{background:var(--green-dim);}
+.step-line{flex:1;height:1px;background:var(--border);margin:0 8px;transition:background 0.3s;}
+.step-line.done{background:var(--green-dim);}
+.step-label{font-size:11px;color:var(--muted);margin-left:12px;}
+.step-label span{color:var(--green);font-weight:600;}
 
-    /* SELECT REGION */
-    .region-select{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #E5E7EB;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:#111;background:#fff;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer;}
-    .region-select:focus{outline:none;border-color:#16A34A;}
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.4),transparent);}
 
-    .btn-next{width:100%;padding:14px;border-radius:50px;background:#16A34A;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;margin-top:8px;}
-    .btn-next:hover{background:#15803D;transform:translateY(-1px);}
-    .btn-back{width:100%;padding:12px;border-radius:50px;background:transparent;border:1.5px solid #E5E7EB;color:#6B7280;font-size:14px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:8px;transition:all .15s;}
-    .btn-back:hover{border-color:#374151;color:#374151;}
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--green);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:20px;letter-spacing:0.04em;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
 
-    .error-msg{background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:10px 14px;font-size:13px;color:#DC2626;margin-bottom:16px;display:none;}
-    .login-link{text-align:center;margin-top:16px;font-size:13px;color:#6B7280;}
-    .login-link a{color:#16A34A;font-weight:600;text-decoration:none;}
+/* TITLE */
+.card-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.5px;line-height:1.15;}
+.card-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
 
-    .step-page{display:none;}
-    .step-page.on{display:block;}
+/* PAGE */
+.step-page{display:none;animation:fadeUp 0.3s ease;}
+.step-page.on{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    /* SUCCESS */
-    .success-wrap{text-align:center;padding:20px 0;}
-    .success-icon{font-size:56px;margin-bottom:16px;}
-    .success-title{font-size:24px;font-weight:800;color:#111;margin-bottom:8px;letter-spacing:-.4px;}
-    .success-sub{font-size:14px;color:#6B7280;line-height:1.65;margin-bottom:20px;}
-    .success-summary{background:#F9FAFB;border-radius:12px;padding:14px;text-align:left;margin-bottom:16px;}
-    .ss-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F3F4F6;font-size:13px;}
-    .ss-row:last-child{border-bottom:none;}
-    .ss-label{color:#9CA3AF;}
-    .ss-val{font-weight:600;color:#111;}
+/* FORM */
+.form-group{margin-bottom:20px;position:relative;}
+.form-label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+.form-label span{text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted2);font-size:11px;}
+.form-input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:14px;font-family:'Inter',sans-serif;transition:all 0.2s;outline:none;}
+.form-input:focus{border-color:var(--green);background:rgba(34,197,94,0.04);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
+.form-input::placeholder{color:var(--muted2);}
+.form-input.error{border-color:var(--red);}
+.form-input.ok{border-color:var(--green-dim);}
 
-    @media(max-width:500px){
-      .card{padding:24px 16px;}
-      .options-grid.cols3{grid-template-columns:1fr 1fr;}
-    }
-  </style>
+/* PASSWORD STRENGTH */
+.pw-strength{margin-top:8px;}
+.pw-bars{display:flex;gap:4px;margin-bottom:5px;}
+.pw-bar{height:3px;flex:1;border-radius:20px;background:var(--border);transition:background 0.3s;}
+.pw-bar.weak{background:var(--red);}
+.pw-bar.fair{background:var(--amber);}
+.pw-bar.strong{background:var(--green);}
+.pw-text{font-size:11px;color:var(--muted);}
+.pw-text.weak{color:var(--red);}
+.pw-text.fair{color:var(--amber);}
+.pw-text.strong{color:var(--green);}
+
+/* REQUIREMENTS */
+.pw-reqs{margin-top:10px;display:flex;flex-direction:column;gap:4px;}
+.req{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted2);transition:color 0.2s;}
+.req.met{color:var(--green);}
+.req-icon{width:14px;height:14px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;transition:all 0.2s;}
+.req.met .req-icon{background:var(--green);border-color:var(--green);color:#000;}
+
+/* INPUT ICON */
+.input-wrap{position:relative;}
+.input-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none;}
+.toggle-pw{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:4px;}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--muted2);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* RUBROS */
+.rubros-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.rubro-btn{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;text-align:left;font-family:'Inter',sans-serif;transition:all 0.2s;display:flex;flex-direction:column;gap:3px;}
+.rubro-btn:hover{border-color:rgba(34,197,94,0.4);color:var(--text);background:rgba(34,197,94,0.05);}
+.rubro-btn.sel{border-color:var(--green);background:rgba(34,197,94,0.1);color:var(--text);}
+.rubro-icon{font-size:18px;}
+.rubro-name{font-size:12px;font-weight:600;color:inherit;}
+.rubro-desc{font-size:10px;color:var(--muted2);line-height:1.3;}
+.rubro-btn.sel .rubro-desc{color:rgba(34,197,94,0.7);}
+
+/* UBIGEO */
+.geo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.geo-select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:all 0.2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
+.geo-select:focus{border-color:var(--green);}
+.geo-select:disabled{opacity:0.4;cursor:not-allowed;}
+.geo-select option{background:#1A1A1A;color:var(--text);}
+
+/* ERROR */
+.err-msg{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:10px 14px;font-size:13px;color:#FCA5A5;margin-bottom:16px;display:none;align-items:center;gap:8px;}
+.err-msg.show{display:flex;}
+
+/* SUBMIT BTN */
+.btn-submit{width:100%;padding:15px;border-radius:12px;background:var(--green);color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;letter-spacing:-0.2px;transition:all 0.2s;position:relative;overflow:hidden;margin-top:8px;}
+.btn-submit:hover{background:#16A34A;transform:translateY(-1px);box-shadow:0 8px 24px rgba(34,197,94,0.3);}
+.btn-submit:active{transform:translateY(0);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.btn-back{width:100%;padding:13px;border-radius:12px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;margin-top:8px;transition:all 0.2s;}
+.btn-back:hover{border-color:var(--muted);color:var(--text);}
+
+/* SUCCESS */
+.success-wrap{text-align:center;padding:20px 0;}
+.success-icon{font-size:64px;margin-bottom:20px;display:block;}
+.success-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text);margin-bottom:10px;letter-spacing:-.5px;}
+.success-sub{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.success-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:left;margin-bottom:20px;}
+.sc-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.sc-row:last-child{border-bottom:none;}
+.sc-label{color:var(--muted);}
+.sc-val{font-weight:500;color:var(--text);}
+
+@media(max-width:500px){.card{padding:24px 18px;}.geo-grid{grid-template-columns:1fr;}.rubros-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
-  </nav>
+<nav>
+  <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
+  <div class="nav-right">¿Ya tienes cuenta? <a href="login.html">Ingresar</a></div>
+</nav>
 
-  <div class="main">
+<div class="main">
+  <div class="wrapper">
+
+    <div class="steps-indicator" id="steps-indicator">
+      <div class="step-dot active" id="sd1"></div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-dot" id="sd2"></div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-dot" id="sd3"></div>
+      <span class="step-label" id="step-label">Paso <span>1</span> de 2</span>
+    </div>
+
     <div class="card">
-
-      <!-- PROGRESS BAR -->
-      <div class="progress-wrap" id="progress-wrap">
-        <div class="progress-steps">
-          <div class="pstep">
-            <div class="pstep-circle active" id="pc1">1</div>
-            <div class="pstep-line" id="pl1"></div>
-          </div>
-          <div class="pstep">
-            <div class="pstep-circle pending" id="pc2">2</div>
-            <div class="pstep-line" id="pl2"></div>
-          </div>
-          <div class="pstep" style="flex:0;">
-            <div class="pstep-circle pending" id="pc3">3</div>
-          </div>
-        </div>
-        <div class="progress-labels">
-          <span id="pl-1" class="active">Tu cuenta</span>
-          <span id="pl-2">Tu negocio</span>
-          <span id="pl-3">¡Listo!</span>
-        </div>
-      </div>
-
-      <!-- PASO 1: DATOS DE CUENTA -->
+      <!-- PASO 1 -->
       <div class="step-page on" id="step1">
-        <div class="step-header">
-          <span class="step-badge">Paso 1 de 2</span>
-          <div class="step-title">Crea tu cuenta gratis</div>
-          <div class="step-sub">30 días con todas las funciones. Sin tarjeta de crédito.</div>
-        </div>
-        <div class="error-msg" id="error1"></div>
+        <div class="badge"><span class="badge-dot"></span>30 días gratis · Sin tarjeta</div>
+        <div class="card-title">Crea tu cuenta</div>
+        <div class="card-sub">El Estado peruano publica contratos cada día. Tú mereces enterarte primero.</div>
+        <div class="err-msg" id="err1"><span>⚠</span><span id="err1-text"></span></div>
+
         <div class="form-group">
           <label class="form-label">Nombre completo</label>
-          <input class="form-input" type="text" id="nombre" placeholder="Ej: Carlos Mamani Quispe" autocomplete="name">
+          <div class="input-wrap">
+            <input class="form-input" type="text" id="nombre" placeholder="Ej: Carlos Mamani Quispe" autocomplete="name" oninput="validateNombre()">
+            <span class="input-icon" id="icon-nombre"></span>
+          </div>
         </div>
+
         <div class="form-group">
           <label class="form-label">Correo electrónico</label>
-          <input class="form-input" type="email" id="email" placeholder="tucorreo@gmail.com" autocomplete="email">
+          <div class="input-wrap">
+            <input class="form-input" type="email" id="email" placeholder="tucorreo@gmail.com" autocomplete="email" oninput="validateEmail()">
+            <span class="input-icon" id="icon-email"></span>
+          </div>
         </div>
+
         <div class="form-group">
-          <label class="form-label">Número de WhatsApp</label>
-          <input class="form-input" type="tel" id="wsp" placeholder="+51 987 654 321" autocomplete="tel">
+          <label class="form-label">WhatsApp <span>Para recibir tus alertas de licitaciones</span></label>
+          <div class="input-wrap">
+            <input class="form-input" type="tel" id="wsp" placeholder="+51 987 654 321" autocomplete="tel" oninput="validateWsp()">
+            <span class="input-icon" id="icon-wsp"></span>
+          </div>
         </div>
+
         <div class="form-group">
-          <label class="form-label">Contraseña</label>
-          <input class="form-input" type="password" id="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+          <label class="form-label">Contraseña <span>Mín. 8 caracteres</span></label>
+          <div class="input-wrap">
+            <input class="form-input" type="password" id="password" placeholder="Crea una contraseña segura" oninput="checkPassword()">
+            <button class="toggle-pw" type="button" onclick="togglePw()" id="toggle-pw-btn">👁</button>
+          </div>
+          <div class="pw-strength" id="pw-strength" style="display:none;">
+            <div class="pw-bars">
+              <div class="pw-bar" id="bar1"></div>
+              <div class="pw-bar" id="bar2"></div>
+              <div class="pw-bar" id="bar3"></div>
+              <div class="pw-bar" id="bar4"></div>
+            </div>
+            <div class="pw-text" id="pw-text">Contraseña débil</div>
+            <div class="pw-reqs">
+              <div class="req" id="req-len"><div class="req-icon">✓</div>Mínimo 8 caracteres</div>
+              <div class="req" id="req-upper"><div class="req-icon">✓</div>Al menos una mayúscula (A-Z)</div>
+              <div class="req" id="req-num"><div class="req-icon">✓</div>Al menos un número (0-9)</div>
+              <div class="req" id="req-special"><div class="req-icon">✓</div>Al menos un símbolo (!@#$%)</div>
+            </div>
+          </div>
         </div>
-        <button class="btn-next" onclick="goStep2()">Continuar →</button>
-        <div class="login-link">¿Ya tienes cuenta? <a href="login.html">Ingresar aquí</a></div>
+
+        <button class="btn-submit" onclick="goStep2()">Continuar →</button>
       </div>
 
-      <!-- PASO 2: PERFIL DE NEGOCIO -->
+      <!-- PASO 2 -->
       <div class="step-page" id="step2">
-        <div class="step-header">
-          <span class="step-badge">Paso 2 de 2 — Personaliza tus alertas</span>
-          <div class="step-title">¿Qué hace tu empresa?</div>
-          <div class="step-sub">Así te enviamos solo las oportunidades que te sirven.</div>
-        </div>
-        <div class="error-msg" id="error2"></div>
+        <div class="badge"><span class="badge-dot"></span>Personaliza tus alertas</div>
+        <div class="card-title">¿Qué hace tu empresa?</div>
+        <div class="card-sub">Te enviamos solo las licitaciones que te interesan. Puedes cambiar esto después.</div>
+        <div class="err-msg" id="err2"><span>⚠</span><span id="err2-text"></span></div>
 
         <div class="form-group">
-          <label class="form-label">¿En qué rubro opera tu empresa?</label>
-          <div class="options-grid" id="rubros-grid">
-            <button class="opt-btn" onclick="selectRubro(this,'Limpieza y mantenimiento')">
-              <span class="opt-icon">🧹</span>
-              <span class="opt-label">Limpieza y mantenimiento</span>
-              <span class="opt-sub">Aseo, desinfección, jardinería</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Tecnología y cómputo')">
-              <span class="opt-icon">💻</span>
-              <span class="opt-label">Tecnología y cómputo</span>
-              <span class="opt-sub">IT, redes, equipos, software</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Alimentos y catering')">
-              <span class="opt-icon">🍽️</span>
-              <span class="opt-label">Alimentos y catering</span>
-              <span class="opt-sub">Alimentación, eventos, refrigerios</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Construcción y obras')">
-              <span class="opt-icon">🏗️</span>
-              <span class="opt-label">Construcción y obras</span>
-              <span class="opt-sub">Infraestructura, reparaciones</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Consultoría y asesoría')">
-              <span class="opt-icon">📊</span>
-              <span class="opt-label">Consultoría y asesoría</span>
-              <span class="opt-sub">Gestión, capacitación, estrategia</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Materiales y suministros')">
-              <span class="opt-icon">📦</span>
-              <span class="opt-label">Materiales y suministros</span>
-              <span class="opt-sub">Útiles, papelería, insumos</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Salud y medicina')">
-              <span class="opt-icon">🏥</span>
-              <span class="opt-label">Salud y medicina</span>
-              <span class="opt-sub">Medicamentos, equipos médicos</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Transporte y logística')">
-              <span class="opt-icon">🚛</span>
-              <span class="opt-label">Transporte y logística</span>
-              <span class="opt-sub">Fletes, mensajería, mudanzas</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Seguridad y vigilancia')">
-              <span class="opt-icon">🔒</span>
-              <span class="opt-label">Seguridad y vigilancia</span>
-              <span class="opt-sub">Guardianía, CCTV, control</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Diseño y comunicaciones')">
-              <span class="opt-icon">🎨</span>
-              <span class="opt-label">Diseño y comunicaciones</span>
-              <span class="opt-sub">Gráfica, publicidad, medios</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Mobiliario y equipamiento')">
-              <span class="opt-icon">🪑</span>
-              <span class="opt-label">Mobiliario y equipamiento</span>
-              <span class="opt-sub">Muebles, equipos de oficina</span>
-            </button>
-            <button class="opt-btn" onclick="selectRubro(this,'Otro rubro')">
-              <span class="opt-icon">➕</span>
-              <span class="opt-label">Otro rubro</span>
-              <span class="opt-sub">No está en la lista</span>
-            </button>
+          <label class="form-label">Rubro principal</label>
+          <div class="rubros-grid" id="rubros-grid">
+            <button class="rubro-btn" onclick="selRubro(this,'Limpieza y mantenimiento')"><span class="rubro-icon">🧹</span><span class="rubro-name">Limpieza y mantenimiento</span><span class="rubro-desc">Aseo, desinfección, jardinería</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Tecnología y cómputo')"><span class="rubro-icon">💻</span><span class="rubro-name">Tecnología y cómputo</span><span class="rubro-desc">IT, redes, software, equipos</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Alimentos y catering')"><span class="rubro-icon">🍽️</span><span class="rubro-name">Alimentos y catering</span><span class="rubro-desc">Alimentación, eventos, refrigerios</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Construcción y obras')"><span class="rubro-icon">🏗️</span><span class="rubro-name">Construcción y obras</span><span class="rubro-desc">Infraestructura, reparaciones</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Consultoría y asesoría')"><span class="rubro-icon">📊</span><span class="rubro-name">Consultoría y asesoría</span><span class="rubro-desc">Gestión, capacitación, estrategia</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Materiales y suministros')"><span class="rubro-icon">📦</span><span class="rubro-name">Materiales y suministros</span><span class="rubro-desc">Útiles, papelería, insumos</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Salud y medicina')"><span class="rubro-icon">🏥</span><span class="rubro-name">Salud y medicina</span><span class="rubro-desc">Medicamentos, equipos médicos</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Transporte y logística')"><span class="rubro-icon">🚛</span><span class="rubro-name">Transporte y logística</span><span class="rubro-desc">Fletes, mensajería, mudanzas</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Seguridad y vigilancia')"><span class="rubro-icon">🔒</span><span class="rubro-name">Seguridad y vigilancia</span><span class="rubro-desc">Guardianía, CCTV, control</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Diseño y comunicaciones')"><span class="rubro-icon">🎨</span><span class="rubro-name">Diseño y comunicaciones</span><span class="rubro-desc">Gráfica, publicidad, medios</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Mobiliario y equipamiento')"><span class="rubro-icon">🪑</span><span class="rubro-name">Mobiliario y equipamiento</span><span class="rubro-desc">Muebles, equipos de oficina</span></button>
+            <button class="rubro-btn" onclick="selRubro(this,'Otro rubro')"><span class="rubro-icon">➕</span><span class="rubro-name">Otro rubro</span><span class="rubro-desc">No está en la lista</span></button>
           </div>
         </div>
 
         <div class="form-group" style="margin-top:20px;">
-          <label class="form-label">¿En qué región del Perú operas?</label>
-          <select class="region-select" id="region">
-            <option value="">— Selecciona tu región —</option>
-            <optgroup label="Costa Norte">
-              <option>Tumbes</option>
-              <option>Piura</option>
-              <option>Lambayeque</option>
-              <option>La Libertad</option>
-              <option>Áncash</option>
-            </optgroup>
-            <optgroup label="Costa Centro">
-              <option>Lima Metropolitana</option>
-              <option>Lima Provincias</option>
-              <option>Callao</option>
-              <option>Ica</option>
-            </optgroup>
-            <optgroup label="Costa Sur">
-              <option>Arequipa</option>
-              <option>Moquegua</option>
-              <option>Tacna</option>
-            </optgroup>
-            <optgroup label="Sierra Norte">
-              <option>Cajamarca</option>
-              <option>Amazonas</option>
-            </optgroup>
-            <optgroup label="Sierra Centro">
-              <option>Junín</option>
-              <option>Pasco</option>
-              <option>Huánuco</option>
-              <option>Huancavelica</option>
-              <option>Ayacucho</option>
-              <option>Apurímac</option>
-            </optgroup>
-            <optgroup label="Sierra Sur">
-              <option>Cusco</option>
-              <option>Puno</option>
-            </optgroup>
-            <optgroup label="Selva Norte">
-              <option>Loreto</option>
-              <option>San Martín</option>
-              <option>Ucayali</option>
-            </optgroup>
-            <optgroup label="Selva Sur">
-              <option>Madre de Dios</option>
-            </optgroup>
-            <option value="Todo el Perú">🇵🇪 Todo el Perú</option>
-          </select>
+          <label class="form-label">Ubicación donde operas <span>Igual que el SEACE oficial</span></label>
+          <div class="geo-grid">
+            <div>
+              <div style="font-size:10px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;">Departamento</div>
+              <select class="geo-select" id="departamento" onchange="loadProvincias()">
+                <option value="">Seleccionar</option>
+                <option>Amazonas</option><option>Áncash</option><option>Apurímac</option>
+                <option>Arequipa</option><option>Ayacucho</option><option>Cajamarca</option>
+                <option>Callao</option><option>Cusco</option><option>Huancavelica</option>
+                <option>Huánuco</option><option>Ica</option><option>Junín</option>
+                <option>La Libertad</option><option>Lambayeque</option><option>Lima</option>
+                <option>Loreto</option><option>Madre de Dios</option><option>Moquegua</option>
+                <option>Pasco</option><option>Piura</option><option>Puno</option>
+                <option>San Martín</option><option>Tacna</option><option>Tumbes</option>
+                <option>Ucayali</option>
+              </select>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;">Provincia</div>
+              <select class="geo-select" id="provincia" onchange="loadDistritos()" disabled>
+                <option value="">Primero dept.</option>
+              </select>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;">Distrito</div>
+              <select class="geo-select" id="distrito" disabled>
+                <option value="">Primero prov.</option>
+              </select>
+            </div>
+          </div>
         </div>
 
-        <button class="btn-next" onclick="goStep3()">Crear mi cuenta gratis →</button>
+        <button class="btn-submit" onclick="goStep3()">Crear mi cuenta gratis →</button>
         <button class="btn-back" onclick="goBack()">← Atrás</button>
       </div>
 
-      <!-- PASO 3: ÉXITO -->
+      <!-- ÉXITO -->
       <div class="step-page" id="step3">
-        <div id="progress-wrap-hide"></div>
         <div class="success-wrap">
-          <div class="success-icon">🎉</div>
-          <div class="success-title">¡Bienvenido a DeAndru Licita!</div>
-          <div class="success-sub">Tu cuenta está lista. En menos de 5 minutos recibirás las primeras oportunidades para tu negocio.</div>
-          <div class="success-summary" id="success-summary"></div>
-          <button class="btn-next" onclick="window.location.href='dashboard.html'">Ir a mi dashboard →</button>
+          <span class="success-icon">🎉</span>
+          <div class="success-title">¡Bienvenido a<br>DeAndru Licita!</div>
+          <div class="success-sub">Tu cuenta está lista. Ya tienes 30 días con acceso completo.<br>En minutos recibirás tus primeras alertas.</div>
+          <div class="success-card" id="success-card"></div>
+          <button class="btn-submit" onclick="window.location.href='dashboard.html'">Ir a mi dashboard →</button>
         </div>
       </div>
+    </div>
 
+    <div style="text-align:center;margin-top:20px;font-size:12px;color:var(--muted2);">
+      Al registrarte aceptas nuestros <a href="#" style="color:var(--muted);">términos de uso</a>. Sin spam, prometido.
     </div>
   </div>
+</div>
 
-  <script>
-    let selectedRubro = '';
+<script>
+const UBIGEO = {
+  "Amazonas":{"Chachapoyas":["Chachapoyas","Asunción","Balsas","Cheto","Chiliquín","Chuquibamba","Granada","Huancas","La Jalca","Leimebamba","Levanto","Magdalena","Quinjalca","Soloco","Sonche"],"Bagua":["Bagua","Aramango","Copallín","El Parco","Imaza","La Peca"],"Bongará":["Jumbilla","Corosha","Cuispes","Florida","Jazán","San Carlos","Yambrasbamba"],"Condorcanqui":["Nieva","El Cenepa","Río Santiago"],"Luya":["Lamud","Camporredondo","Cocabamba","Colcamar","Luya","María","Ocalli","Pisuquia","San Cristóbal","Tingo"],"Rodríguez de Mendoza":["San Nicolás","Chirimoto","Huambo","Limabamba","Longar","Milpuc","Omia","Santa Rosa","Vista Alegre"],"Utcubamba":["Bagua Grande","Cajaruro","Cumba","El Milagro","Jamalca","Lonya Grande","Yamón"]},
+  "Áncash":{"Huaraz":["Huaraz","Cochabamba","Colcabamba","Huanchay","Independencia","Jangas","La Libertad","Olleros","Pampas","Pira","Tarica"],"Aija":["Aija","Coris","Huacllan","La Merced","Succha"],"Bolognesi":["Chiquián","Aquia","Cajacay","Canis","Colquioc","Huallanca","Huasta","Mangas","Ticllos"],"Carhuaz":["Carhuaz","Acopampa","Amashca","Anta","Marcara","Shilla","Tinco","Yungar"],"Casma":["Casma","Buena Vista Alta","Comandante Noel","Yautan"],"Huarmey":["Huarmey","Cochapetí","Culebras","Huayan","Malvas"],"Huaylas":["Caraz","Huallanca","Huata","Huaylas","Mato","Pamparomás","Pueblo Libre","Santa Cruz","Yuracmarca"],"Recuay":["Recuay","Catac","Cotaparaco","Huayllapampa","Llacllin","Marián","Pampas Chico","Tapacocha","Ticapampa"],"Santa":["Chimbote","Cáceres del Perú","Coishco","Macate","Moro","Nepeña","Samanco","Santa","Nuevo Chimbote"],"Yungay":["Yungay","Cascapara","Mancos","Matacoto","Quillo","Ranrahirca","Shupluy","Yanama"]},
+  "Apurímac":{"Abancay":["Abancay","Chacoche","Circa","Curahuasi","Huanipaca","Lambrama","Pichirhua","San Pedro de Cachora","Tamburco"],"Andahuaylas":["Andahuaylas","Andarapa","Chiara","Huancarama","Huancaray","Huayana","Kaquiabamba","Pacobamba","Pampachiri","Pomacocha","San Antonio de Cachi","San Jerónimo","Santa María de Chicmo","Talavera","Tumay Huaraca","Turpo"],"Aymaraes":["Chalhuanca","Capaya","Caraybamba","Chapimarca","Colcabamba","Cotaruse","Huayllo","Justo Apu Sahuaraura","Lucre","Pocohuanca","San Juan de Chacña","Sañayca","Soraya","Tapairihua","Tintay","Toraya","Yanaca"],"Cotabambas":["Tambobamba","Cotabambas","Coyllurqui","Haquira","Mara","Challhuahuacho"],"Grau":["Chuquibambilla","Curpahuasi","Gamarra","Huayllati","Mamara","Micaela Bastidas","Pataypampa","Progreso","San Antonio","Santa Rosa","Turpay","Vilcabamba","Virundo","Curasco"]},
+  "Arequipa":{"Arequipa":["Arequipa","Alto Selva Alegre","Cayma","Cerro Colorado","Characato","Chiguata","Jacobo Hunter","La Joya","Mariano Melgar","Miraflores","Mollebaya","Paucarpata","Pocsi","Polobaya","Quequeña","Sabandia","Sachaca","San Juan de Siguas","San Juan de Tarucani","Santa Isabel de Siguas","Santa Rita de Siguas","Socabaya","Tiabaya","Uchumayo","Vitor","Yanahuara","Yarabamba","Yura","José Luis Bustamante y Rivero"],"Camaná":["Camaná","José María Quimper","Mariano Nicolás Valcárcel","Mariscal Cáceres","Nicolás de Piérola","Ocoña","Quilca","Samuel Pastor"],"Caravelí":["Caravelí","Acarí","Atico","Atiquipa","Bella Unión","Cahuacho","Chala","Chaparra","Huanuhuanu","Jaqui","Lomas","Quicacha","Yauca"],"Castilla":["Aplao","Andagua","Ayo","Chachas","Chilcaymarca","Choco","Huancarqui","Machaguay","Orcopampa","Pampacolca","Tipan","Uñon","Uraca","Viraco"],"Caylloma":["Chivay","Achoma","Cabanaconde","Callalli","Caylloma","Coporaque","Huambo","Huanca","Ichupampa","Lari","Lluta","Maca","Madrigal","San Antonio de Chuca","Sibayo","Tapay","Tisco","Tuti","Yanque","Majes"],"Islay":["Mollendo","Cocachacra","Dean Valdivia","Islay","Mejía","Punta de Bombón"],"La Unión":["Cotahuasi","Alca","Charcana","Huaynacotas","Pampamarca","Puyca","Quechualla","Sayla","Tauria","Tomepampa","Toro"]},
+  "Ayacucho":{"Huamanga":["Ayacucho","Acocro","Acos Vinchos","Carmen Alto","Chiara","Ocros","Pacaycasa","Quinua","San José de Ticllas","San Juan Bautista","Santiago de Pischa","Socos","Tambillo","Vinchos","Jesús Nazareno"],"Cangallo":["Cangallo","Chuschi","Los Morochucos","María Parado de Bellido","Paras","Totos"],"Huanca Sancos":["Sancos","Carapo","Sacsamarca","Santiago de Lucanamarca"],"Huanta":["Huanta","Ayahuanco","Huamanguilla","Iguaín","Luricocha","Santillana","Sivia","Llochegua","Canayre","Uchuraccay"],"La Mar":["San Miguel","Anco","Ayna","Chilcas","Chungui","Luis Carranza","Santa Rosa","Tambo","Samugari","Anchihuay"],"Lucanas":["Puquio","Aucara","Cabana","Carmen Salcedo","Chaviña","Chipao","Huac-Huas","Laramate","Leoncio Prado","Llauta","Lucanas","Ocaña","Otoca","Saisa","San Cristóbal","San Juan","San Pedro","San Pedro de Palco","Sancos","Santa Ana de Huaycahuacho","Santa Lucía"],"Parinacochas":["Coracora","Chumpi","Coronel Castañeda","Pacapausa","Puyusca","San Francisco de Ravacayco","Upahuacho"],"Páucar del Sara Sara":["Pausa","Colta","Corculla","Lampa","Marcabamba","Oyolo","Pararca","San Javier de Alpabamba","San José de Ushua","Sara Sara"],"Sucre":["Querobamba","Belén","Chalcos","Chilcayoc","Huacaña","Morcolla","Paico","San Salvador de Quije","Santiago de Paucaray","Soras"],"Víctor Fajardo":["Huancapi","Alcamenca","Apongo","Asquipata","Canaria","Cayara","Colca","Hualla","Huancaraylla","Huaya","Sarhua","Vilcanchos"],"Vilcas Huamán":["Vilcas Huamán","Accomarca","Carhuanca","Concepción","Huambalpa","Independencia","Saurama","Vischongo"]},
+  "Cajamarca":{"Cajamarca":["Cajamarca","Asunción","Chetilla","Cospán","El Prado","La Encañada","Jesús","Llacanora","Los Baños del Inca","Magdalena","Matara","Namora","San Juan"],"Cajabamba":["Cajabamba","Cachachi","Condebamba","Sitacocha"],"Celendín":["Celendín","Chumuch","Cortegana","Huasmin","Jorge Chávez","José Gálvez","Miguel Iglesias","Oxamarca","Sorochuco","Sucre","Utco","La Libertad de Pallán"],"Chota":["Chota","Anguía","Chadín","Chiguirip","Chimban","Choropampa","Cochabamba","Conchan","Huambos","Lajas","Llama","Miracosta","Paccha","Pion","Querocoto","San Juan de Licupis","Tacabamba","Tocmoche","Chalamarca"],"Contumazá":["Contumazá","Chilete","Cupisnique","Guzmango","San Benito","Santa Cruz de Toledo","Tantarica","Yonán"],"Cutervo":["Cutervo","Callayuc","Cujillo","La Ramada","Pimpingos","Querocotillo","San Andrés de Cutervo","San Juan de Cutervo","San Luis de Lucma","Santa Cruz","Santo Domingo de la Capilla","Santo Tomás","Socota","Toribio Casanova"],"Hualgayoc":["Bambamarca","Chugur","Hualgayoc"],"Jaén":["Jaén","Bellavista","Chontali","Colasay","Huabal","Las Pirias","Pomahuaca","Pucará","Sallique","San Felipe","San José del Alto","Santa Rosa"],"San Ignacio":["San Ignacio","Chirinos","Huarango","La Coipa","Namballe","San José de Lourdes","Tabaconas"],"San Marcos":["Pedro Gálvez","Chancay","Eduardo Villanueva","Gregorio Pita","Ichocan","José Manuel Quiroz","José Sabogal"],"San Miguel":["San Miguel","Bolívar","Calquis","Catilluc","El Prado","La Florida","Llapa","Nanchoc","Niepos","San Gregorio","San Silvestre de Cochan","Tongod","Unión Agua Blanca"],"San Pablo":["San Pablo","San Bernardino","San Luis","Tumbadén"],"Santa Cruz":["Santa Cruz","Andabamba","Catache","Chancaybaños","La Esperanza","Ninabamba","Pulan","Saucepampa","Sexi","Uticyacu","Yauyucán"]},
+  "Callao":{"Callao":["Callao","Bellavista","Carmen de La Legua Reynoso","La Perla","La Punta","Ventanilla","Mi Perú"]},
+  "Cusco":{"Cusco":["Cusco","Ccorca","Poroy","San Jerónimo","San Sebastián","Santiago","Saylla","Wanchaq"],"Acomayo":["Acomayo","Acopia","Acos","Mosoc Llacta","Pomacanchi","Rondocan","Sangarará"],"Anta":["Anta","Ancahuasi","Cachimayo","Chinchaypujio","Huarocondo","Limatambo","Mollepata","Pucyura","Zurite"],"Calca":["Calca","Coya","Lamay","Lares","Pisac","San Salvador","Taray","Yanatile"],"Canas":["Yanaoca","Checca","Kunturkanki","Langui","Layo","Pampamarca","Quehue","Tupac Amaru"],"Canchis":["Sicuani","Checacupe","Combapata","Marangani","Pitumarca","San Pablo","San Pedro","Tinta"],"Chumbivilcas":["Santo Tomás","Capacmarca","Chamaca","Colquemarca","Livitaca","Llusco","Quiñota","Velille"],"Espinar":["Espinar","Condoroma","Coporaque","Ocoruro","Pallpata","Pichigua","Suyckutambo","Alto Pichigua"],"La Convención":["Santa Ana","Echarate","Huayopata","Maranura","Ocobamba","Quellouno","Kimbiri","Santa Teresa","Vilcabamba","Pichari","Inkawasi","Villa Kintiarina","Villa Virgen"],"Paruro":["Paruro","Accha","Ccapi","Colcha","Huanoquite","Omacha","Paccaritambo","Pillpinto","Yaurisque"],"Paucartambo":["Paucartambo","Caicay","Challabamba","Colquepata","Huancarani","Kosñipata"],"Quispicanchi":["Urcos","Andahuaylillas","Camanti","Ccarhuayo","Ccatca","Cusipata","Huaro","Lucre","Marcapata","Ocongate","Oropesa","Quiquijana"],"Urubamba":["Urubamba","Chinchero","Huayllabamba","Machupicchu","Maras","Ollantaytambo","Yucay"]},
+  "Huancavelica":{"Huancavelica":["Huancavelica","Acobambilla","Acoria","Conayca","Cuenca","Huachocolpa","Huayllahuara","Izcuchaca","Laria","Manta","Mariscal Cáceres","Moya","Nuevo Occoro","Palca","Pilchaca","Vilca","Yauli","Ascensión","Huando"],"Acobamba":["Acobamba","Andabamba","Anta","Caja","Marcas","Paucara","Pomacocha","Rosario"],"Angaraes":["Lircay","Anchonga","Callanmarca","Ccochaccasa","Chincho","Congalla","Huanca-Huanca","Huayllay Grande","Julcamarca","San Antonio de Antaparco","Santo Tomás de Pata","Secclla"],"Castrovirreyna":["Castrovirreyna","Arma","Aurahua","Capillas","Chupamarca","Cocas","Huachos","Huamatambo","Mollepampa","San Juan","Santa Ana","Tantará","Ticrapo"],"Churcampa":["Churcampa","Anco","Chinchihuasi","El Carmen","La Merced","Locroja","Paucarbamba","San Miguel de Mayocc","San Pedro de Coris","Pachamarca","Cosme"],"Huaytará":["Huaytará","Ayavi","Córdova","Huayacundo Arma","Laramarca","Ocoyo","Pilpichaca","Querco","Quito-Arma","San Antonio de Cusicancha","San Francisco de Sangayaico","San Isidro","Santiago de Chocorvos","Santiago de Quirahuará","Santo Domingo de Capillas","Tambo"],"Tayacaja":["Pampas","Acraquia","Ahuaycha","Colcabamba","Daniel Hernández","Huachocolpa","Huaribamba","Ñahuimpuquio","Pazos","Quishuar","Salcabamba","Salcahuasi","San Marcos de Rocchac","Surcubamba","Tintay Puncu"]},
+  "Huánuco":{"Huánuco":["Huánuco","Amarilis","Churubamba","Margos","Quisqui (Kichki)","San Francisco de Cayrán","San Pedro de Chaulán","Santa María del Valle","Yarumayo","Pillco Marca"],"Ambo":["Ambo","Cayna","Colpas","Conchamarca","Huácar","San Francisco","San Rafael","Tomay Kichwa"],"Dos de Mayo":["La Unión","Chuquis","Marias","Pachas","Quivilla","Ripan","Shunqui","Sillapata","Yanas"],"Huacaybamba":["Huacaybamba","Canchabamba","Cochabamba","Pinra"],"Huamalíes":["Llata","Arancay","Chavín de Pariarca","Jacas Grande","Jircan","Miraflores","Monzón","Punchao","Puños","Singa","Tantamayo"],"Leoncio Prado":["Rupa-Rupa","Daniel Alomía Robles","Hermilio Valdizán","José Crespo y Castillo","Luyando","Mariano Dámaso Beraún","Pucayacu","Castillo Grande","Pueblo Nuevo","Santo Domingo de Anda"],"Lauricocha":["Jesús","Baños","Jivia","Queropalca","Rondos","San Francisco de Asís","San Miguel de Cauri"],"Yarowilca":["Chavinillo","Cahuac","Chacabamba","Aparicio Pomares","Jacas Chico","Obas","Pampamarca","Choras"]},
+  "Ica":{"Ica":["Ica","La Tinguiña","Los Aquijes","Ocucaje","Pachacútec","Parcona","Pueblo Nuevo","Salas","San José de Los Molinos","San Juan Bautista","Santiago","Subtanjalla","Tate","Yauca del Rosario"],"Chincha":["Chincha Alta","Alto Larán","Chavin","Chincha Baja","El Carmen","Grocio Prado","Huancano","Lurín Chincha","Pueblo Nuevo","San Juan de Yanac","San Pedro de Huacarpana","Sunampe","Tambo de Mora"],"Nazca":["Nazca","Changuillo","El Ingenio","Marcona","Vista Alegre"],"Palpa":["Palpa","Llipata","Río Grande","Santa Cruz","Tibillo"],"Pisco":["Pisco","Huancano","Humay","Independencia","Paracas","San Andrés","San Clemente","Tupac Amaru Inca"]},
+  "Junín":{"Huancayo":["Huancayo","Carhuacallanga","Chacapampa","Chicche","Chilca","Chongos Alto","Chupuro","Colca","Cullhuas","El Tambo","Huacrapuquio","Hualhuas","Huancan","Huasicancha","Huayucachi","Ingenio","Pariahuanca","Pilcomayo","Pucará","Quichuay","Quilcas","San Agustín","San Jerónimo de Tunan","Saño","Sapallanga","Sicaya","Santo Domingo de Acobamba","Viques"],"Concepción":["Concepción","Aco","Andamarca","Chambará","Cochas","Comas","Heroínas Toledo","Junín","Manzanares","Mariscal Castilla","Matahuasi","Mito","Nueve de Julio","Orcotuna","San José de Quero","Santa Rosa de Ocopa"],"Chanchamayo":["La Merced","Perené","Pichanaqui","San Luis de Shuaro","San Ramón","Vitoc"],"Jauja":["Jauja","Acolla","Apata","Ataura","Canchayllo","Curicaca","El Mantaro","Huamali","Huaripampa","Huertas","Janjaillo","Julcán","Leonor Ordóñez","Llocllapampa","Marco","Masma","Masma Chicche","Molinos","Monobamba","Muqui","Muquiyauyo","Paca","Paccha","Pancan","Parco","Pomacancha","Ricran","San Lorenzo","San Pedro de Chunán","Sausa","Sincos","Tunan Marca","Yauli","Yauyos"],"Junín":["Junín","Carhuamayo","Ondores","Ulcumayo"],"Satipo":["Satipo","Coviriali","Llaylla","Mazamari","Pampa Hermosa","Pangoa","Río Negro","Río Tambo","Vizcatán del Ene"],"Tarma":["Tarma","Acobamba","Huaricolca","Huasahuasi","La Unión","Palca","Palcamayo","San Pedro de Cajas","Tapo"],"Yauli":["La Oroya","Chacapalpa","Huay-Huay","Marcapomacocha","Morococha","Paccha","Santa Bárbara de Carhuacayán","Santa Rosa de Sacco","Suitucancha","Yauli"],"Chupaca":["Chupaca","Ahuac","Chongos Bajo","Huachac","Huamancaca Chico","San Juan de Jarpa","Tres de Diciembre","Yanacancha"]},
+  "La Libertad":{"Trujillo":["Trujillo","El Porvenir","Florencia de Mora","Huanchaco","La Esperanza","Laredo","Moche","Poroto","Salaverry","Simbal","Víctor Larco Herrera"],"Ascope":["Ascope","Chicama","Chocope","Magdalena de Cao","Paijan","Rázuri","Santiago de Cao","Casa Grande"],"Bolívar":["Bolívar","Bambamarca","Condormarca","Longotea","Uchumarca","Ucuncha"],"Chepén":["Chepén","Pacanga","Pueblo Nuevo"],"Julcán":["Julcán","Carabamba","Calamarca","Huaso"],"Otuzco":["Otuzco","Agallpampa","Charat","Huaranchal","La Cuesta","Mache","Paranday","Salpo","Sinsicap","Usquil"],"Pacasmayo":["San Pedro de Lloc","Guadalupe","Jequetepeque","Pacasmayo","San José"],"Pataz":["Tayabamba","Buldibuyo","Chillia","Huaylillas","Huancaspata","Huayo","Ongón","Parcoy","Pataz","Pías","Santiago de Challas","Taurija","Urpay"],"Sánchez Carrión":["Huamachuco","Chugay","Cochorco","Curgos","Marcabal","Sanagoran","Sarin","Sartimbamba"],"Santiago de Chuco":["Santiago de Chuco","Angasmarca","Cachicadan","Mollebamba","Mollepata","Quiruvilca","Santa Cruz de Chuca","Sitabamba"],"Gran Chimú":["Cascas","Lucma","Marmot","Sayapullo"],"Virú":["Virú","Chao","Guadalupito"]},
+  "Lambayeque":{"Chiclayo":["Chiclayo","Chongoyape","Eten","Eten Puerto","José Leonardo Ortiz","La Victoria","Lagunas","Monsefu","Nueva Arica","Oyotún","Picsi","Pimentel","Reque","Santa Rosa","Saña","Cayaltí","Pátapo","Pomalca","Pucalá","Tumán"],"Ferreñafe":["Ferreñafe","Cañaris","Incahuasi","Manuel Antonio Mesones Muro","Pitipo","Pueblo Nuevo"],"Lambayeque":["Lambayeque","Chochope","Illimo","Jayanca","Mochumí","Mórrope","Motupe","Olmos","Pacora","Salas","San José","Túcume"]},
+  "Lima":{"Lima":["Lima","Ancón","Ate","Barranco","Breña","Carabayllo","Chaclacayo","Chorrillos","Cieneguilla","Comas","El Agustino","Independencia","Jesús María","La Molina","La Victoria","Lince","Los Olivos","Lurigancho","Lurín","Magdalena del Mar","Magdalena Vieja","Miraflores","Pachacámac","Pucusana","Pueblo Libre","Puente Piedra","Punta Hermosa","Punta Negra","Rímac","San Bartolo","San Borja","San Isidro","San Juan de Lurigancho","San Juan de Miraflores","San Luis","San Martín de Porres","San Miguel","Santa Anita","Santa María del Mar","Santa Rosa","Santiago de Surco","Surquillo","Villa El Salvador","Villa María del Triunfo"],"Barranca":["Barranca","Ámbar","Haucho","Paramonga","Pativilca","Supe","Supe Puerto"],"Cajatambo":["Cajatambo","Copa","Gorgor","Huancapón","Manas"],"Cañete":["San Vicente de Cañete","Asia","Calango","Cerro Azul","Chilca","Coayllo","Imperial","Lunahuaná","Mala","Nuevo Imperial","Pacaran","Quilmaná","San Antonio","San Luis","Santa Cruz de Flores","Zúñiga"],"Canta":["Canta","Arahuay","Huamantanga","Huaros","Lachaqui","San Buenaventura","Santa Rosa de Quives"],"Huaral":["Huaral","Atavillos Alto","Atavillos Bajo","Aucallama","Chancay","Ihuari","Lampián","Pacaraos","San Miguel de Acos","Santa Cruz de Andamarca","Sumbilca","Veintisiete de Noviembre"],"Huarochirí":["Matucana","Antioquía","Callahuanca","Carampoma","Chicla","Cuenca","Huachupampa","Huanza","Huarochirí","Lahuaytambo","Langa","Laraos","Mariatana","Ricardo Palma","San Andrés de Tupicocha","San Antonio","San Bartolomé","San Damián","San Juan de Iris","San Juan de Tantaranche","San Lorenzo de Quinti","San Mateo","San Mateo de Otao","San Pedro de Casta","San Pedro de Huancayre","Sangallaya","Santa Cruz de Cocachacra","Santa Eulalia","Santiago de Anchucaya","Santiago de Tuna","Santo Domingo de Los Olleros","Surco"],"Huaura":["Huacho","Ambar","Caleta de Carquín","Checras","Hualmay","Huaura","Leoncio Prado","Paccho","Santa Leonor","Santa María","Sayán","Vegueta"],"Oyón":["Oyón","Andajes","Caujul","Cochamarca","Naván","Pachangara"],"Yauyos":["Yauyos","Alis","Allauca","Ayaviri","Azángaro","Cacra","Cañas","Carania","Catahuasi","Chocos","Cochas","Cocpe","Colonia","Hongos","Huampará","Huancaya","Huangáscar","Huantán","Huañec","Laraos","Lincha","Madean","Miraflores","Omas","Putinza","Quinches","Quinocay","San Joaquín","San Pedro de Pilas","Tanta","Tauripampa","Tomas","Tupe","Viñac","Vitis"]},
+  "Loreto":{"Maynas":["Iquitos","Alto Nanay","Fernando Lores","Indiana","Las Amazonas","Mazan","Napo","Punchana","Torres Causana","Belén","San Juan Bautista"],"Alto Amazonas":["Yurimaguas","Balsapuerto","Jeberos","Lagunas","Santa Cruz","Teniente César López Rojas"],"Loreto":["Nauta","Parinari","Tigre","Trompeteros","Urarinas"],"Mariscal Ramón Castilla":["Ramón Castilla","Pebas","San Pablo","Yavarí"],"Requena":["Requena","Alto Tapiche","Capelo","Emilio San Martín","Maquia","Puinahua","Saquena","Soplin","Tapiche","Jenaro Herrera","Yaquerana"],"Ucayali":["Contamana","Inahuaya","Padre Márquez","Pampa Hermosa","Sarayacu","Vargas Guerra"],"Datem del Marañón":["San Lorenzo","Andoas","Cahuapanas","Manseriche","Morona","Pastaza"],"Putumayo":["San Antonio del Estrecho","Huapapa","Leguizamón","Rosa Panduro","Teniente Manuel Clavero","Yaguas"]},
+  "Madre de Dios":{"Tambopata":["Tambopata","Inambari","Las Piedras","Laberinto"],"Manu":["Manu","Fitzcarrald","Madre de Dios","Huepetuhe"],"Tahuamanu":["Iñapari","Iberia","Tahuamanu"]},
+  "Moquegua":{"Mariscal Nieto":["Moquegua","Carumas","Cuchumbaya","Samegua","San Cristóbal","Torata"],"General Sánchez Cerro":["Omate","Chojata","Coalaque","Ichuña","La Capilla","Lloque","Matalaque","Puquina","Quinistaquillas","Ubinas","Yunga"],"Ilo":["Ilo","El Algarrobal","Pacocha"]},
+  "Pasco":{"Pasco":["Chaupimarca","Huachón","Huariaca","Huayllay","Ninacaca","Pallanchacra","Paucartambo","San Francisco de Asís de Yarusyacán","Simón Bolívar","Ticlacayán","Tinyahuarco","Vicco","Yanacancha"],"Daniel Alcides Carrión":["Yanahuanca","Chacayán","Goyllarisquizga","Paucar","San Pedro de Pillao","Santa Ana de Tusi","Tapuc","Vilcabamba"],"Oxapampa":["Oxapampa","Chontabamba","Huancabamba","Palcazú","Pozuzo","Puerto Bermúdez","Villa Rica","Constitución"]},
+  "Piura":{"Piura":["Piura","Castilla","Catacaos","Cura Mori","El Tallan","La Arena","La Unión","Las Lomas","Tambo Grande","Veintiséis de Octubre"],"Ayabaca":["Ayabaca","Frias","Jilili","Lagunas","Montero","Pacaipampa","Paimas","Sapillica","Sicchez","Suyo"],"Huancabamba":["Huancabamba","Canchaque","El Carmen de la Frontera","Huarmaca","Lalaquiz","San Miguel de El Faique","Sondor","Sondorillo"],"Morropón":["Chulucanas","Buenos Aires","Chalaco","La Matanza","Morropón","Salitral","San Juan de Bigote","Santa Catalina de Mossa","Santo Domingo","Yamango"],"Paita":["Paita","Amotape","Arenal","Colan","La Huaca","Tamarindo","Vichayal"],"Sullana":["Sullana","Bellavista","Ignacio Escudero","Lancones","Marcavelica","Miguel Checa","Querecotillo","Salitral"],"Talara":["Pariñas","El Alto","La Brea","Lobitos","Los Órganos","Mancora"],"Sechura":["Sechura","Bellavista de La Unión","Bernal","Cristo Nos Valga","Vice","Rinconada Llicuar"]},
+  "Puno":{"Puno":["Puno","Acora","Amantani","Atuncolla","Capachica","Chucuito","Coata","Huata","Mañazo","Paucarcolla","Pichacani","Plateria","San Antonio","Tiquillaca","Vilque"],"Azángaro":["Azángaro","Achaya","Arapa","Asillo","Caminaca","Chupa","José Domingo Choquehuanca","Muñani","Potoni","Saman","San Anton","San José","San Juan de Salinas","Santiago de Pupuja","Tirapata"],"Carabaya":["Macusani","Ajoyani","Ayapata","Coasa","Corani","Crucero","Ituata","Ollachea","San Gabán","Usicayos"],"Chucuito":["Juli","Desaguadero","Huacullani","Kelluyo","Pisacoma","Pomata","Zepita"],"El Collao":["Ilave","Capazo","Pilcuyo","Santa Rosa","Conduriri"],"Huancané":["Huancané","Cojata","Huatasani","Inchupalla","Pusi","Rosaspata","Taraco","Vilque Chico"],"Lampa":["Lampa","Cabanilla","Calapuja","Nicasio","Ocuviri","Palca","Paratia","Pucará","Santa Lucía","Vilavila"],"Melgar":["Ayaviri","Antauta","Cupi","Llalli","Macari","Nuñoa","Orurillo","Santa Rosa","Umachiri"],"Moho":["Moho","Conima","Huayrapata","Tilali"],"San Antonio de Putina":["Putina","Ananea","Pedro Vilca Apaza","Quilcapuncu","Sina"],"San Román":["Juliaca","Cabana","Cabanillas","Caracoto"],"Sandia":["Sandia","Cuyocuyo","Limbani","Patambuco","Phara","Quilcapuncu","San Juan del Oro","Yanahuaya","Alto Inambari","Sina"],"Yunguyo":["Yunguyo","Anapia","Copani","Cuturapi","Ollaraya","Tinicachi","Unicachi"]},
+  "San Martín":{"Moyobamba":["Moyobamba","Calzada","Habana","Jepelacio","Soritor","Yantalo"],"Bellavista":["Bellavista","Alto Biavo","Bajo Biavo","Huallaga","San Pablo","San Rafael"],"El Dorado":["San José de Sisa","Agua Blanca","San Martín","Santa Rosa","Shatoja"],"Huallaga":["Saposoa","Alto Saposoa","El Eslabón","Piscoyacu","Sacanche","Tingo de Saposoa"],"Lamas":["Lamas","Alonso de Alvarado","Barranquita","Caynarachi","Cuñumbuqui","Pinto Recodo","Rumisapa","San Roque de Cumbaza","Shanao","Tabalosos","Zapatero"],"Mariscal Cáceres":["Juanjuí","Campanilla","Huicungo","Pachiza","Pajarillo"],"Picota":["Picota","Buenos Aires","Caspizapa","Pilluana","Pucacaca","San Cristóbal","San Hilarión","Shamboyacu","Tingo de Ponaza","Tres Unidos"],"Rioja":["Rioja","Awajun","Elias Soplin Vargas","Nueva Cajamarca","Pardo Miguel","Posic","San Fernando","Yorongos","Yuracyacu"],"San Martín":["Tarapoto","Alberto Leveau","Cacatachi","Chazuta","Chipurana","El Porvenir","Huimbayoc","Juan Guerra","La Banda de Shilcayo","Morales","Papaplaya","San Antonio","Sauce","Shapaja"],"Tocache":["Tocache","Nuevo Progreso","Pólvora","Shunte","Uchiza"]},
+  "Tacna":{"Tacna":["Tacna","Alto de la Alianza","Calana","Ciudad Nueva","Inclán","Pachia","Palca","Pocollay","Sama","Coronel Gregorio Albarracín Lanchipa"],"Candarave":["Candarave","Cairani","Camilaca","Curibaya","Huanuara","Quilahuani"],"Jorge Basadre":["Locumba","Ilabaya","Ite"],"Tarata":["Tarata","Estique","Estique-Pampa","Sitajara","Susapaya","Tarucachi","Ticaco"]},
+  "Tumbes":{"Tumbes":["Tumbes","Corrales","La Cruz","Pampas de Hospital","San Jacinto","San Juan de La Virgen"],"Contralmirante Villar":["Zorritos","Casitas","Canoas de Punta Sal"],"Zarumilla":["Zarumilla","Aguas Verdes","Matapalo","Papayal"]},
+  "Ucayali":{"Coronel Portillo":["Callería","Campoverde","Iparía","Masisea","Yarinacocha","Nueva Requena","Manantay"],"Atalaya":["Raymondi","Sepahua","Tahuania","Yurúa"],"Padre Abad":["Padre Abad","Irazola","Curimaná","Neshuya","Alexander Von Humboldt"],"Purús":["Purús"]}
+};
 
-    function selectRubro(btn, rubro) {
-      document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      selectedRubro = rubro;
-    }
+let selRubroVal='';
+function selRubro(btn,r){
+  document.querySelectorAll('.rubro-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');selRubroVal=r;
+}
 
-    function goStep2() {
-      const nombre = document.getElementById('nombre').value.trim();
-      const email = document.getElementById('email').value.trim().toLowerCase();
-      const wsp = document.getElementById('wsp').value.trim();
-      const password = document.getElementById('password').value;
-      const err = document.getElementById('error1');
-      err.style.display = 'none';
+function loadProvincias(){
+  const dept=document.getElementById('departamento').value;
+  const provSel=document.getElementById('provincia');
+  const distSel=document.getElementById('distrito');
+  provSel.innerHTML='<option value="">Seleccionar provincia</option>';
+  distSel.innerHTML='<option value="">Seleccionar distrito</option>';
+  distSel.disabled=true;
+  if(!dept||!UBIGEO[dept]){provSel.disabled=true;return;}
+  provSel.disabled=false;
+  Object.keys(UBIGEO[dept]).sort().forEach(p=>{
+    provSel.innerHTML+=`<option value="${p}">${p}</option>`;
+  });
+}
 
-      if (!nombre) { showError('error1', 'Por favor ingresa tu nombre completo.'); return; }
-      if (!email || !email.includes('@')) { showError('error1', 'Por favor ingresa un correo electrónico válido.'); return; }
-      if (!wsp) { showError('error1', 'Por favor ingresa tu número de WhatsApp.'); return; }
-      if (password.length < 6) { showError('error1', 'La contraseña debe tener al menos 6 caracteres.'); return; }
+function loadDistritos(){
+  const dept=document.getElementById('departamento').value;
+  const prov=document.getElementById('provincia').value;
+  const distSel=document.getElementById('distrito');
+  distSel.innerHTML='<option value="">Seleccionar distrito</option>';
+  if(!dept||!prov||!UBIGEO[dept]||!UBIGEO[dept][prov]){distSel.disabled=true;return;}
+  distSel.disabled=false;
+  UBIGEO[dept][prov].sort().forEach(d=>{
+    distSel.innerHTML+=`<option value="${d}">${d}</option>`;
+  });
+}
 
-      const users = JSON.parse(localStorage.getItem('dl_users') || '[]');
-      if (users.find(u => u.email === email)) {
-        showError('error1', 'Este correo ya está registrado. ¿Quieres ingresar?');
-        return;
-      }
+// VALIDACIONES EN TIEMPO REAL
+function validateNombre(){
+  const v=document.getElementById('nombre').value.trim();
+  const inp=document.getElementById('nombre');
+  const ic=document.getElementById('icon-nombre');
+  if(v.length>=3&&v.includes(' ')){inp.className='form-input ok';ic.textContent='✓';}
+  else if(v.length>0){inp.className='form-input';ic.textContent='';}
+  else{inp.className='form-input';ic.textContent='';}
+}
 
-      document.getElementById('step1').classList.remove('on');
-      document.getElementById('step2').classList.add('on');
-      updateProgress(2);
-    }
+function validateEmail(){
+  const v=document.getElementById('email').value.trim();
+  const inp=document.getElementById('email');
+  const ic=document.getElementById('icon-email');
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){inp.className='form-input ok';ic.textContent='✓';}
+  else if(v.length>0){inp.className='form-input';ic.textContent='';}
+}
 
-    function goStep3() {
-      const region = document.getElementById('region').value;
-      if (!selectedRubro) { showError('error2', 'Por favor selecciona el rubro de tu empresa.'); return; }
-      if (!region) { showError('error2', 'Por favor selecciona tu región de operación.'); return; }
+function validateWsp(){
+  const v=document.getElementById('wsp').value.trim();
+  const inp=document.getElementById('wsp');
+  const ic=document.getElementById('icon-wsp');
+  if(v.replace(/\s/g,'').length>=9){inp.className='form-input ok';ic.textContent='✓';}
+}
 
-      const nombre = document.getElementById('nombre').value.trim();
-      const email = document.getElementById('email').value.trim().toLowerCase();
-      const wsp = document.getElementById('wsp').value.trim();
-      const password = document.getElementById('password').value;
+function checkPassword(){
+  const pw=document.getElementById('password').value;
+  const strength=document.getElementById('pw-strength');
+  if(pw.length===0){strength.style.display='none';return;}
+  strength.style.display='block';
 
-      const newUser = {
-        id: Date.now(),
-        nombre, email, wsp, password,
-        rubro: selectedRubro,
-        region,
-        role: 'user',
-        plan: 'trial',
-        registro: new Date().toLocaleDateString('es-PE'),
-        fecha_registro: new Date().toISOString()
-      };
+  const hasLen=pw.length>=8;
+  const hasUpper=/[A-Z]/.test(pw);
+  const hasNum=/[0-9]/.test(pw);
+  const hasSpecial=/[!@#$%^&*(),.?":{}|<>]/.test(pw);
 
-      const users = JSON.parse(localStorage.getItem('dl_users') || '[]');
-      users.push(newUser);
-      localStorage.setItem('dl_users', JSON.stringify(users));
-      localStorage.setItem('dl_user', JSON.stringify(newUser));
+  document.getElementById('req-len').className='req'+(hasLen?' met':'');
+  document.getElementById('req-upper').className='req'+(hasUpper?' met':'');
+  document.getElementById('req-num').className='req'+(hasNum?' met':'');
+  document.getElementById('req-special').className='req'+(hasSpecial?' met':'');
 
-      document.getElementById('success-summary').innerHTML = `
-        <div class="ss-row"><span class="ss-label">Nombre</span><span class="ss-val">${nombre}</span></div>
-        <div class="ss-row"><span class="ss-label">Email</span><span class="ss-val">${email}</span></div>
-        <div class="ss-row"><span class="ss-label">Rubro</span><span class="ss-val">${selectedRubro}</span></div>
-        <div class="ss-row"><span class="ss-label">Región</span><span class="ss-val">${region}</span></div>
-        <div class="ss-row"><span class="ss-label">Plan</span><span class="ss-val" style="color:#16A34A;">30 días gratis activos ✓</span></div>`;
+  const score=[hasLen,hasUpper,hasNum,hasSpecial].filter(Boolean).length;
+  const bars=['bar1','bar2','bar3','bar4'];
+  const cls=score<=1?'weak':score<=2?'fair':'strong';
+  const labels={weak:'Contraseña débil — agrega más caracteres',fair:'Contraseña regular — puedes mejorarla',strong:'Contraseña fuerte ✓'};
+  bars.forEach((b,i)=>{
+    const el=document.getElementById(b);
+    el.className='pw-bar'+(i<score?' '+cls:'');
+  });
+  const pwText=document.getElementById('pw-text');
+  pwText.className='pw-text '+cls;
+  pwText.textContent=labels[cls]||labels.weak;
+}
 
-      document.getElementById('step2').classList.remove('on');
-      document.getElementById('step3').classList.add('on');
-      document.getElementById('progress-wrap').style.display = 'none';
-      updateProgress(3);
-    }
+function togglePw(){
+  const inp=document.getElementById('password');
+  const btn=document.getElementById('toggle-pw-btn');
+  if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
+  else{inp.type='password';btn.textContent='👁';}
+}
 
-    function goBack() {
-      document.getElementById('step2').classList.remove('on');
-      document.getElementById('step1').classList.add('on');
-      updateProgress(1);
-    }
+function showErr(id,msg){
+  const el=document.getElementById('err'+id);
+  document.getElementById('err'+id+'-text').textContent=msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),4000);
+}
 
-    function showError(id, msg) {
-      const el = document.getElementById(id);
-      el.textContent = msg;
-      el.style.display = 'block';
-    }
+function goStep2(){
+  const nombre=document.getElementById('nombre').value.trim();
+  const email=document.getElementById('email').value.trim().toLowerCase();
+  const wsp=document.getElementById('wsp').value.trim();
+  const pw=document.getElementById('password').value;
+  if(!nombre||nombre.split(' ').length<2){showErr(1,'Ingresa tu nombre completo (nombre y apellido)');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr(1,'El correo electrónico no es válido');return;}
+  if(wsp.replace(/\s/g,'').length<9){showErr(1,'Ingresa un número de WhatsApp válido');return;}
+  if(pw.length<8){showErr(1,'La contraseña debe tener al menos 8 caracteres');return;}
+  if(!/[A-Z]/.test(pw)){showErr(1,'La contraseña necesita al menos una mayúscula');return;}
+  if(!/[0-9]/.test(pw)){showErr(1,'La contraseña necesita al menos un número');return;}
+  const users=JSON.parse(localStorage.getItem('dl_users')||'[]');
+  if(users.find(u=>u.email===email)){showErr(1,'Este correo ya está registrado. ¿Quieres ingresar?');return;}
+  document.getElementById('step1').classList.remove('on');
+  document.getElementById('step2').classList.add('on');
+  updateSteps(2);
+}
 
-    function updateProgress(step) {
-      const circles = ['pc1','pc2','pc3'];
-      const lines = ['pl1','pl2'];
-      const labels = ['pl-1','pl-2','pl-3'];
-      circles.forEach((id, i) => {
-        const el = document.getElementById(id);
-        if (i + 1 < step) { el.className = 'pstep-circle done'; el.textContent = '✓'; }
-        else if (i + 1 === step) { el.className = 'pstep-circle active'; el.textContent = i + 1; }
-        else { el.className = 'pstep-circle pending'; el.textContent = i + 1; }
-      });
-      lines.forEach((id, i) => {
-        document.getElementById(id).className = 'pstep-line' + (i + 1 < step ? ' done' : '');
-      });
-      labels.forEach((id, i) => {
-        document.getElementById(id).className = i + 1 === step ? 'active' : '';
-      });
-    }
-  </script>
+function goStep3(){
+  if(!selRubroVal){showErr(2,'Selecciona el rubro de tu empresa');return;}
+  const dept=document.getElementById('departamento').value;
+  const prov=document.getElementById('provincia').value;
+  if(!dept){showErr(2,'Selecciona tu departamento');return;}
+  const nombre=document.getElementById('nombre').value.trim();
+  const email=document.getElementById('email').value.trim().toLowerCase();
+  const wsp=document.getElementById('wsp').value.trim();
+  const pw=document.getElementById('password').value;
+  const distrito=document.getElementById('distrito').value;
+  const newUser={id:Date.now(),nombre,email,wsp,password:pw,rubro:selRubroVal,
+    depto:dept,provincia:prov,distrito:distrito||'',
+    region:dept+(prov?', '+prov:''),role:'user',plan:'trial',
+    registro:new Date().toLocaleDateString('es-PE'),
+    fecha_registro:new Date().toISOString()};
+  const users=JSON.parse(localStorage.getItem('dl_users')||'[]');
+  users.push(newUser);
+  localStorage.setItem('dl_users',JSON.stringify(users));
+  localStorage.setItem('dl_user',JSON.stringify(newUser));
+  document.getElementById('success-card').innerHTML=`
+    <div class="sc-row"><span class="sc-label">Nombre</span><span class="sc-val">${nombre}</span></div>
+    <div class="sc-row"><span class="sc-label">Email</span><span class="sc-val">${email}</span></div>
+    <div class="sc-row"><span class="sc-label">Rubro</span><span class="sc-val">${selRubroVal}</span></div>
+    <div class="sc-row"><span class="sc-label">Ubicación</span><span class="sc-val">${dept}${prov?', '+prov:''}${distrito?', '+distrito:''}</span></div>
+    <div class="sc-row"><span class="sc-label">Plan</span><span class="sc-val" style="color:var(--green);">Trial 30 días — activo ✓</span></div>`;
+  document.getElementById('step2').classList.remove('on');
+  document.getElementById('step3').classList.add('on');
+  document.getElementById('steps-indicator').style.display='none';
+  updateSteps(3);
+}
+
+function goBack(){
+  document.getElementById('step2').classList.remove('on');
+  document.getElementById('step1').classList.add('on');
+  updateSteps(1);
+}
+
+function updateSteps(s){
+  document.getElementById('sd1').className='step-dot'+(s>=1?' active':'')+(s>1?' done':'');
+  document.getElementById('sd2').className='step-dot'+(s===2?' active':'')+(s>2?' done':'');
+  document.getElementById('sd3').className='step-dot'+(s===3?' active':'');
+  document.getElementById('sl1').className='step-line'+(s>1?' done':'');
+  document.getElementById('sl2').className='step-line'+(s>2?' done':'');
+  document.getElementById('step-label').innerHTML='Paso <span>'+Math.min(s,2)+'</span> de 2';
+}
+</script>
 </body>
 </html>

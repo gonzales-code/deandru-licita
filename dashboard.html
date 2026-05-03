@@ -8,27 +8,21 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Plus Jakarta Sans',sans-serif;background:#F9FAFB;color:#111;}
-
-    /* NAV */
     nav{display:flex;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #E5E7EB;position:sticky;top:0;z-index:100;}
     .logo{font-size:16px;font-weight:900;color:#111;text-decoration:none;}
     .logo em{color:#16A34A;font-style:normal;}
     .nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
     .user-chip{font-size:12px;color:#6B7280;background:#F9FAFB;padding:6px 12px;border-radius:20px;border:1px solid #E5E7EB;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
     .btn-sm{padding:7px 14px;border-radius:20px;border:1.5px solid #E5E7EB;background:transparent;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:#6B7280;text-decoration:none;display:inline-block;}
-    .btn-sm:hover{border-color:#16A34A;color:#16A34A;}
-    .btn-sm-green{background:#16A34A;color:#fff;border-color:#16A34A;}
-    .btn-sm-green:hover{background:#15803D;color:#fff;}
-
-    /* MAIN */
-    .main{max-width:820px;margin:0 auto;padding:20px 16px;}
+    .btn-sm:hover{border-color:#EF4444;color:#EF4444;}
+    .main{max-width:860px;margin:0 auto;padding:20px 16px;}
 
     /* WELCOME */
-    .welcome{background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;padding:20px 22px;margin-bottom:14px;display:flex;align-items:center;gap:14px;}
-    .welcome-avatar{width:44px;height:44px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#16A34A;flex-shrink:0;}
-    .welcome-body h2{font-size:17px;font-weight:800;color:#111;margin-bottom:2px;}
+    .welcome{background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;padding:16px 20px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+    .welcome-avatar{width:42px;height:42px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#16A34A;flex-shrink:0;}
+    .welcome-body h2{font-size:16px;font-weight:800;color:#111;margin-bottom:2px;}
     .welcome-body p{font-size:12px;color:#6B7280;}
-    .trial-pill{display:inline-flex;align-items:center;gap:5px;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:auto;flex-shrink:0;}
+    .trial-pill{display:inline-flex;align-items:center;gap:5px;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-left:auto;}
 
     /* STATS */
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
@@ -37,16 +31,31 @@
     .stat-val{font-size:22px;font-weight:800;color:#111;}
     .stat-sub{font-size:11px;color:#16A34A;margin-top:2px;}
 
-    /* FILTERS */
-    .filters-bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;}
-    .filter-label{font-size:12px;color:#6B7280;font-weight:500;}
-    .filter-chip{padding:6px 12px;border-radius:20px;border:1.5px solid #E5E7EB;font-size:12px;font-weight:500;cursor:pointer;background:#fff;color:#6B7280;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;}
-    .filter-chip.on{background:#16A34A;color:#fff;border-color:#16A34A;}
-    .search-box{flex:1;min-width:180px;padding:8px 12px;border-radius:20px;border:1.5px solid #E5E7EB;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:#111;}
-    .search-box:focus{outline:none;border-color:#16A34A;}
+    /* FILTROS */
+    .filters-section{background:#fff;border:1.5px solid #E5E7EB;border-radius:14px;padding:16px;margin-bottom:14px;}
+    .filters-title{font-size:12px;font-weight:700;color:#374151;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+    .filters-title span{font-size:11px;color:#16A34A;cursor:pointer;font-weight:600;}
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
+    .filter-label{font-size:11px;font-weight:600;color:#9CA3AF;width:60px;flex-shrink:0;}
+    .filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
+    .chip{padding:5px 12px;border-radius:20px;border:1.5px solid #E5E7EB;font-size:12px;font-weight:500;cursor:pointer;background:#fff;color:#6B7280;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;}
+    .chip.on{background:#16A34A;color:#fff;border-color:#16A34A;}
+    .chip:hover{border-color:#16A34A;color:#16A34A;}
 
-    /* LICIT CARDS */
-    .section-title{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;margin-bottom:10px;}
+    /* REGION SELECTOR */
+    .region-panel{display:none;border-top:1px solid #F3F4F6;margin-top:10px;padding-top:14px;}
+    .region-panel.open{display:block;}
+    .region-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin-bottom:12px;}
+    .region-btn{padding:7px 10px;border-radius:8px;border:1.5px solid #E5E7EB;font-size:12px;cursor:pointer;background:#fff;color:#374151;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:all .15s;}
+    .region-btn.on{background:#DCFCE7;border-color:#16A34A;color:#166534;font-weight:600;}
+    .region-btn:hover{border-color:#16A34A;}
+    .search-input{width:100%;padding:8px 12px;border-radius:20px;border:1.5px solid #E5E7EB;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:#111;margin-bottom:10px;}
+    .search-input:focus{outline:none;border-color:#16A34A;}
+    .save-btn{padding:8px 20px;border-radius:20px;background:#16A34A;color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+
+    /* LICITACIONES */
+    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+    .section-title{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;}
     .licit-card{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:16px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
     .licit-card:hover{border-color:#16A34A;box-shadow:0 2px 12px rgba(22,163,74,.08);}
     .licit-card.hot{border-left:3px solid #16A34A;}
@@ -58,94 +67,82 @@
     .score-md{background:#FEF9C3;color:#854D0E;}
     .score-lo{background:#FEF2F2;color:#991B1B;}
     .lc-score-num{font-size:16px;font-weight:800;}
-    .lc-score-lbl{font-size:8px;color:inherit;opacity:.7;}
+    .lc-score-lbl{font-size:8px;opacity:.7;}
     .lc-entity{font-size:11px;color:#9CA3AF;margin-bottom:7px;}
     .lc-pills{display:flex;gap:5px;flex-wrap:wrap;}
     .pill{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;}
     .p-green{background:#DCFCE7;color:#166534;}
     .p-blue{background:#DBEAFE;color:#1E40AF;}
-    .p-amber{background:#FEF9C3;color:#854D0E;}
     .p-red{background:#FEF2F2;color:#991B1B;}
+    .p-amber{background:#FEF9C3;color:#854D0E;}
     .p-gray{background:#F3F4F6;color:#6B7280;}
     .lc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:8px;border-top:1px solid #F9FAFB;}
     .lc-date{font-size:11px;color:#9CA3AF;}
-    .btn-ver{padding:5px 12px;border-radius:8px;background:#16A34A;color:#fff;font-size:11px;font-weight:600;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-decoration:none;display:inline-block;}
-    .btn-ver:hover{background:#15803D;}
-    .empty-state{text-align:center;padding:40px;color:#9CA3AF;font-size:13px;background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;}
-    .empty-icon{font-size:32px;margin-bottom:8px;}
+    .btn-ver{padding:5px 12px;border-radius:8px;background:#16A34A;color:#fff;font-size:11px;font-weight:600;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
 
-    /* MODAL DETALLE */
+    /* MODAL */
     .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:16px;}
     .modal-overlay.show{display:flex;}
     .modal{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;position:relative;}
     .modal-close{position:absolute;top:14px;right:14px;background:#F9FAFB;border:none;width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#6B7280;}
-    .modal-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
     .modal-title{font-size:17px;font-weight:800;color:#111;margin-bottom:6px;line-height:1.4;letter-spacing:-.2px;}
     .modal-entity{font-size:12px;color:#9CA3AF;margin-bottom:14px;}
     .modal-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
-    .modal-section{margin-bottom:14px;}
-    .modal-section-title{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;margin-bottom:8px;}
-    .modal-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:13px;}
-    .modal-row:last-child{border-bottom:none;}
-    .modal-row-label{color:#9CA3AF;}
-    .modal-row-val{font-weight:600;color:#111;}
-    .checklist-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:12px;align-items:flex-start;}
-    .checklist-item:last-child{border-bottom:none;}
+    .modal-sec-title{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF;margin-bottom:8px;margin-top:14px;}
+    .modal-desc{font-size:13px;color:#374151;line-height:1.65;background:#F9FAFB;border-radius:10px;padding:12px;}
+    .check-row{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:12px;align-items:flex-start;}
+    .check-row:last-child{border-bottom:none;}
     .chk{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;margin-top:1px;}
     .chk-ok{background:#DCFCE7;color:#16A34A;}
-    .chk-warn{background:#FEF9C3;color:#854D0E;}
-    .score-bar-wrap{margin:10px 0;}
-    .score-bar-bg{background:#F3F4F6;border-radius:20px;height:8px;overflow:hidden;}
+    .chk-w{background:#FEF9C3;color:#854D0E;}
+    .data-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:13px;}
+    .data-row:last-child{border-bottom:none;}
+    .d-label{color:#9CA3AF;}
+    .d-val{font-weight:600;color:#111;}
+    .score-bar-bg{background:#F3F4F6;border-radius:20px;height:8px;overflow:hidden;margin:8px 0;}
     .score-bar-fill{height:100%;border-radius:20px;transition:width .8s ease;}
     .btn-seace{width:100%;padding:13px;border-radius:50px;background:#16A34A;color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:14px;text-decoration:none;display:block;text-align:center;}
     .btn-seace:hover{background:#15803D;}
+    .empty-state{text-align:center;padding:40px;color:#9CA3AF;font-size:13px;background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;}
+    .empty-icon{font-size:32px;margin-bottom:8px;}
 
-    /* PERFIL Y UPGRADE */
+    /* PERFIL */
     .profile-card{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:16px;margin-bottom:10px;}
     .profile-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F9FAFB;font-size:13px;}
     .profile-row:last-child{border-bottom:none;}
-    .profile-label{color:#9CA3AF;}
-    .profile-val{font-weight:500;color:#111;}
+    .p-label{color:#9CA3AF;}
+    .p-val{font-weight:500;color:#111;}
     .upgrade-box{background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:12px;padding:18px;text-align:center;margin-bottom:10px;}
     .upgrade-box h4{font-size:15px;font-weight:700;color:#166534;margin-bottom:5px;}
     .upgrade-box p{font-size:12px;color:#15803D;margin-bottom:14px;line-height:1.55;}
     .btn-upgrade{padding:11px 24px;border-radius:50px;background:#16A34A;color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
-
-    @media(max-width:600px){
-      .stats{grid-template-columns:1fr 1fr;}
-      .welcome{flex-wrap:wrap;}
-      .trial-pill{margin-left:0;margin-top:6px;}
-    }
+    @media(max-width:600px){.stats{grid-template-columns:1fr 1fr;}.welcome{flex-wrap:wrap;}.trial-pill{margin-left:0;}}
   </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
   <div class="nav-right">
     <span class="user-chip" id="nav-user">Usuario</span>
-    <a href="login.html" class="btn-sm" onclick="logout(); return false;">Salir</a>
+    <a href="login.html" class="btn-sm" onclick="logout();return false;">Salir</a>
   </div>
 </nav>
 
 <div class="main">
-
-  <!-- WELCOME -->
   <div class="welcome">
     <div class="welcome-avatar" id="welcome-avatar">?</div>
     <div class="welcome-body">
       <h2 id="welcome-msg">¡Hola!</h2>
-      <p id="welcome-sub">Estas son las oportunidades disponibles para tu negocio hoy.</p>
+      <p id="welcome-sub">Bienvenido a DeAndru Licita</p>
     </div>
     <div class="trial-pill">⏱ 30 días gratis</div>
   </div>
 
-  <!-- STATS -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-label">Oportunidades hoy</div>
+      <div class="stat-label">Oportunidades</div>
       <div class="stat-val" id="stat-count">0</div>
-      <div class="stat-sub" id="stat-region">en tu región</div>
+      <div class="stat-sub" id="stat-sub">con tus filtros</div>
     </div>
     <div class="stat">
       <div class="stat-label">Alertas recibidas</div>
@@ -159,292 +156,254 @@
     </div>
   </div>
 
-  <!-- FILTROS -->
-  <div class="filters-bar">
-    <span class="filter-label">Tipo:</span>
-    <button class="filter-chip on" onclick="setTipo(this,'todos')">Todos</button>
-    <button class="filter-chip" onclick="setTipo(this,'Bien')">Bien</button>
-    <button class="filter-chip" onclick="setTipo(this,'Servicio')">Servicio</button>
-    <button class="filter-chip" onclick="setTipo(this,'Obra')">Obra</button>
-    <button class="filter-chip" onclick="setTipo(this,'Consultoría de Obra')">Consultoría</button>
-    <input class="search-box" placeholder="Buscar licitación..." id="search-input" oninput="renderLicitaciones()">
+  <!-- FILTROS INTELIGENTES -->
+  <div class="filters-section">
+    <div class="filters-title">
+      Mis filtros de búsqueda
+      <span onclick="toggleRegionPanel()">⚙️ Cambiar regiones</span>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Tipo:</span>
+      <div class="filter-chips">
+        <button class="chip on" onclick="setTipo(this,'todos')">Todos</button>
+        <button class="chip" onclick="setTipo(this,'Bien')">Bien</button>
+        <button class="chip" onclick="setTipo(this,'Servicio')">Servicio</button>
+        <button class="chip" onclick="setTipo(this,'Obra')">Obra</button>
+        <button class="chip" onclick="setTipo(this,'Consultoría de Obra')">Consultoría</button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Buscar:</span>
+      <input class="search-input" style="margin-bottom:0;flex:1;" placeholder="Buscar por nombre o entidad..." id="search-q" oninput="renderLicit()">
+    </div>
+
+    <!-- PANEL DE REGIONES -->
+    <div class="region-panel" id="region-panel">
+      <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:8px;">
+        Selecciona los departamentos que te interesan:
+        <span style="font-size:11px;color:#9CA3AF;font-weight:400;"> (puedes elegir varios)</span>
+      </div>
+      <div class="region-grid" id="region-grid"></div>
+      <button class="save-btn" onclick="saveRegions()">Guardar preferencias</button>
+    </div>
   </div>
 
-  <!-- LICITACIONES -->
-  <div class="section-title" id="licit-section-title">Oportunidades para ti</div>
+  <div class="section-header">
+    <div class="section-title" id="licit-title">Oportunidades para ti</div>
+  </div>
   <div id="licit-list"></div>
 
-  <!-- PERFIL -->
-  <div class="section-title" style="margin-top:20px;">Tu perfil</div>
+  <div class="section-title" style="margin-top:20px;margin-bottom:10px;">Tu perfil</div>
   <div class="profile-card" id="profile-card"></div>
 
-  <!-- UPGRADE -->
-  <div class="upgrade-box">
+  <div class="upgrade-box" style="margin-top:10px;">
     <h4>🔔 Activa tus alertas WhatsApp</h4>
-    <p>Cuando el Estado publique algo para tu rubro en tu región, te avisamos al instante en WhatsApp. Nunca pierdas un plazo.</p>
+    <p>Cuando el Estado publique algo para tu rubro en tus regiones, te avisamos al instante en WhatsApp.</p>
     <button class="btn-upgrade">Activar plan completo — S/ 29/mes</button>
   </div>
-
 </div>
 
-<!-- MODAL DETALLE LICITACIÓN -->
+<!-- MODAL DETALLE -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal" id="modal-content">
+  <div class="modal">
     <button class="modal-close" onclick="closeModalBtn()">✕</button>
     <div id="modal-body"></div>
   </div>
 </div>
 
 <script>
-  // ── DATOS DEL USUARIO ──
-  const user = JSON.parse(localStorage.getItem('dl_user') || 'null');
-  if (!user) { window.location.href = 'login.html'; }
-  else if (user.role === 'admin') { window.location.href = 'admin.html'; }
-  else {
-    const inicial = user.nombre ? user.nombre.charAt(0).toUpperCase() : '?';
-    document.getElementById('welcome-avatar').textContent = inicial;
-    document.getElementById('nav-user').textContent = user.nombre.split(' ')[0];
-    document.getElementById('welcome-msg').textContent = '¡Hola, ' + user.nombre.split(' ')[0] + '!';
-    document.getElementById('welcome-sub').textContent = 'Oportunidades para ' + (user.rubro || 'tu negocio') + ' en ' + (user.region || 'tu región') + '.';
-    document.getElementById('stat-region').textContent = 'en ' + (user.region || 'tu región');
-    document.getElementById('profile-card').innerHTML = `
-      <div class="profile-row"><span class="profile-label">Nombre</span><span class="profile-val">${user.nombre}</span></div>
-      <div class="profile-row"><span class="profile-label">Email</span><span class="profile-val">${user.email}</span></div>
-      <div class="profile-row"><span class="profile-label">WhatsApp</span><span class="profile-val">${user.wsp}</span></div>
-      <div class="profile-row"><span class="profile-label">Rubro</span><span class="profile-val">${user.rubro || '—'}</span></div>
-      <div class="profile-row"><span class="profile-label">Región</span><span class="profile-val">${user.region || '—'}</span></div>
-      <div class="profile-row"><span class="profile-label">Plan</span><span class="profile-val" style="color:#16A34A;">Trial gratis — 30 días ✓</span></div>`;
+const DEPARTAMENTOS = ["Amazonas","Áncash","Apurímac","Arequipa","Ayacucho","Cajamarca","Callao","Cusco","Huancavelica","Huánuco","Ica","Junín","La Libertad","Lambayeque","Lima","Loreto","Madre de Dios","Moquegua","Pasco","Piura","Puno","San Martín","Tacna","Tumbes","Ucayali"];
+
+const LICITACIONES = [
+  {id:1,nombre:'Servicio de limpieza y desinfección — Municipalidad Miraflores',entidad:'Mun. Miraflores',monto:38500,tipo:'Servicio',depto:'Lima',score:94,urgente:false,fecha:'Hoy',plazo:'2 días',desc:'Servicio de limpieza, desinfección y mantenimiento de ambientes administrativos y áreas comunes.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Habilidad tributaria SUNAT',ok:true},{t:'Propuesta económica firmada',ok:true},{t:'Seguro SCTR del personal',ok:false}]},
+  {id:2,nombre:'Adquisición de útiles de escritorio y materiales de oficina',entidad:'UGEL 07 Lima',monto:18200,tipo:'Bien',depto:'Lima',score:87,urgente:false,fecha:'Hoy',plazo:'3 días',desc:'Adquisición de útiles de escritorio, papel bond, archivadores y materiales de oficina.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Habilidad tributaria SUNAT',ok:true},{t:'Cotización con RUC y firma',ok:true},{t:'Garantía de productos',ok:false}]},
+  {id:3,nombre:'Mantenimiento de equipos de cómputo — DIRESA Cusco',entidad:'DIRESA Cusco',monto:41000,tipo:'Servicio',depto:'Cusco',score:91,urgente:false,fecha:'Ayer',plazo:'4 días',desc:'Mantenimiento preventivo y correctivo de equipos de cómputo, impresoras y periféricos.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Técnico certificado',ok:true},{t:'Herramientas propias',ok:true},{t:'Seguro responsabilidad civil',ok:false}]},
+  {id:4,nombre:'Servicio de catering para evento institucional aniversario',entidad:'Gobierno Regional Cusco',monto:35600,tipo:'Servicio',depto:'Cusco',score:88,urgente:true,fecha:'Ayer',plazo:'1 día',desc:'Servicio de catering completo para evento de 200 personas, menú de 3 tiempos y bebidas.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Carnets de sanidad vigentes',ok:true},{t:'Registro sanitario DIGESA',ok:false},{t:'Seguro del personal',ok:false}]},
+  {id:5,nombre:'Adquisición de mobiliario para sala de reuniones',entidad:'Municipalidad de Wanchaq',monto:24800,tipo:'Bien',depto:'Cusco',score:79,urgente:false,fecha:'Hace 2 días',plazo:'5 días',desc:'Adquisición de sillas ejecutivas, mesa de reuniones y estantes metálicos.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Ficha técnica detallada',ok:true},{t:'Garantía documentada',ok:true},{t:'Entrega máximo 7 días',ok:true}]},
+  {id:6,nombre:'Consultoría para elaboración de plan operativo institucional 2026',entidad:'UGEL Cusco',monto:39500,tipo:'Consultoría de Obra',depto:'Cusco',score:72,urgente:false,fecha:'Hace 2 días',plazo:'6 días',desc:'Elaboración del Plan Operativo Institucional 2026 aplicando metodología CEPLAN v.02.',checklist:[{t:'RNP activo en consultoría',ok:true},{t:'Título profesional colegiado',ok:true},{t:'Experiencia en CEPLAN v.02',ok:false},{t:'Contratos previos sector público',ok:false}]},
+  {id:7,nombre:'Servicio de vigilancia y seguridad — sede MINSA Lima',entidad:'Ministerio de Salud',monto:40800,tipo:'Servicio',depto:'Lima',score:83,urgente:false,fecha:'Hoy',plazo:'3 días',desc:'Vigilancia y seguridad física para sede central del MINSA, turnos diurno y nocturno.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Licencia funcionamiento vigente',ok:true},{t:'Personal con SUCAMEC',ok:false},{t:'Seguro SCTR del personal',ok:false}]},
+  {id:8,nombre:'Adquisición de medicamentos e insumos — Hospital Regional',entidad:'Hospital Regional Arequipa',monto:38900,tipo:'Bien',depto:'Arequipa',score:61,urgente:true,fecha:'Hoy',plazo:'1 día',desc:'Medicamentos esenciales e insumos médicos para el servicio de emergencias del hospital.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Registro DIGEMID vigente',ok:false},{t:'Cadena de frío certificada',ok:false},{t:'Técnico farmacéutico responsable',ok:false}]},
+  {id:9,nombre:'Servicio de limpieza institucional — Municipalidad Arequipa',entidad:'Municipalidad de Arequipa',monto:36000,tipo:'Servicio',depto:'Arequipa',score:85,urgente:false,fecha:'Hoy',plazo:'3 días',desc:'Servicio de limpieza de ambientes administrativos de la municipalidad provincial.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Habilidad tributaria SUNAT',ok:true},{t:'Personal uniformado',ok:true},{t:'Seguro SCTR',ok:false}]},
+  {id:10,nombre:'Adquisición de equipos de cómputo — UGEL Trujillo',entidad:'UGEL Trujillo',monto:39800,tipo:'Bien',depto:'La Libertad',score:80,urgente:false,fecha:'Hoy',plazo:'4 días',desc:'Compra de laptops, impresoras y accesorios para uso administrativo de la UGEL.',checklist:[{t:'RNP activo en bienes',ok:true},{t:'Ficha técnica con specs',ok:true},{t:'Garantía mínima 1 año',ok:true},{t:'Soporte técnico post venta',ok:false}]},
+  {id:11,nombre:'Servicio de capacitación en gestión pública — Cajamarca',entidad:'Gobierno Regional Cajamarca',monto:28000,tipo:'Servicio',depto:'Cajamarca',score:76,urgente:false,fecha:'Ayer',plazo:'5 días',desc:'Capacitación en gestión pública y administración para funcionarios regionales.',checklist:[{t:'RNP activo en servicios',ok:true},{t:'Curriculum del capacitador',ok:true},{t:'Material didáctico',ok:false},{t:'Certificado al finalizar',ok:false}]},
+  {id:12,nombre:'Mantenimiento de infraestructura vial — Piura',entidad:'Municipalidad de Piura',monto:40000,tipo:'Obra',depto:'Piura',score:68,urgente:false,fecha:'Hace 2 días',plazo:'7 días',desc:'Mantenimiento y reparación de calles y veredas del distrito de Piura.',checklist:[{t:'RNP activo en obras',ok:true},{t:'Expediente técnico',ok:false},{t:'Residente de obra certificado',ok:false},{t:'Seguro de obra',ok:false}]},
+];
+
+// USER
+const user = JSON.parse(localStorage.getItem('dl_user')||'null');
+if(!user){window.location.href='login.html';}
+else if(user.role==='admin'){window.location.href='admin.html';}
+
+// REGIONES ACTIVAS — por defecto la del registro + posibilidad de agregar más
+let activeRegions = JSON.parse(localStorage.getItem('dl_regions_'+user?.email)||'null') || [user?.depto || user?.region || 'Lima'];
+
+// Normalizar región del usuario al departamento
+function normalizarDepto(region){
+  if(!region)return'Lima';
+  if(region.includes('Lima'))return'Lima';
+  if(region.includes('Cusco'))return'Cusco';
+  if(region.includes('Arequipa'))return'Arequipa';
+  if(region.includes('La Libertad'))return'La Libertad';
+  if(region.includes('Piura'))return'Piura';
+  if(region.includes('Cajamarca'))return'Cajamarca';
+  if(region.includes('Junín')||region.includes('Junin'))return'Junín';
+  if(region.includes('Callao'))return'Lima';
+  if(region==='Todo el Perú')return null;
+  return region;
+}
+
+if(user){
+  const depto=normalizarDepto(user.region||user.depto);
+  if(depto&&!activeRegions.includes(depto))activeRegions=[depto];
+  document.getElementById('welcome-avatar').textContent=user.nombre?.charAt(0)||'?';
+  document.getElementById('nav-user').textContent=user.nombre?.split(' ')[0]||'Usuario';
+  document.getElementById('welcome-msg').textContent='¡Hola, '+( user.nombre?.split(' ')[0]||'bienvenido')+'!';
+  document.getElementById('welcome-sub').textContent='Licitaciones para '+( user.rubro||'tu negocio')+' · '+activeRegions.join(', ');
+  document.getElementById('profile-card').innerHTML=`
+    <div class="profile-row"><span class="p-label">Nombre</span><span class="p-val">${user.nombre}</span></div>
+    <div class="profile-row"><span class="p-label">Email</span><span class="p-val">${user.email}</span></div>
+    <div class="profile-row"><span class="p-label">WhatsApp</span><span class="p-val">${user.wsp}</span></div>
+    <div class="profile-row"><span class="p-label">Rubro</span><span class="p-val">${user.rubro||'—'}</span></div>
+    <div class="profile-row"><span class="p-label">Regiones activas</span><span class="p-val" style="color:#16A34A;">${activeRegions.join(', ')}</span></div>
+    <div class="profile-row"><span class="p-label">Plan</span><span class="p-val" style="color:#16A34A;">Trial gratis — 30 días ✓</span></div>`;
+}
+
+// RENDER REGION PANEL
+function renderRegionGrid(){
+  document.getElementById('region-grid').innerHTML=DEPARTAMENTOS.map(d=>`
+    <button class="region-btn ${activeRegions.includes(d)?'on':''}" onclick="toggleRegion('${d}')" id="rb-${d.replace(/\s/g,'-')}">${d}</button>`).join('');
+}
+
+function toggleRegion(d){
+  const idx=activeRegions.indexOf(d);
+  if(idx>=0){
+    if(activeRegions.length>1)activeRegions.splice(idx,1);
+  } else {
+    activeRegions.push(d);
   }
+  renderRegionGrid();
+}
 
-  // ── BASE DE LICITACIONES (datos reales del SEACE menores 8 UIT) ──
-  const LICITACIONES = [
-    {
-      id:'LP-001', nombre:'Servicio de limpieza y desinfección de ambientes — Municipalidad Miraflores',
-      entidad:'Municipalidad de Miraflores', monto:38500, tipo:'Servicio',
-      region:'Lima Metropolitana', score:94, urgente:false,
-      fecha:'Hoy', plazo:'2 días',
-      descripcion:'Servicio de limpieza, desinfección y mantenimiento de ambientes administrativos y áreas comunes de la municipalidad.',
-      requisitos:['RNP vigente en servicios','Habilidad tributaria SUNAT','Propuesta económica en formato entidad'],
-      checklist:[{t:'RNP activo en servicios',ok:true},{t:'Habilidad tributaria al día',ok:true},{t:'Experiencia mínima acreditada',ok:true},{t:'Seguro SCTR del personal',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-002', nombre:'Adquisición de útiles de escritorio y materiales de oficina',
-      entidad:'UGEL 07 Lima', monto:18200, tipo:'Bien',
-      region:'Lima Metropolitana', score:87, urgente:false,
-      fecha:'Hoy', plazo:'3 días',
-      descripcion:'Adquisición de útiles de escritorio, papel bond, archivadores y materiales de oficina para las instalaciones de la UGEL 07.',
-      requisitos:['RNP vigente en bienes','Habilidad tributaria SUNAT','Ficha técnica de productos'],
-      checklist:[{t:'RNP activo en bienes',ok:true},{t:'Habilidad tributaria al día',ok:true},{t:'Cotización con RUC y firma',ok:true},{t:'Garantía de productos solicitada',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-003', nombre:'Servicio de mantenimiento de equipos de cómputo — DIRESA Cusco',
-      entidad:'DIRESA Cusco', monto:41000, tipo:'Servicio',
-      region:'Cusco', score:91, urgente:false,
-      fecha:'Ayer', plazo:'4 días',
-      descripcion:'Mantenimiento preventivo y correctivo de equipos de cómputo, impresoras y periféricos de la Dirección Regional de Salud Cusco.',
-      requisitos:['RNP vigente en servicios','Técnico certificado en sistemas','Garantía de servicio mínimo 3 meses'],
-      checklist:[{t:'RNP activo en servicios',ok:true},{t:'Personal técnico certificado',ok:true},{t:'Herramientas propias',ok:true},{t:'Seguro de responsabilidad civil',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-004', nombre:'Servicio de catering para evento institucional aniversario',
-      entidad:'Gobierno Regional Cusco', monto:35600, tipo:'Servicio',
-      region:'Cusco', score:88, urgente:true,
-      fecha:'Ayer', plazo:'1 día',
-      descripcion:'Servicio de catering completo para evento institucional de 200 personas, incluye menú de 3 tiempos, bebidas y personal de servicio.',
-      requisitos:['RNP vigente en servicios','Carnet de sanidad del personal','Registro sanitario de alimentos'],
-      checklist:[{t:'RNP activo en servicios',ok:true},{t:'Carnets de sanidad vigentes',ok:true},{t:'Registro sanitario DIGESA',ok:false},{t:'Seguro del personal de servicio',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-005', nombre:'Adquisición de mobiliario para sala de reuniones — Municipalidad Wanchaq',
-      entidad:'Municipalidad de Wanchaq', monto:24800, tipo:'Bien',
-      region:'Cusco', score:79, urgente:false,
-      fecha:'Hace 2 días', plazo:'5 días',
-      descripcion:'Adquisición de 10 sillas ejecutivas, 1 mesa de reuniones y 2 estantes metálicos para sala de reuniones de la municipalidad.',
-      requisitos:['RNP vigente en bienes','Ficha técnica con especificaciones','Garantía mínima 1 año'],
-      checklist:[{t:'RNP activo en bienes',ok:true},{t:'Ficha técnica detallada',ok:true},{t:'Garantía documentada',ok:true},{t:'Tiempo de entrega máximo 7 días',ok:true}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-006', nombre:'Consultoría para elaboración de plan operativo institucional 2026',
-      entidad:'UGEL Cusco', monto:39500, tipo:'Consultoría de Obra',
-      region:'Cusco', score:72, urgente:false,
-      fecha:'Hace 2 días', plazo:'6 días',
-      descripcion:'Servicio de consultoría para elaboración del Plan Operativo Institucional 2026 aplicando metodología CEPLAN v.02.',
-      requisitos:['RNP vigente en consultoría','Título profesional afín','Experiencia mínima 3 años en sector público'],
-      checklist:[{t:'RNP activo en consultoría',ok:true},{t:'Título profesional colegiado',ok:true},{t:'Experiencia en CEPLAN v.02',ok:false},{t:'Contratos previos sector público',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-007', nombre:'Servicio de vigilancia y seguridad — sede central MINSA Lima',
-      entidad:'Ministerio de Salud', monto:40800, tipo:'Servicio',
-      region:'Lima Metropolitana', score:83, urgente:false,
-      fecha:'Hoy', plazo:'3 días',
-      descripcion:'Servicio de vigilancia y seguridad física para la sede central del MINSA, turno diurno y nocturno, personal uniformado.',
-      requisitos:['RNP vigente en servicios','Licencia de funcionamiento vigente','Personal con carnet de seguridad SUCAMEC'],
-      checklist:[{t:'RNP activo en servicios',ok:true},{t:'Licencia funcionamiento vigente',ok:true},{t:'Personal con SUCAMEC',ok:false},{t:'Seguro SCTR del personal',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-    {
-      id:'LP-008', nombre:'Adquisición de medicamentos e insumos médicos — Hospital Regional Arequipa',
-      entidad:'Hospital Regional Honorio Delgado', monto:38900, tipo:'Bien',
-      region:'Arequipa', score:61, urgente:true,
-      fecha:'Hoy', plazo:'1 día',
-      descripcion:'Adquisición de medicamentos esenciales e insumos médicos para el abastecimiento del servicio de emergencias del hospital.',
-      requisitos:['RNP vigente en bienes','Registro sanitario DIGEMID','Cadena de frío certificada'],
-      checklist:[{t:'RNP activo en bienes',ok:true},{t:'Registro DIGEMID vigente',ok:false},{t:'Cadena de frío certificada',ok:false},{t:'Técnico farmacéutico responsable',ok:false}],
-      link:'https://prod6.seace.gob.pe/buscador-publico/contrataciones'
-    },
-  ];
+function toggleRegionPanel(){
+  const panel=document.getElementById('region-panel');
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open'))renderRegionGrid();
+}
 
-  let tipoFiltro = 'todos';
-
-  function fmt(n) { return 'S/ ' + n.toLocaleString('es-PE'); }
-  function scoreClass(s) { return s>=80?'score-hi':s>=60?'score-md':'score-lo'; }
-  function scoreColor(s) { return s>=80?'#16A34A':s>=60?'#D97706':'#DC2626'; }
-
-  function getRegionGroup(userRegion) {
-    if (!userRegion) return null;
-    const r = userRegion.toLowerCase();
-    if (r.includes('lima') || r.includes('callao')) return ['Lima Metropolitana','Lima Provincias','Callao'];
-    if (r.includes('cusco')) return ['Cusco'];
-    if (r.includes('arequipa')) return ['Arequipa'];
-    if (r.includes('libertad')) return ['La Libertad'];
-    if (r.includes('piura')) return ['Piura'];
-    if (r.includes('junín') || r.includes('junin')) return ['Junín'];
-    if (r === 'todo el perú' || r === 'todo el peru') return null;
-    return [userRegion];
+function saveRegions(){
+  localStorage.setItem('dl_regions_'+user.email,JSON.stringify(activeRegions));
+  document.getElementById('welcome-sub').textContent='Licitaciones para '+(user.rubro||'tu negocio')+' · '+activeRegions.join(', ');
+  if(user){
+    const updated={...user, region:activeRegions.join(', ')};
+    localStorage.setItem('dl_user',JSON.stringify(updated));
   }
+  document.getElementById('region-panel').classList.remove('open');
+  renderLicit();
+  // Update profile
+  document.querySelector('.p-val[style*="16A34A"]').textContent=activeRegions.join(', ');
+  showToast('✓ Preferencias guardadas');
+}
 
-  function renderLicitaciones() {
-    if (!user) return;
-    const q = (document.getElementById('search-input').value || '').toLowerCase();
-    const regionGroup = getRegionGroup(user.region);
+function showToast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;';document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity='1';
+  setTimeout(()=>{t.style.opacity='0';},2500);
+}
 
-    let filtered = LICITACIONES.filter(l => {
-      if (tipoFiltro !== 'todos' && l.tipo !== tipoFiltro) return false;
-      if (q && !l.nombre.toLowerCase().includes(q) && !l.entidad.toLowerCase().includes(q)) return false;
-      if (regionGroup && !regionGroup.some(r => l.region.includes(r))) return false;
-      return true;
-    }).sort((a,b) => b.score - a.score);
+let tipoFiltro='todos';
+function fmt(n){return'S/ '+n.toLocaleString('es-PE');}
+function scoreClass(s){return s>=80?'score-hi':s>=60?'score-md':'score-lo';}
+function scoreColor(s){return s>=80?'#16A34A':s>=60?'#D97706':'#DC2626';}
 
-    document.getElementById('stat-count').textContent = filtered.length;
-    document.getElementById('licit-section-title').textContent =
-      filtered.length + ' oportunidades para ti en ' + (user.region || 'tu región');
+function renderLicit(){
+  const q=(document.getElementById('search-q').value||'').toLowerCase();
+  const showAll=activeRegions.length===0;
+  const fil=LICITACIONES.filter(l=>{
+    if(tipoFiltro!=='todos'&&l.tipo!==tipoFiltro)return false;
+    if(q&&!l.nombre.toLowerCase().includes(q)&&!l.entidad.toLowerCase().includes(q))return false;
+    if(!showAll&&!activeRegions.includes(l.depto))return false;
+    return true;
+  }).sort((a,b)=>b.score-a.score);
 
-    if (!filtered.length) {
-      document.getElementById('licit-list').innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">🔍</div>
-          <div>No hay licitaciones con ese filtro en tu región.</div>
-          <div style="margin-top:4px;font-size:12px;">Prueba cambiando el tipo o borrando la búsqueda.</div>
-        </div>`;
-      return;
-    }
+  document.getElementById('stat-count').textContent=fil.length;
+  document.getElementById('stat-sub').textContent=activeRegions.join(', ');
+  document.getElementById('licit-title').textContent=fil.length+' oportunidades — '+activeRegions.join(', ');
 
-    document.getElementById('licit-list').innerHTML = filtered.map((l,i) => `
-      <div class="licit-card ${l.urgente?'urgent':l.score>=80?'hot':''}" style="animation-delay:${i*.04}s" onclick="openModal(${l.id.replace('LP-','')})">
-        <div class="lc-top">
-          <div style="flex:1;">
-            <div class="lc-title">${l.nombre}</div>
-            <div class="lc-entity">${l.entidad}</div>
-          </div>
-          <div class="lc-score ${scoreClass(l.score)}">
-            <div class="lc-score-num">${l.score}</div>
-            <div class="lc-score-lbl">score</div>
-          </div>
+  if(!fil.length){
+    document.getElementById('licit-list').innerHTML=`<div class="empty-state"><div class="empty-icon">🔍</div><div>No hay licitaciones con estos filtros.</div><div style="margin-top:6px;font-size:12px;color:#16A34A;cursor:pointer;" onclick="toggleRegionPanel()">Agregar más departamentos →</div></div>`;
+    return;
+  }
+  document.getElementById('licit-list').innerHTML=fil.map((l,i)=>`
+    <div class="licit-card ${l.urgente?'urgent':l.score>=80?'hot':''}" onclick="openModal(${l.id})">
+      <div class="lc-top">
+        <div style="flex:1;">
+          <div class="lc-title">${l.nombre}</div>
+          <div class="lc-entity">${l.entidad}</div>
         </div>
-        <div class="lc-pills">
-          <span class="pill p-green">${fmt(l.monto)}</span>
-          <span class="pill p-blue">${l.tipo}</span>
-          <span class="pill p-gray">${l.region}</span>
-          ${l.urgente ? '<span class="pill p-red">⚡ Urgente</span>' : ''}
-          ${l.score>=80 && !l.urgente ? '<span class="pill p-green">⭐ Recomendado</span>' : ''}
+        <div class="lc-score ${scoreClass(l.score)}">
+          <div class="lc-score-num">${l.score}</div>
+          <div class="lc-score-lbl">score</div>
         </div>
-        <div class="lc-foot">
-          <span class="lc-date">Publicado ${l.fecha} · Plazo: ${l.plazo} · Menor 8 UIT</span>
-          <button class="btn-ver" onclick="event.stopPropagation();openModal(${l.id.replace('LP-','')})">Ver detalles →</button>
-        </div>
-      </div>`).join('');
-  }
-
-  function setTipo(btn, tipo) {
-    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    tipoFiltro = tipo;
-    renderLicitaciones();
-  }
-
-  function openModal(num) {
-    const l = LICITACIONES.find(x => x.id === 'LP-00' + num || x.id === 'LP-0' + num);
-    if (!l) return;
-    const sc = scoreColor(l.score);
-    document.getElementById('modal-body').innerHTML = `
-      <span class="modal-badge ${scoreClass(l.score)}" style="background:${l.score>=80?'#DCFCE7':l.score>=60?'#FEF9C3':'#FEF2F2'};color:${sc};">Score ${l.score}/100</span>
-      <div class="modal-title">${l.nombre}</div>
-      <div class="modal-entity">${l.entidad}</div>
-      <div class="modal-pills">
+      </div>
+      <div class="lc-pills">
         <span class="pill p-green">${fmt(l.monto)}</span>
         <span class="pill p-blue">${l.tipo}</span>
-        <span class="pill p-gray">${l.region}</span>
-        ${l.urgente ? '<span class="pill p-red">⚡ Urgente — Plazo: '+l.plazo+'</span>' : '<span class="pill p-gray">Plazo: '+l.plazo+'</span>'}
+        <span class="pill p-gray">${l.depto}</span>
+        ${l.urgente?'<span class="pill p-red">⚡ Urgente</span>':''}
+        ${l.score>=80&&!l.urgente?'<span class="pill p-green">⭐ Recomendado</span>':''}
       </div>
-
-      <div class="modal-section">
-        <div class="modal-section-title">Resumen del proceso</div>
-        <div style="font-size:13px;color:#374151;line-height:1.65;background:#F9FAFB;border-radius:10px;padding:12px;">${l.descripcion}</div>
+      <div class="lc-foot">
+        <span class="lc-date">Publicado ${l.fecha} · Plazo: ${l.plazo} · Menor 8 UIT</span>
+        <button class="btn-ver" onclick="event.stopPropagation();openModal(${l.id})">Ver detalles →</button>
       </div>
+    </div>`).join('');
+}
 
-      <div class="modal-section">
-        <div class="modal-section-title">Probabilidad de ganar</div>
-        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
-          <span style="font-size:28px;font-weight:800;color:${sc};">${l.score}</span>
-          <span style="font-size:13px;color:#9CA3AF;">/ 100 puntos</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill" style="width:${l.score}%;background:${sc};"></div></div>
-        </div>
-      </div>
+function setTipo(btn,tipo){
+  document.querySelectorAll('.chip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');tipoFiltro=tipo;renderLicit();
+}
 
-      <div class="modal-section">
-        <div class="modal-section-title">Checklist — lo que necesitas</div>
-        ${l.checklist.map(c => `
-          <div class="checklist-item">
-            <div class="chk ${c.ok?'chk-ok':'chk-warn'}">${c.ok?'✓':'!'}</div>
-            <div style="flex:1;color:${c.ok?'#111':'#92400E'};">${c.t}${!c.ok?' <span style="font-size:10px;color:#D97706;">— verificar</span>':''}</div>
-          </div>`).join('')}
-      </div>
+function openModal(id){
+  const l=LICITACIONES.find(x=>x.id===id);if(!l)return;
+  const sc=scoreColor(l.score);
+  document.getElementById('modal-body').innerHTML=`
+    <div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;background:${l.score>=80?'#DCFCE7':l.score>=60?'#FEF9C3':'#FEF2F2'};color:${sc};">Score ${l.score}/100</div>
+    <div class="modal-title">${l.nombre}</div>
+    <div class="modal-entity">${l.entidad}</div>
+    <div class="modal-pills">
+      <span class="pill p-green">${fmt(l.monto)}</span>
+      <span class="pill p-blue">${l.tipo}</span>
+      <span class="pill p-gray">${l.depto}</span>
+      ${l.urgente?'<span class="pill p-red">⚡ Urgente · '+l.plazo+'</span>':'<span class="pill p-gray">Plazo: '+l.plazo+'</span>'}
+    </div>
+    <div class="modal-sec-title">Resumen del proceso</div>
+    <div class="modal-desc">${l.desc}</div>
+    <div class="modal-sec-title">Probabilidad de ganar</div>
+    <div style="font-size:28px;font-weight:800;color:${sc};">${l.score}<span style="font-size:14px;font-weight:400;color:#9CA3AF;"> / 100</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill" style="width:${l.score}%;background:${sc};"></div></div>
+    <div class="modal-sec-title">Checklist — lo que necesitas</div>
+    ${l.checklist.map(c=>`<div class="check-row"><div class="chk ${c.ok?'chk-ok':'chk-w'}">${c.ok?'✓':'!'}</div><div style="color:${c.ok?'#111':'#92400E'};">${c.t}${!c.ok?' <span style="font-size:10px;color:#D97706;">— verificar</span>':''}</div></div>`).join('')}
+    <div class="modal-sec-title">Datos del proceso</div>
+    <div class="data-row"><span class="d-label">Monto</span><span class="d-val">${fmt(l.monto)}</span></div>
+    <div class="data-row"><span class="d-label">Tipo</span><span class="d-val">${l.tipo}</span></div>
+    <div class="data-row"><span class="d-label">Departamento</span><span class="d-val">${l.depto}</span></div>
+    <div class="data-row"><span class="d-label">Plazo para cotizar</span><span class="d-val" style="color:#DC2626;">${l.plazo}</span></div>
+    <div class="data-row"><span class="d-label">Modalidad</span><span class="d-val">Contratación directa · menor 8 UIT</span></div>
+    <a href="https://prod6.seace.gob.pe/buscador-publico/contrataciones?descripcion=${encodeURIComponent(l.nombre.substring(0,50))}" target="_blank" class="btn-seace">Ver en SEACE →</a>
+    <div style="text-align:center;font-size:11px;color:#9CA3AF;margin-top:8px;">Abre el portal oficial del Estado peruano</div>`;
+  document.getElementById('modal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){if(e.target===document.getElementById('modal'))closeModalBtn();}
+function closeModalBtn(){document.getElementById('modal').classList.remove('show');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
+function logout(){localStorage.removeItem('dl_user');window.location.href='login.html';}
 
-      <div class="modal-section">
-        <div class="modal-section-title">Datos del proceso</div>
-        <div class="modal-row"><span class="modal-row-label">Monto</span><span class="modal-row-val">${fmt(l.monto)}</span></div>
-        <div class="modal-row"><span class="modal-row-label">Tipo</span><span class="modal-row-val">${l.tipo}</span></div>
-        <div class="modal-row"><span class="modal-row-label">Región</span><span class="modal-row-val">${l.region}</span></div>
-        <div class="modal-row"><span class="modal-row-label">Plazo para cotizar</span><span class="modal-row-val" style="color:#DC2626;">${l.plazo}</span></div>
-        <div class="modal-row"><span class="modal-row-label">Modalidad</span><span class="modal-row-val">Contratación directa — menor 8 UIT</span></div>
-      </div>
-
-      <a href="${l.link}" target="_blank" class="btn-seace">Ver proceso completo en SEACE →</a>
-      <div style="text-align:center;font-size:11px;color:#9CA3AF;margin-top:8px;">Se abre el portal oficial del Estado peruano</div>`;
-    document.getElementById('modal').classList.add('show');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(e) {
-    if (e.target === document.getElementById('modal')) closeModalBtn();
-  }
-  function closeModalBtn() {
-    document.getElementById('modal').classList.remove('show');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
-
-  function logout() { localStorage.removeItem('dl_user'); window.location.href = 'login.html'; }
-
-  renderLicitaciones();
+renderLicit();
 </script>
 </body>
 </html>

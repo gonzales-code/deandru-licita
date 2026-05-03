@@ -1,97 +1,148 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeAndru Licita — Ingresar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Plus Jakarta Sans',sans-serif;background:#F9FAFB;color:#111;min-height:100vh;display:flex;flex-direction:column;}
-    nav{display:flex;align-items:center;padding:14px 24px;background:#fff;border-bottom:1px solid #E5E7EB;}
-    .logo{font-size:18px;font-weight:900;color:#111;text-decoration:none;}
-    .logo em{color:#16A34A;font-style:normal;}
-    .main{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 16px;}
-    .card{background:#fff;border:1.5px solid #E5E7EB;border-radius:20px;padding:36px 32px;width:100%;max-width:420px;}
-    .card-title{font-size:24px;font-weight:800;color:#111;margin-bottom:6px;letter-spacing:-.4px;}
-    .card-sub{font-size:13px;color:#6B7280;margin-bottom:28px;}
-    .form-group{margin-bottom:16px;}
-    .form-label{font-size:12px;font-weight:600;color:#111;margin-bottom:5px;display:block;}
-    .form-input{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #E5E7EB;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:#111;background:#fff;transition:border-color .15s;}
-    .form-input:focus{outline:none;border-color:#16A34A;}
-    .btn-submit{width:100%;padding:14px;border-radius:50px;background:#16A34A;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:8px;transition:all .15s;}
-    .btn-submit:hover{background:#15803D;}
-    .error-msg{background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:10px 14px;font-size:13px;color:#DC2626;margin-bottom:16px;display:none;}
-    .back-link{text-align:center;margin-top:16px;font-size:13px;color:#6B7280;}
-    .back-link a{color:#16A34A;font-weight:600;text-decoration:none;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeAndru Licita — Ingresar</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#0A0A0A;--surface:#111111;--surface2:#1A1A1A;--border:#2A2A2A;--green:#22C55E;--green-dim:#16A34A;--text:#F5F5F5;--muted:#888;--muted2:#555;--red:#EF4444;}
+html{height:100%;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -20%,rgba(34,197,94,0.07),transparent);pointer-events:none;z-index:0;}
+nav{display:flex;align-items:center;padding:16px 28px;background:rgba(10,10,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-0.5px;}
+.logo em{color:var(--green);font-style:normal;}
+.nav-right{margin-left:auto;font-size:13px;color:var(--muted);}
+.nav-right a{color:var(--green);text-decoration:none;font-weight:500;}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 16px;position:relative;z-index:1;}
+.wrapper{width:100%;max-width:420px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.4),transparent);}
+.card-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.5px;}
+.card-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
+.form-group{margin-bottom:20px;}
+.form-label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;display:block;}
+.input-wrap{position:relative;}
+.form-input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:14px;font-family:'Inter',sans-serif;transition:all 0.2s;outline:none;}
+.form-input:focus{border-color:var(--green);background:rgba(34,197,94,0.04);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
+.form-input::placeholder{color:var(--muted2);}
+.form-input.shake{animation:shake 0.3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.toggle-pw{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:4px;}
+.err-msg{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:10px 14px;font-size:13px;color:#FCA5A5;margin-bottom:16px;display:none;align-items:center;gap:8px;}
+.err-msg.show{display:flex;}
+.btn-submit{width:100%;padding:15px;border-radius:12px;background:var(--green);color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;letter-spacing:-0.2px;transition:all 0.2s;margin-top:8px;}
+.btn-submit:hover{background:#16A34A;transform:translateY(-1px);box-shadow:0 8px 24px rgba(34,197,94,0.3);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.divider{display:flex;align-items:center;gap:12px;margin:24px 0 20px;color:var(--muted2);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.register-link{display:block;width:100%;padding:13px;border-radius:12px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;text-align:center;text-decoration:none;}
+.register-link:hover{border-color:var(--muted);color:var(--text);}
+.forgot{text-align:right;margin-top:8px;}
+.forgot a{font-size:12px;color:var(--muted2);text-decoration:none;}
+.forgot a:hover{color:var(--muted);}
+.admin-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(127,119,221,0.1);border:1px solid rgba(127,119,221,0.2);color:#A5B4FC;font-size:11px;padding:4px 10px;border-radius:20px;margin-bottom:20px;}
+.loading{display:none;align-items:center;justify-content:center;gap:8px;font-size:14px;color:var(--muted);}
+.loading.show{display:flex;}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin 0.6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.attempts-warn{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:10px 14px;font-size:12px;color:#FCD34D;margin-bottom:12px;display:none;}
+.attempts-warn.show{display:block;}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
-  </nav>
-  <div class="main">
-    <div class="card">
+<nav>
+  <a href="index.html" class="logo">DeAndru<em>Licita</em></a>
+  <div class="nav-right">¿Sin cuenta? <a href="register.html">Registrarse gratis</a></div>
+</nav>
+<div class="main">
+  <div class="wrapper">
+    <div class="card" id="login-card">
       <div class="card-title">Bienvenido de vuelta</div>
-      <div class="card-sub">Ingresa a tu cuenta para continuar</div>
-      <div class="error-msg" id="error-msg">Correo o contraseña incorrectos. Inténtalo de nuevo.</div>
+      <div class="card-sub">Ingresa a tu cuenta para ver tus oportunidades de hoy.</div>
+      <div class="attempts-warn" id="attempts-warn"></div>
+      <div class="err-msg" id="err-msg"><span>⚠</span><span id="err-text"></span></div>
       <div class="form-group">
         <label class="form-label">Correo electrónico</label>
-        <input class="form-input" type="email" id="email" placeholder="tucorreo@hotmail.com">
+        <div class="input-wrap">
+          <input class="form-input" type="email" id="email" placeholder="tucorreo@gmail.com" autocomplete="email" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
       </div>
       <div class="form-group">
         <label class="form-label">Contraseña</label>
-        <input class="form-input" type="password" id="password" placeholder="••••••••">
+        <div class="input-wrap">
+          <input class="form-input" type="password" id="password" placeholder="Tu contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+          <button class="toggle-pw" type="button" onclick="togglePw()">👁</button>
+        </div>
+        <div class="forgot"><a href="#">¿Olvidaste tu contraseña?</a></div>
       </div>
-      <button class="btn-submit" onclick="doLogin()">Ingresar →</button>
-      <div class="back-link">¿No tienes cuenta? <a href="register.html">Regístrate gratis</a></div>
+      <div class="loading" id="loading"><div class="spinner"></div>Verificando...</div>
+      <button class="btn-submit" id="btn-login" onclick="doLogin()">Ingresar →</button>
+      <div class="divider">o</div>
+      <a href="register.html" class="register-link">Crear cuenta gratis — 30 días</a>
     </div>
   </div>
-  <script>
-    // CONFIGURACIÓN ADMIN — solo cambia estos dos valores
-    const ADMIN_EMAIL = "andrew-s-30@hotmail.com"; // <-- pon tu correo real aquí
-    const ADMIN_PASSWORD = "DeAndru2025Admin!";   // <-- cambia esto por tu contraseña
+</div>
+<script>
+const ADMIN_EMAIL="andrew-s-30@hotmail.com";
+const ADMIN_PASSWORD="DeAndru2025Admin!";
+let attempts=0;const MAX_ATTEMPTS=5;
 
-    function doLogin() {
-      const email = document.getElementById('email').value.trim().toLowerCase();
-      const password = document.getElementById('password').value;
-      const errorMsg = document.getElementById('error-msg');
-      errorMsg.style.display = 'none';
+function togglePw(){
+  const inp=document.getElementById('password');
+  inp.type=inp.type==='password'?'text':'password';
+}
 
-      if (!email || !password) {
-        errorMsg.textContent = 'Por favor completa todos los campos.';
-        errorMsg.style.display = 'block';
-        return;
-      }
+function showErr(msg){
+  const el=document.getElementById('err-msg');
+  document.getElementById('err-text').textContent=msg;
+  el.classList.add('show');
+  document.getElementById('email').classList.add('shake');
+  document.getElementById('password').classList.add('shake');
+  setTimeout(()=>{
+    document.getElementById('email').classList.remove('shake');
+    document.getElementById('password').classList.remove('shake');
+  },300);
+  setTimeout(()=>el.classList.remove('show'),5000);
+}
 
-      // Verificar si es admin
-      if (email === ADMIN_EMAIL.toLowerCase() && password === ADMIN_PASSWORD) {
-        localStorage.setItem('dl_user', JSON.stringify({
-          email: email,
-          nombre: 'Andrew Gonzales',
-          role: 'admin',
-          plan: 'admin'
-        }));
-        window.location.href = 'admin.html';
-        return;
-      }
-
-      // Verificar usuarios registrados
-      const users = JSON.parse(localStorage.getItem('dl_users') || '[]');
-      const user = users.find(u => u.email === email && u.password === password);
-      if (user) {
-        localStorage.setItem('dl_user', JSON.stringify(user));
-        window.location.href = 'dashboard.html';
-        return;
-      }
-
-      errorMsg.textContent = 'Correo o contraseña incorrectos. Inténtalo de nuevo.';
-      errorMsg.style.display = 'block';
+function doLogin(){
+  const email=document.getElementById('email').value.trim().toLowerCase();
+  const pw=document.getElementById('password').value;
+  const btn=document.getElementById('btn-login');
+  const loading=document.getElementById('loading');
+  if(!email){showErr('Ingresa tu correo electrónico');return;}
+  if(!pw){showErr('Ingresa tu contraseña');return;}
+  if(attempts>=MAX_ATTEMPTS){
+    const warn=document.getElementById('attempts-warn');
+    warn.textContent='Demasiados intentos fallidos. Por seguridad espera 5 minutos antes de intentar de nuevo.';
+    warn.classList.add('show');return;
+  }
+  btn.style.display='none';loading.classList.add('show');
+  setTimeout(()=>{
+    loading.classList.remove('show');btn.style.display='block';
+    if(email===ADMIN_EMAIL.toLowerCase()&&pw===ADMIN_PASSWORD){
+      localStorage.setItem('dl_user',JSON.stringify({email,nombre:'Andrew Gonzales',role:'admin',plan:'admin'}));
+      window.location.href='admin.html';return;
     }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Enter') doLogin();
-    });
-  </script>
+    const users=JSON.parse(localStorage.getItem('dl_users')||'[]');
+    const user=users.find(u=>u.email===email&&u.password===pw);
+    if(user){
+      localStorage.setItem('dl_user',JSON.stringify(user));
+      window.location.href='dashboard.html';return;
+    }
+    attempts++;
+    const remaining=MAX_ATTEMPTS-attempts;
+    if(remaining>0&&remaining<=3){
+      const warn=document.getElementById('attempts-warn');
+      warn.textContent=`Intento fallido. Te quedan ${remaining} intento${remaining!==1?'s':''} antes de que se bloquee temporalmente.`;
+      warn.classList.add('show');
+    }
+    showErr('Correo o contraseña incorrectos. Verifica tus datos e intenta de nuevo.');
+  },800);
+}
+</script>
 </body>
 </html>
