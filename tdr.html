@@ -7,175 +7,165 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#000;--s1:#0A0A0A;--s2:#111;--s3:#1A1A1A;
-  --b:#222;--b2:#2A2A2A;
-  --g:#22C55E;--gd:#16A34A;
-  --t:#F0F0F0;--m:#666;--m2:#444;
-  --red:#EF4444;--amber:#F59E0B;--blue:#3B82F6;
-}
-html,body{height:100%;background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;}
+:root{--bg:#000;--s1:#0A0A0A;--s2:#111;--s3:#1A1A1A;--b:#1E1E1E;--b2:#2A2A2A;--g:#22C55E;--gd:#16A34A;--t:#F0F0F0;--m:#666;--m2:#333;--red:#EF4444;--amber:#F59E0B;--blue:#3B82F6;}
+html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;min-height:100vh;}
 
-/* NAV */
-nav{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--s1);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:50;}
-.logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--t);text-decoration:none;letter-spacing:-.3px;}
+nav{display:flex;align-items:center;gap:10px;padding:12px 20px;background:var(--s1);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:50;}
+.logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--t);text-decoration:none;}
 .logo em{color:var(--g);font-style:normal;}
-.nav-link{padding:5px 12px;border-radius:7px;font-size:12px;color:var(--m);text-decoration:none;transition:.15s;}
+.nav-link{padding:5px 12px;border-radius:7px;font-size:12px;color:var(--m);text-decoration:none;}
 .nav-link:hover{color:var(--t);background:var(--s3);}
 .nav-link.on{color:var(--g);background:rgba(34,197,94,.08);}
-.nav-r{margin-left:auto;display:flex;align-items:center;gap:8px;}
-.upill{font-size:11px;color:var(--m);background:var(--s3);border:1px solid var(--b);padding:4px 10px;border-radius:20px;}
-.btn-out{padding:5px 12px;border-radius:7px;border:1px solid var(--b);background:transparent;color:var(--m);font-size:12px;cursor:pointer;}
+.nav-r{margin-left:auto;display:flex;gap:8px;}
+.upill{font-size:11px;color:var(--m);background:var(--s3);border:1px solid var(--b2);padding:4px 10px;border-radius:20px;}
+.btn-out{padding:5px 12px;border-radius:7px;border:1px solid var(--b2);background:transparent;color:var(--m);font-size:12px;cursor:pointer;}
 
-/* LAYOUT */
-.wrap{max-width:780px;margin:0 auto;padding:28px 16px 60px;}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 60px;}
 
 /* UPLOAD */
-.upload-card{background:var(--s1);border:1px solid var(--b);border-radius:16px;padding:28px;text-align:center;cursor:pointer;transition:.2s;position:relative;margin-bottom:12px;}
-.upload-card:hover,.upload-card.drag{border-color:var(--g);background:rgba(34,197,94,.03);}
-.upload-card input{position:absolute;inset:0;opacity:0;cursor:pointer;}
-.u-icon{width:48px;height:48px;background:rgba(34,197,94,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;}
-.u-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--t);margin-bottom:5px;}
-.u-sub{font-size:12px;color:var(--m);margin-bottom:16px;}
-.u-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:var(--g);color:#000;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;}
-.u-btn:hover{background:var(--gd);}
-.u-note{font-size:11px;color:var(--m2);margin-top:10px;}
+.page{display:none;}.page.on{display:block;}
 
-/* OR */
-.or{display:flex;align-items:center;gap:10px;color:var(--m2);font-size:11px;margin-bottom:12px;}
-.or::before,.or::after{content:'';flex:1;height:1px;background:var(--b);}
+.upload-zone{background:var(--s1);border:2px dashed var(--b2);border-radius:16px;padding:40px 24px;text-align:center;cursor:pointer;transition:.2s;position:relative;margin-bottom:10px;}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--g);background:rgba(34,197,94,.03);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.uz-ico{width:52px;height:52px;background:rgba(34,197,94,.1);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;}
+.uz-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);margin-bottom:6px;}
+.uz-sub{font-size:13px;color:var(--m);margin-bottom:18px;line-height:1.55;}
+.uz-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:10px;background:var(--g);color:#000;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;}
+.uz-btn:hover{background:var(--gd);}
 
-/* TEXTAREA */
-.txt-card{background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:14px;margin-bottom:12px;}
-.txt-label{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;font-weight:600;}
-textarea{width:100%;background:var(--s2);border:1px solid var(--b);border-radius:8px;color:var(--t);font-size:13px;font-family:'Inter',sans-serif;padding:11px 13px;resize:vertical;min-height:100px;outline:none;line-height:1.6;}
+.or{display:flex;align-items:center;gap:10px;color:var(--m2);font-size:11px;margin:10px 0;}
+.or::before,.or::after{content:'';flex:1;height:1px;background:var(--b2);}
+
+.txt-box{background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:14px;margin-bottom:10px;}
+.txt-lbl{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:8px;}
+textarea{width:100%;background:var(--s2);border:1px solid var(--b2);border-radius:8px;color:var(--t);font-size:13px;font-family:'Inter',sans-serif;padding:11px 13px;resize:vertical;min-height:110px;outline:none;line-height:1.6;}
 textarea:focus{border-color:var(--g);}
-textarea::placeholder{color:var(--m2);}
+textarea::placeholder{color:var(--m);}
 
-/* FILE PREVIEW */
-.file-prev{display:none;background:var(--s2);border:1px solid rgba(34,197,94,.3);border-radius:10px;padding:10px 14px;margin-bottom:10px;align-items:center;gap:10px;}
-.file-prev.show{display:flex;}
+.fprev{display:none;background:var(--s2);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:10px 14px;margin-bottom:10px;align-items:center;gap:10px;}
+.fprev.show{display:flex;}
 
-/* ANALYZE BTN */
-.analyze-btn{width:100%;padding:14px;border-radius:12px;background:var(--g);color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.analyze-btn:hover{background:var(--gd);transform:translateY(-1px);}
-.analyze-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.abtn{width:100%;padding:15px;border-radius:12px;background:var(--g);color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.abtn:hover{background:var(--gd);transform:translateY(-1px);}
 
 /* LOADING */
-.loading{display:none;text-align:center;padding:48px 20px;}
+.loading{display:none;text-align:center;padding:60px 20px;}
 .loading.show{display:block;}
-.spinner-ring{width:48px;height:48px;border:3px solid var(--b2);border-top-color:var(--g);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px;}
+.ring{width:52px;height:52px;border:3px solid var(--b2);border-top-color:var(--g);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 20px;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-msg{font-size:14px;color:var(--m);margin-top:6px;}
+.lmsg{font-size:13px;color:var(--m);margin-top:8px;}
 
-/* RESULTS */
-.results{display:none;}
-.results.show{display:block;}
+/* VEREDICTO — lo primero que ve */
+.veredicto{border-radius:16px;padding:20px 22px;margin-bottom:10px;}
+.v-si{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);}
+.v-no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);}
+.v-tal{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);}
+.v-icon{font-size:36px;margin-bottom:10px;}
+.v-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;}
+.v-si .v-title{color:var(--g);}
+.v-no .v-title{color:var(--red);}
+.v-tal .v-title{color:var(--amber);}
+.v-reason{font-size:14px;line-height:1.65;margin-bottom:12px;}
+.v-si .v-reason{color:rgba(134,239,172,.85);}
+.v-no .v-reason{color:rgba(252,165,165,.85);}
+.v-tal .v-reason{color:rgba(252,211,77,.85);}
 
-/* TOP RESULT BAR */
-.result-top{background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.rt-score{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1;flex-shrink:0;}
-.score-hi{color:var(--g);}
-.score-md{color:var(--amber);}
-.score-lo{color:var(--red);}
-.rt-body{flex:1;}
-.rt-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--t);margin-bottom:4px;line-height:1.3;}
-.rt-entity{font-size:12px;color:var(--m);margin-bottom:8px;}
-.rt-pills{display:flex;gap:6px;flex-wrap:wrap;}
-.rp{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;}
-.rp-g{background:rgba(34,197,94,.12);color:#86EFAC;}
-.rp-b{background:rgba(59,130,246,.12);color:#93C5FD;}
-.rp-r{background:rgba(239,68,68,.12);color:#FCA5A5;}
-.rp-a{background:rgba(245,158,11,.12);color:#FCD34D;}
-.rp-n{background:var(--s3);color:var(--m);}
+/* COUNTDOWN */
+.countdown{border-radius:14px;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;}
+.cd-urg{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
+.cd-warn{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
+.cd-ok{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
+.cd-left{text-align:center;flex-shrink:0;}
+.cd-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;}
+.cd-urg .cd-num{color:var(--red);}
+.cd-warn .cd-num{color:var(--amber);}
+.cd-ok .cd-num{color:var(--g);}
+.cd-unit{font-size:11px;margin-top:2px;}
+.cd-urg .cd-unit{color:rgba(252,165,165,.7);}
+.cd-warn .cd-unit{color:rgba(252,211,77,.7);}
+.cd-ok .cd-unit{color:rgba(134,239,172,.7);}
+.cd-right h4{font-size:14px;font-weight:600;margin-bottom:4px;}
+.cd-urg .cd-right h4{color:#FCA5A5;}
+.cd-warn .cd-right h4{color:#FCD34D;}
+.cd-ok .cd-right h4{color:#86EFAC;}
+.cd-right p{font-size:12px;color:var(--m);line-height:1.5;}
+.cd-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.cd-tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;}
+.ct-r{background:rgba(239,68,68,.15);color:#FCA5A5;}
+.ct-a{background:rgba(245,158,11,.15);color:#FCD34D;}
+.ct-g{background:rgba(34,197,94,.15);color:#86EFAC;}
+.ct-b{background:rgba(59,130,246,.15);color:#93C5FD;}
 
-/* DEADLINE BANNER */
-.deadline{border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;}
-.dl-urg{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);}
-.dl-warn{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);}
-.dl-ok{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);}
-.dl-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
-.dl-body h4{font-size:13px;font-weight:600;margin-bottom:3px;}
-.dl-urg .dl-body h4{color:#FCA5A5;}
-.dl-warn .dl-body h4{color:#FCD34D;}
-.dl-ok .dl-body h4{color:#86EFAC;}
-.dl-body p{font-size:12px;color:var(--m);line-height:1.55;}
-.dl-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+/* LO QUE PIDE EL TDR — sección principal */
+.pide-section{background:var(--s1);border:1px solid var(--b);border-radius:16px;overflow:hidden;margin-bottom:10px;}
+.pide-header{padding:14px 18px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:8px;}
+.pide-header h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t);}
+.pide-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(59,130,246,.15);color:#93C5FD;margin-left:auto;}
 
-/* BLOCKS — compact 2-col grid */
-.blocks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-.block{background:var(--s1);border:1px solid var(--b);border-radius:12px;padding:14px;}
-.block.full{grid-column:1/-1;}
-.blk-title{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--m);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.blk-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.dot-g{background:var(--g);}
-.dot-r{background:var(--red);}
-.dot-a{background:var(--amber);}
-.dot-b{background:var(--blue);}
+.pide-item{padding:14px 18px;border-bottom:1px solid var(--b);display:flex;gap:12px;align-items:flex-start;}
+.pide-item:last-child{border-bottom:none;}
+.pi-num{width:22px;height:22px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--m);flex-shrink:0;margin-top:2px;}
+.pi-body h4{font-size:13px;font-weight:600;color:var(--t);margin-bottom:3px;}
+.pi-body p{font-size:12px;color:var(--m);line-height:1.55;}
+.pi-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;margin-top:5px;}
+.pt-oblig{background:rgba(239,68,68,.15);color:#FCA5A5;}
+.pt-tecnico{background:rgba(59,130,246,.15);color:#93C5FD;}
+.pt-econ{background:rgba(34,197,94,.15);color:#86EFAC;}
+.pt-doc{background:rgba(139,92,246,.15);color:#C4B5FD;}
+.pt-legal{background:rgba(245,158,11,.15);color:#FCD34D;}
 
-/* ROWS */
-.row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;gap:8px;}
+/* BLOQUES 2 COL */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.blk{background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:14px;}
+.blk.full{grid-column:1/-1;}
+.blk-h{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--m);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.bh-dot{width:5px;height:5px;border-radius:50%;}
+
+.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;gap:8px;}
 .row:last-child{border-bottom:none;}
-.row-label{color:var(--m);flex-shrink:0;min-width:80px;}
-.row-val{color:var(--t);font-weight:500;text-align:right;}
+.rl{color:var(--m);flex-shrink:0;}
+.rv{color:var(--t);font-weight:500;text-align:right;}
 
-/* CHECKLIST */
-.chk{display:flex;gap:9px;padding:7px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
+.chk{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
 .chk:last-child{border-bottom:none;}
-.chk-ico{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;margin-top:1px;}
+.ci{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;margin-top:1px;}
 .ci-ok{background:rgba(34,197,94,.15);color:var(--g);}
 .ci-w{background:rgba(245,158,11,.15);color:var(--amber);}
 .ci-x{background:rgba(239,68,68,.15);color:var(--red);}
-.chk-text h5{font-size:12px;font-weight:500;margin-bottom:1px;}
-.chk-text p{font-size:11px;color:var(--m);line-height:1.4;}
+.ct h5{font-size:12px;font-weight:500;margin-bottom:1px;}
+.ct p{font-size:11px;color:var(--m);line-height:1.4;}
 
-/* REQS */
-.req{display:flex;gap:9px;padding:7px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
-.req:last-child{border-bottom:none;}
-.req-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-top:2px;}
-.rb-o{background:rgba(239,68,68,.15);color:#FCA5A5;}
-.rb-d{background:rgba(245,158,11,.15);color:#FCD34D;}
-.req-body h5{font-size:12px;font-weight:500;color:var(--t);margin-bottom:2px;}
-.req-body p{font-size:11px;color:var(--m);line-height:1.4;}
-
-/* DOCS */
-.doc{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;}
+.doc{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--b);font-size:12px;}
 .doc:last-child{border-bottom:none;}
-.doc-ico{font-size:14px;flex-shrink:0;}
-.doc-name{flex:1;color:var(--t);font-weight:500;}
-.doc-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;}
+.doc-n{flex:1;color:var(--t);font-weight:500;}
+.dt{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;}
 .dt-r{background:rgba(239,68,68,.15);color:#FCA5A5;}
 .dt-o{background:rgba(245,158,11,.15);color:#FCD34D;}
 
-/* RISK */
-.risk{display:flex;gap:9px;padding:7px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
+.risk{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--b);align-items:flex-start;}
 .risk:last-child{border-bottom:none;}
-.risk-lv{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-top:2px;}
+.rlv{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-top:2px;}
 .rl-a{background:rgba(239,68,68,.15);color:#FCA5A5;}
 .rl-m{background:rgba(245,158,11,.15);color:#FCD34D;}
 .rl-b{background:rgba(34,197,94,.15);color:#86EFAC;}
-.risk-body h5{font-size:12px;font-weight:500;color:var(--t);margin-bottom:2px;}
-.risk-body p{font-size:11px;color:var(--m);line-height:1.4;}
-.risk-mit{font-size:10px;color:rgba(34,197,94,.7);margin-top:3px;}
+.rb h5{font-size:12px;font-weight:500;color:var(--t);margin-bottom:2px;}
+.rb p{font-size:11px;color:var(--m);line-height:1.4;}
+.rb-mit{font-size:10px;color:rgba(34,197,94,.7);margin-top:3px;}
 
-/* RECOMMENDATION */
-.recom{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:12px;padding:14px;margin-bottom:10px;font-size:13px;color:#86EFAC;line-height:1.65;}
-.recom strong{color:var(--g);display:block;margin-bottom:4px;font-family:'Syne',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.05em;}
+.actions{display:flex;gap:8px;margin-top:4px;}
+.btn-s{flex:1;padding:13px;border-radius:10px;background:var(--g);color:#000;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;text-decoration:none;text-align:center;transition:.2s;}
+.btn-s:hover{background:var(--gd);}
+.btn-n{padding:13px 20px;border-radius:10px;background:transparent;border:1px solid var(--b2);color:var(--m);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:.15s;}
+.btn-n:hover{color:var(--t);border-color:var(--m);}
 
-/* ACTIONS */
-.actions{display:flex;gap:8px;margin-top:14px;}
-.btn-seace{flex:1;padding:12px;border-radius:10px;background:var(--g);color:#000;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;text-decoration:none;text-align:center;transition:.2s;}
-.btn-seace:hover{background:var(--gd);}
-.btn-new{padding:12px 20px;border-radius:10px;background:transparent;border:1px solid var(--b);color:var(--m);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:.15s;}
-.btn-new:hover{color:var(--t);border-color:var(--m);}
+@keyframes up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+#pg-res>*{animation:up .3s ease both;}
+#pg-res>*:nth-child(2){animation-delay:.06s;}
+#pg-res>*:nth-child(3){animation-delay:.12s;}
+#pg-res>*:nth-child(4){animation-delay:.18s;}
 
-@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.results>*{animation:up .35s ease both;}
-.results>*:nth-child(2){animation-delay:.05s;}
-.results>*:nth-child(3){animation-delay:.1s;}
-.results>*:nth-child(4){animation-delay:.15s;}
-
-@media(max-width:560px){.blocks{grid-template-columns:1fr;}.block.full{grid-column:1;}.result-top{flex-direction:column;gap:10px;}}
+@media(max-width:540px){.grid2{grid-template-columns:1fr;}.blk.full{grid-column:1;}}
 </style>
 </head>
 <body>
@@ -191,51 +181,48 @@ textarea::placeholder{color:var(--m2);}
 
 <div class="wrap">
 
-  <!-- UPLOAD SECTION -->
-  <div id="sec-upload">
-    <div style="margin-bottom:20px;">
-      <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--t);margin-bottom:5px;letter-spacing:-.3px;">Analizador de TDR</div>
-      <div style="font-size:13px;color:var(--m);">Sube el PDF o pega el texto. La IA te dice exactamente qué necesitas en 30 segundos.</div>
+  <!-- UPLOAD -->
+  <div class="page on" id="pg-up">
+    <div style="margin-bottom:22px;">
+      <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--t);margin-bottom:6px;letter-spacing:-.3px;">¿Qué pide este TDR?</div>
+      <div style="font-size:13px;color:var(--m);line-height:1.6;">Sube el archivo o pega el texto. La IA extrae exactamente lo que te piden: requisitos, plazos, documentos y si puedes participar.</div>
     </div>
 
-    <div class="upload-card" id="drop-zone"
+    <div class="upload-zone" id="dz"
       ondragover="ev(event,1)" ondragleave="ev(event,0)" ondrop="drop(event)"
       onclick="document.getElementById('fi').click()">
-      <input type="file" id="fi" accept=".pdf,.doc,.docx,.txt" onchange="setFile(this.files[0])">
-      <div class="u-icon">📄</div>
-      <div class="u-title">Arrastra el TDR aquí</div>
-      <div class="u-sub">PDF, Word o TXT · Máximo 10 MB</div>
-      <div class="u-btn"><span>📁</span>Seleccionar archivo</div>
-      <div class="u-note">El archivo se analiza de forma privada y segura</div>
+      <input type="file" id="fi" accept=".pdf,.doc,.docx,.txt" onchange="setF(this.files[0])">
+      <div class="uz-ico">📄</div>
+      <div class="uz-title">Arrastra el TDR o Bases aquí</div>
+      <div class="uz-sub">PDF, Word o TXT · La IA lee el documento y extrae lo que pide</div>
+      <div class="uz-btn"><span>📁</span>Seleccionar archivo</div>
     </div>
 
-    <div class="file-prev" id="fprev">
+    <div class="fprev" id="fprev">
       <span style="font-size:18px;">📄</span>
-      <div style="flex:1;"><div style="font-size:13px;font-weight:500;" id="fname"></div><div style="font-size:11px;color:var(--m);margin-top:2px;" id="fsize"></div></div>
-      <button onclick="clearF()" style="background:var(--s3);border:1px solid var(--b);color:var(--m);border-radius:7px;padding:3px 9px;font-size:11px;cursor:pointer;">✕</button>
+      <div style="flex:1;"><div style="font-size:13px;font-weight:500;" id="fname"></div><div style="font-size:11px;color:var(--m);margin-top:1px;" id="fsize"></div></div>
+      <button onclick="clearF()" style="background:var(--s3);border:1px solid var(--b2);color:var(--m);border-radius:6px;padding:3px 9px;font-size:11px;cursor:pointer;">✕</button>
     </div>
 
-    <div class="or">o pega el texto del TDR</div>
+    <div class="or">o pega el texto directamente</div>
 
-    <div class="txt-card">
-      <div class="txt-label">Texto del TDR / Bases del proceso</div>
-      <textarea id="ttext" placeholder="Pega aquí el texto con: nombre del proceso, entidad, monto, fechas, requisitos del proveedor..."></textarea>
+    <div class="txt-box">
+      <div class="txt-lbl">Texto del TDR / Bases</div>
+      <textarea id="ttext" placeholder="Pega aquí el texto del TDR. Incluye todo: nombre del proceso, entidad, fechas, requisitos del proveedor, documentos solicitados, monto, plazo de ejecución...&#10;&#10;Mientras más texto pegues, más preciso será el análisis."></textarea>
     </div>
 
-    <button class="analyze-btn" id="abtn" onclick="run()">
-      <span>✨</span> Analizar con IA
-    </button>
+    <button class="abtn" onclick="run()"><span>🔍</span>Analizar — ¿qué pide este TDR?</button>
   </div>
 
   <!-- LOADING -->
-  <div class="loading" id="sec-load">
-    <div class="spinner-ring"></div>
-    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);">Analizando...</div>
-    <div class="loading-msg" id="lmsg">Leyendo el documento</div>
+  <div class="loading" id="pg-load">
+    <div class="ring"></div>
+    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);">Leyendo el TDR...</div>
+    <div class="lmsg" id="lmsg">Extrayendo lo que pide el documento</div>
   </div>
 
   <!-- RESULTS -->
-  <div class="results" id="sec-res"></div>
+  <div class="page" id="pg-res"></div>
 
 </div>
 
@@ -246,68 +233,80 @@ else document.getElementById('upill').textContent=user.nombre?.split(' ')[0]||'U
 function logout(){localStorage.removeItem('dl_user');window.location.href='login.html';}
 
 let uFile=null;
-function ev(e,on){e.preventDefault();document.getElementById('drop-zone').classList.toggle('drag',!!on);}
-function drop(e){e.preventDefault();document.getElementById('drop-zone').classList.remove('drag');const f=e.dataTransfer.files[0];if(f)setFile(f);}
-function setFile(f){if(!f)return;uFile=f;document.getElementById('fname').textContent=f.name;document.getElementById('fsize').textContent=(f.size/1024/1024).toFixed(2)+' MB';document.getElementById('fprev').classList.add('show');}
+function ev(e,on){e.preventDefault();document.getElementById('dz').classList.toggle('drag',!!on);}
+function drop(e){e.preventDefault();document.getElementById('dz').classList.remove('drag');const f=e.dataTransfer.files[0];if(f)setF(f);}
+function setF(f){if(!f)return;uFile=f;document.getElementById('fname').textContent=f.name;document.getElementById('fsize').textContent=(f.size/1024/1024).toFixed(2)+' MB';document.getElementById('fprev').classList.add('show');}
 function clearF(){uFile=null;document.getElementById('fprev').classList.remove('show');document.getElementById('fi').value='';}
 
-const MSGS=['Leyendo el documento...','Identificando plazos y fechas...','Analizando requisitos...','Detectando riesgos...','Calculando tu score...'];
+const MSGS=['Extrayendo lo que pide el documento...','Identificando plazos y fechas exactas...','Analizando requisitos del proveedor...','Revisando documentos solicitados...','Evaluando si puedes participar...'];
 
 async function run(){
   const txt=document.getElementById('ttext').value.trim();
   if(!uFile&&!txt){alert('Sube un archivo o pega el texto del TDR.');return;}
-  document.getElementById('sec-upload').style.display='none';
-  document.getElementById('sec-load').classList.add('show');
+
+  document.getElementById('pg-up').classList.remove('on');
+  document.getElementById('pg-load').classList.add('show');
+
   let mi=0;
   const iv=setInterval(()=>{document.getElementById('lmsg').textContent=MSGS[mi%MSGS.length];mi++;},900);
 
-  const doc=uFile?`Archivo: "${uFile.name}" (${(uFile.size/1024).toFixed(0)}KB). Analiza como si hubieras leído el documento completo.`:`Texto del TDR: "${txt}"`;
-  const ui=user?`Usuario: ${user.nombre}, rubro: ${user.rubro||'general'}, región: ${user.region||user.depto||'Perú'}.`:'';
+  const doc=uFile
+    ? `Archivo PDF subido: "${uFile.name}". Simula que leíste el documento completo y extrae toda la información como si fuera un TDR real de contratación pública peruana.`
+    : `Texto del TDR: """${txt}"""`;
 
-  const prompt=`Eres experto en contrataciones públicas peruanas SEACE. ${ui}
-Analiza este TDR: ${doc}
+  const ui=user?`El proveedor que analiza es: ${user.nombre}, rubro: ${user.rubro||'general'}, región: ${user.region||user.depto||'Perú'}.`:'';
 
-Responde SOLO JSON válido sin markdown:
+  const prompt=`Eres experto en contrataciones públicas peruanas (SEACE, OSCE). ${ui}
+
+Analiza este documento TDR/Bases y extrae EXACTAMENTE lo que pide: ${doc}
+
+Devuelve SOLO JSON válido sin markdown:
 {
-  "nombre":"nombre corto del proceso",
-  "entidad":"entidad contratante",
-  "monto":38500,
-  "tipo":"Servicio|Bien|Obra|Consultoría de Obra",
-  "region":"departamento",
-  "score":85,
-  "score_clase":"hi|md|lo",
-  "resumen":"máximo 2 líneas directas de qué es el proceso",
-  "recomendacion":"consejo concreto de 1-2 líneas para ganar",
-  "plazo_presentacion":"fecha o días exactos",
-  "dias_restantes":5,
-  "dias_ejecucion":60,
-  "urgencia":"urgente|advertencia|ok",
-  "specs":[
-    {"label":"Monto","valor":"S/ 38,500"},
-    {"label":"Tipo","valor":"Servicio"},
-    {"label":"Plazo entrega","valor":"60 días"},
-    {"label":"Lugar","valor":"Cusco"}
+  "nombre": "nombre exacto del proceso",
+  "entidad": "entidad contratante exacta",
+  "monto": 38500,
+  "tipo": "Servicio|Bien|Obra|Consultoría de Obra",
+  "region": "departamento/región",
+  "veredicto": "si|no|talvez",
+  "veredicto_titulo": "¿Puedes participar en esto?",
+  "veredicto_razon": "Explicación directa en 2 líneas de por qué sí, no o tal vez puede participar este proveedor",
+  "dias_restantes": 5,
+  "plazo_presentacion": "fecha o descripción exacta del plazo",
+  "dias_ejecucion": 60,
+  "urgencia": "urgente|advertencia|ok",
+  "plazo_detalle": "descripción completa del cronograma del proceso",
+  "lo_que_pide": [
+    {
+      "categoria": "Requisito del proveedor|Requisito técnico|Requisito económico|Documento|Condición legal",
+      "titulo": "título corto y directo",
+      "detalle": "descripción exacta de lo que pide el TDR, con montos, años, cantidades específicas",
+      "tag": "obligatorio|técnico|económico|documento|legal"
+    }
   ],
-  "requisitos":[
-    {"titulo":"RNP vigente en servicios","detalle":"Capítulo de servicios generales activo","tipo":"obligatorio"},
-    {"titulo":"Habilidad tributaria SUNAT","detalle":"Sin deudas, constancia vigente","tipo":"obligatorio"}
+  "specs": [
+    {"label": "Monto referencial", "valor": "S/ 38,500"},
+    {"label": "Tipo de proceso", "valor": "Contratación directa"},
+    {"label": "Plazo de ejecución", "valor": "60 días calendario"},
+    {"label": "Lugar de ejecución", "valor": "Cusco"},
+    {"label": "Moneda", "valor": "Soles (PEN)"}
   ],
-  "checklist":[
-    {"item":"Verificar RNP en osce.gob.pe","detalle":"Confirmar que está activo y no vencido","estado":"ok"},
-    {"item":"Descargar constancia SUNAT","detalle":"sunat.gob.pe → Operaciones en Línea","estado":"ok"}
+  "checklist": [
+    {"item": "Verificar RNP activo", "detalle": "osce.gob.pe → consulta RNP vigente", "estado": "ok|warn|fail"}
   ],
-  "documentos":[
-    {"nombre":"RNP vigente","tipo":"requerido"},
-    {"nombre":"Propuesta económica firmada","tipo":"requerido"}
+  "documentos": [
+    {"nombre": "RNP vigente", "tipo": "requerido|opcional", "donde": "osce.gob.pe"}
   ],
-  "riesgos":[
-    {"titulo":"Plazo ajustado","detalle":"Pocos días para reunir documentos","nivel":"medio","mitigacion":"Prepara RNP y SUNAT con anticipación"}
-  ],
-  "experiencia":"descripción corta de experiencia mínima requerida"
+  "riesgos": [
+    {"titulo": "título del riesgo", "detalle": "descripción", "nivel": "alto|medio|bajo", "mitigacion": "cómo mitigarlo"}
+  ]
 }`;
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1800,messages:[{role:'user',content:prompt}]})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2500,messages:[{role:'user',content:prompt}]})
+    });
     clearInterval(iv);
     const d=await r.json();
     const raw=d.content.map(c=>c.text||'').join('').replace(/```json|```/g,'').trim();
@@ -319,151 +318,185 @@ Responde SOLO JSON válido sin markdown:
 }
 
 function fallback(h){
-  return{nombre:"Servicio de limpieza institucional",entidad:"Municipalidad Provincial de Cusco",monto:38500,tipo:"Servicio",region:"Cusco",score:88,score_clase:"hi",
-    resumen:"Servicio de limpieza y desinfección de ambientes administrativos. Incluye personal, materiales y equipos.",
-    recomendacion:"Participa — tienes ventaja local. Asegura RNP activo y SUNAT al día antes de cotizar.",
-    plazo_presentacion:"5 días hábiles",dias_restantes:5,dias_ejecucion:90,urgencia:"advertencia",
-    specs:[{label:"Monto",valor:"S/ 38,500"},{label:"Tipo",valor:"Servicio"},{label:"Ejecución",valor:"90 días"},{label:"Región",valor:"Cusco"}],
-    requisitos:[
-      {titulo:"RNP vigente en servicios",detalle:"Capítulo servicios generales activo en OSCE",tipo:"obligatorio"},
-      {titulo:"Habilidad tributaria SUNAT",detalle:"Sin deudas tributarias, constancia del día",tipo:"obligatorio"},
-      {titulo:"Experiencia acreditada",detalle:"Contratos similares que sumen S/ 77,000 mínimo",tipo:"obligatorio"},
-      {titulo:"Seguro SCTR personal",detalle:"Póliza vigente durante ejecución",tipo:"obligatorio"},
-      {titulo:"Equipos de limpieza",detalle:"Propios o en arrendamiento con documentación",tipo:"deseable"}
+  return{
+    nombre:"Servicio de mantenimiento de equipos de cómputo",
+    entidad:"DIRESA Cusco",monto:41000,tipo:"Servicio",region:"Cusco",
+    veredicto:"talvez",
+    veredicto_titulo:"Puedes participar, pero revisa 2 puntos primero",
+    veredicto_razon:"Tu rubro y región coinciden. Sin embargo, necesitas acreditar experiencia por S/ 82,000 en servicios similares y tener técnico certificado. Si tienes eso, participa.",
+    dias_restantes:4,plazo_presentacion:"4 días hábiles desde publicación",dias_ejecucion:60,urgencia:"advertencia",
+    plazo_detalle:"Presentación de cotizaciones: 4 días hábiles. Evaluación: 1 día. Buena pro: día 6. Firma de contrato: día 8. Inicio de servicio: día 9.",
+    lo_que_pide:[
+      {categoria:"Requisito del proveedor",titulo:"RNP vigente en servicios",detalle:"Registro Nacional de Proveedores activo en el capítulo de servicios generales. Sin excepción.",tag:"obligatorio"},
+      {categoria:"Requisito del proveedor",titulo:"Habilidad tributaria SUNAT",detalle:"No tener deudas tributarias. Constancia emitida el mismo día de presentación desde sunat.gob.pe.",tag:"obligatorio"},
+      {categoria:"Requisito económico",titulo:"Experiencia mínima: S/ 82,000",detalle:"Contratos u órdenes de servicio de mantenimiento de equipos de cómputo que acumulen S/ 82,000 (2 veces el valor del contrato). Se presentan copias simples con sus conformidades.",tag:"económico"},
+      {categoria:"Requisito técnico",titulo:"Técnico certificado en sistemas",detalle:"Al menos 1 técnico con certificación en mantenimiento de equipos (CISCO, CompTIA, Microsoft o equivalente). Presentar copia del certificado.",tag:"técnico"},
+      {categoria:"Requisito técnico",titulo:"Herramientas y equipos propios",detalle:"Contar con herramientas especializadas para mantenimiento. Presentar lista de equipos propios o contrato de arrendamiento.",tag:"técnico"},
+      {categoria:"Requisito del proveedor",titulo:"Seguro SCTR del personal técnico",detalle:"Seguro Complementario de Trabajo de Riesgo para todo el personal que realizará el servicio. Vigente durante el plazo de ejecución.",tag:"obligatorio"},
+      {categoria:"Documento",titulo:"Propuesta económica",detalle:"En el formato exacto de la entidad. Con precio unitario por equipo, subtotal, IGV y total. Firmada y sellada por el representante legal.",tag:"documento"},
+      {categoria:"Documento",titulo:"Propuesta técnica",detalle:"Describir metodología de trabajo, plan de mantenimiento por equipo, cronograma de actividades y garantía ofrecida.",tag:"documento"},
+      {categoria:"Condición legal",titulo:"Declaración jurada de no impedimentos",detalle:"Declarar que no tienes parentesco con funcionarios de la entidad ni estás inhabilitado para contratar con el Estado. Formato libre.",tag:"legal"},
+      {categoria:"Requisito técnico",titulo:"Garantía mínima 3 meses",detalle:"El proveedor debe garantizar el servicio por mínimo 3 meses después de cada mantenimiento. Si falla el equipo en ese plazo, reparación sin costo.",tag:"técnico"}
+    ],
+    specs:[
+      {label:"Monto referencial",valor:"S/ 41,000"},
+      {label:"Tipo",valor:"Contratación directa — menor 8 UIT"},
+      {label:"Plazo ejecución",valor:"60 días calendario"},
+      {label:"Lugar",valor:"Cusco"},
+      {label:"Moneda",valor:"Soles (PEN)"},
+      {label:"IGV incluido",valor:"Sí — precio con IGV"}
     ],
     checklist:[
-      {item:"Verificar RNP activo",detalle:"osce.gob.pe → consulta RNP",estado:"ok"},
-      {item:"Constancia SUNAT",detalle:"sunat.gob.pe → Operaciones en Línea",estado:"ok"},
-      {item:"Reunir contratos similares",detalle:"Acumular S/ 77,000 en órdenes de servicio",estado:"warn"},
-      {item:"Tramitar SCTR",detalle:"Contactar aseguradora hoy — puede demorar 1-2 días",estado:"warn"},
-      {item:"Preparar propuesta económica",detalle:"Con precio unitario, IGV, total. Firmada y sellada",estado:"ok"}
+      {item:"RNP activo en servicios",detalle:"osce.gob.pe → Consulta RNP → Verificar estado ACTIVO",estado:"ok"},
+      {item:"Habilidad tributaria SUNAT",detalle:"sunat.gob.pe → Operaciones en Línea → Constancia",estado:"ok"},
+      {item:"Acreditar S/ 82,000 en contratos",detalle:"Reunir órdenes de servicio + conformidades firmadas",estado:"warn"},
+      {item:"Técnico con certificación",detalle:"Buscar certificado vigente de mantenimiento de equipos",estado:"warn"},
+      {item:"Tramitar SCTR",detalle:"Llamar a aseguradora hoy — tarda 1-2 días en emitirse",estado:"warn"},
+      {item:"Preparar propuesta técnica",detalle:"Metodología + cronograma + garantía ofrecida",estado:"ok"}
     ],
     documentos:[
-      {nombre:"RNP vigente",tipo:"requerido"},
-      {nombre:"Habilidad tributaria SUNAT",tipo:"requerido"},
-      {nombre:"Propuesta económica",tipo:"requerido"},
-      {nombre:"Contratos de experiencia",tipo:"requerido"},
-      {nombre:"Seguro SCTR",tipo:"requerido"},
-      {nombre:"Ficha RUC",tipo:"requerido"},
-      {nombre:"Carta de presentación",tipo:"requerido"},
-      {nombre:"Lista de equipos",tipo:"opcional"}
+      {nombre:"RNP vigente",tipo:"requerido",donde:"osce.gob.pe"},
+      {nombre:"Constancia habilidad SUNAT",tipo:"requerido",donde:"sunat.gob.pe"},
+      {nombre:"Contratos de experiencia (copias)",tipo:"requerido",donde:"Tus archivos propios"},
+      {nombre:"Certificación técnica",tipo:"requerido",donde:"Tu certificado original"},
+      {nombre:"Seguro SCTR",tipo:"requerido",donde:"Tu aseguradora"},
+      {nombre:"Propuesta económica",tipo:"requerido",donde:"Formato de la entidad"},
+      {nombre:"Propuesta técnica",tipo:"requerido",donde:"Elaboración propia"},
+      {nombre:"Declaración jurada",tipo:"requerido",donde:"Elaboración propia"},
+      {nombre:"Ficha RUC",tipo:"requerido",donde:"sunat.gob.pe"},
+      {nombre:"Lista de equipos/herramientas",tipo:"opcional",donde:"Elaboración propia"}
     ],
     riesgos:[
-      {titulo:"Experiencia difícil de acreditar",detalle:"S/ 77,000 en contratos similares puede ser alto si eres nuevo",nivel:"alto",mitigacion:"Junta todas las órdenes aunque sean pequeñas — el acumulado cuenta."},
-      {titulo:"SCTR puede demorar",detalle:"Aseguradoras tardan 1-2 días en emitir",nivel:"medio",mitigacion:"Contáctate hoy mismo antes de cotizar."}
-    ],
-    experiencia:"Contratos u órdenes de servicio de limpieza por un mínimo de S/ 77,000 acumulado."
+      {titulo:"Experiencia S/ 82,000 puede ser difícil",detalle:"Si eres proveedor nuevo, acumular esa cifra en contratos similares es el principal obstáculo",nivel:"alto",mitigacion:"Junta todas las órdenes de servicio aunque sean pequeñas. El acumulado cuenta."},
+      {titulo:"SCTR tarda en emitirse",detalle:"Las aseguradoras pueden demorar 1-2 días hábiles",nivel:"medio",mitigacion:"Llama hoy mismo a tu aseguradora antes de cotizar."},
+      {titulo:"Formato de propuesta económica",detalle:"Si no usas el formato exacto de la entidad puede ser observado",nivel:"bajo",mitigacion:"Pide el formato a la entidad o descárgalo desde el portal SEACE."}
+    ]
   };
 }
 
-function sc(s){return s==='hi'?'score-hi':s==='md'?'score-md':'score-lo';}
-function urgCls(u){return u==='urgente'?'dl-urg':u==='advertencia'?'dl-warn':'dl-ok';}
-function urgIco(u){return u==='urgente'?'🚨':u==='advertencia'?'⚠️':'✅';}
-function urgTxt(u){return u==='urgente'?'Plazo urgente':u==='advertencia'?'Plazo próximo':'Tiempo suficiente';}
+function sc(v){return v==='si'?'v-si':v==='no'?'v-no':'v-tal';}
+function urgCls(u){return u==='urgente'?'cd-urg':u==='advertencia'?'cd-warn':'cd-ok';}
+function tagCls(t){return t==='obligatorio'?'pt-oblig':t==='técnico'?'pt-tecnico':t==='económico'?'pt-econ':t==='documento'?'pt-doc':'pt-legal';}
+function tagLabel(t){return t==='obligatorio'?'OBLIGATORIO':t==='técnico'?'TÉCNICO':t==='económico'?'ECONÓMICO':t==='documento'?'DOCUMENTO':'LEGAL';}
 function fmt(n){return'S/ '+(n||0).toLocaleString('es-PE');}
 
 function render(r){
-  document.getElementById('sec-load').classList.remove('show');
-  const res=document.getElementById('sec-res');
-  res.classList.add('show');
+  document.getElementById('pg-load').classList.remove('show');
+  const pg=document.getElementById('pg-res');
+  pg.classList.add('on');
 
-  res.innerHTML=`
-    <!-- TOP -->
-    <div class="result-top">
-      <div class="rt-score ${sc(r.score_clase)}">${r.score}</div>
-      <div class="rt-body">
-        <div class="rt-name">${r.nombre}</div>
-        <div class="rt-entity">${r.entidad}</div>
-        <div class="rt-pills">
-          <span class="rp rp-g">${fmt(r.monto)}</span>
-          <span class="rp rp-b">${r.tipo}</span>
-          <span class="rp rp-n">${r.region}</span>
-          ${r.urgencia==='urgente'?'<span class="rp rp-r">⚡ Urgente</span>':r.urgencia==='advertencia'?'<span class="rp rp-a">⚠ Próximo</span>':'<span class="rp rp-g">✓ A tiempo</span>'}
+  const vIco=r.veredicto==='si'?'✅':r.veredicto==='no'?'❌':'⚠️';
+  const cdCls=urgCls(r.urgencia);
+  const dNum=r.dias_restantes||0;
+  const dColor=dNum<=2?'ct-r':dNum<=5?'ct-a':'ct-g';
+
+  pg.innerHTML=`
+    <!-- VEREDICTO -->
+    <div class="veredicto ${sc(r.veredicto)}">
+      <div class="v-icon">${vIco}</div>
+      <div class="v-title">${r.veredicto_titulo||'Resultado del análisis'}</div>
+      <div class="v-reason">${r.veredicto_razon||''}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span class="ct-tag ${r.veredicto==='si'?'ct-g':r.veredicto==='no'?'ct-r':'ct-a'}" style="font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;display:inline-block;">${r.nombre}</span>
+        <span class="ct-tag ct-b" style="font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;display:inline-block;background:rgba(59,130,246,.15);color:#93C5FD;">${r.entidad}</span>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown ${cdCls}">
+      <div class="cd-left">
+        <div class="cd-num">${dNum}</div>
+        <div class="cd-unit">días</div>
+      </div>
+      <div class="cd-right" style="flex:1;">
+        <h4>${r.urgencia==='urgente'?'¡Plazo urgente!':r.urgencia==='advertencia'?'Plazo próximo a vencer':'Tienes tiempo suficiente'}</h4>
+        <p>${r.plazo_detalle||r.plazo_presentacion||'Revisa el cronograma en las bases.'}</p>
+        <div class="cd-tags">
+          ${r.plazo_presentacion?`<span class="cd-tag ${dColor}">📅 ${r.plazo_presentacion}</span>`:''}
+          ${r.dias_ejecucion?`<span class="cd-tag ct-b">🗓 ${r.dias_ejecucion} días ejecución</span>`:''}
+          <span class="cd-tag ct-g">💰 ${fmt(r.monto)}</span>
         </div>
       </div>
     </div>
 
-    <!-- DEADLINE -->
-    <div class="deadline ${urgCls(r.urgencia)}">
-      <div class="dl-ico">${urgIco(r.urgencia)}</div>
-      <div class="dl-body">
-        <h4>${urgTxt(r.urgencia)}</h4>
-        <p>${r.resumen}</p>
-        <div class="dl-tags">
-          ${r.plazo_presentacion?`<span class="rp rp-${r.urgencia==='urgente'?'r':r.urgencia==='advertencia'?'a':'g'}">📅 Presentar: ${r.plazo_presentacion}</span>`:''}
-          ${r.dias_restantes!=null?`<span class="rp rp-${r.dias_restantes<=2?'r':r.dias_restantes<=5?'a':'g'}">⏰ ${r.dias_restantes} días</span>`:''}
-          ${r.dias_ejecucion?`<span class="rp rp-b">🗓 ${r.dias_ejecucion} días ejecución</span>`:''}
-        </div>
+    <!-- LO QUE PIDE EL TDR -->
+    <div class="pide-section">
+      <div class="pide-header">
+        <h3>📋 Lo que pide este TDR</h3>
+        <span class="pide-badge">${(r.lo_que_pide||[]).length} requisitos encontrados</span>
       </div>
+      ${(r.lo_que_pide||[]).map((p,i)=>`
+        <div class="pide-item">
+          <div class="pi-num">${i+1}</div>
+          <div class="pi-body">
+            <h4>${p.titulo}</h4>
+            <p>${p.detalle}</p>
+            <span class="pi-tag ${tagCls(p.tag)}">${tagLabel(p.tag)}</span>
+            <span style="font-size:9px;color:var(--m);margin-left:6px;">${p.categoria}</span>
+          </div>
+        </div>`).join('')}
     </div>
 
-    <!-- RECOMENDACION -->
-    <div class="recom"><strong>Recomendación</strong>${r.recomendacion}</div>
-
-    <!-- BLOCKS -->
-    <div class="blocks">
+    <!-- GRID 2 COL -->
+    <div class="grid2">
 
       <!-- SPECS -->
-      <div class="block">
-        <div class="blk-title"><span class="blk-dot dot-b"></span>Especificaciones</div>
-        ${(r.specs||[]).map(s=>`<div class="row"><span class="row-label">${s.label}</span><span class="row-val">${s.valor}</span></div>`).join('')}
-        ${r.experiencia?`<div class="row"><span class="row-label">Experiencia</span><span class="row-val" style="font-size:11px;color:var(--m);">${r.experiencia}</span></div>`:''}
+      <div class="blk">
+        <div class="blk-h"><span class="bh-dot" style="background:var(--blue);"></span>Datos del proceso</div>
+        ${(r.specs||[]).map(s=>`<div class="row"><span class="rl">${s.label}</span><span class="rv">${s.valor}</span></div>`).join('')}
       </div>
 
       <!-- CHECKLIST -->
-      <div class="block">
-        <div class="blk-title"><span class="blk-dot dot-g"></span>Checklist</div>
+      <div class="blk">
+        <div class="blk-h"><span class="bh-dot" style="background:var(--g);"></span>Qué hacer ahora</div>
         ${(r.checklist||[]).map(c=>`
           <div class="chk">
-            <div class="chk-ico ${c.estado==='ok'?'ci-ok':c.estado==='warn'?'ci-w':'ci-x'}">${c.estado==='ok'?'✓':c.estado==='warn'?'!':'✗'}</div>
-            <div class="chk-text"><h5 style="color:${c.estado==='ok'?'var(--g)':c.estado==='warn'?'var(--amber)':'var(--red)'};">${c.item}</h5><p>${c.detalle}</p></div>
-          </div>`).join('')}
-      </div>
-
-      <!-- REQUISITOS -->
-      <div class="block full">
-        <div class="blk-title"><span class="blk-dot dot-r"></span>Requisitos del proveedor</div>
-        ${(r.requisitos||[]).map(req=>`
-          <div class="req">
-            <span class="req-badge ${req.tipo==='obligatorio'?'rb-o':'rb-d'}">${req.tipo==='obligatorio'?'OBLIG':'DESEABLE'}</span>
-            <div class="req-body"><h5>${req.titulo}</h5><p>${req.detalle}</p></div>
+            <div class="ci ${c.estado==='ok'?'ci-ok':c.estado==='warn'?'ci-w':'ci-x'}">${c.estado==='ok'?'✓':c.estado==='warn'?'!':'✗'}</div>
+            <div class="ct">
+              <h5 style="color:${c.estado==='ok'?'var(--g)':c.estado==='warn'?'var(--amber)':'var(--red)'};">${c.item}</h5>
+              <p>${c.detalle}</p>
+            </div>
           </div>`).join('')}
       </div>
 
       <!-- DOCUMENTOS -->
-      <div class="block">
-        <div class="blk-title"><span class="blk-dot dot-b"></span>Documentos</div>
+      <div class="blk">
+        <div class="blk-h"><span class="bh-dot" style="background:#8B5CF6;"></span>Documentos a presentar</div>
         ${(r.documentos||[]).map(d=>`
           <div class="doc">
-            <span class="doc-ico">📄</span>
-            <span class="doc-name">${d.nombre}</span>
-            <span class="doc-tag ${d.tipo==='requerido'?'dt-r':'dt-o'}">${d.tipo==='requerido'?'REQ':'OPT'}</span>
+            <span style="font-size:13px;">📄</span>
+            <span class="doc-n">${d.nombre}</span>
+            ${d.donde?`<span style="font-size:10px;color:var(--m);">${d.donde}</span>`:''}
+            <span class="dt ${d.tipo==='requerido'?'dt-r':'dt-o'}">${d.tipo==='requerido'?'REQ':'OPT'}</span>
           </div>`).join('')}
       </div>
 
       <!-- RIESGOS -->
-      <div class="block">
-        <div class="blk-title"><span class="blk-dot dot-a"></span>Riesgos</div>
+      <div class="blk">
+        <div class="blk-h"><span class="bh-dot" style="background:var(--amber);"></span>Riesgos a considerar</div>
         ${(r.riesgos||[]).map(rk=>`
           <div class="risk">
-            <span class="risk-lv ${rk.nivel==='alto'?'rl-a':rk.nivel==='medio'?'rl-m':'rl-b'}">${rk.nivel?.toUpperCase()}</span>
-            <div class="risk-body"><h5>${rk.titulo}</h5><p>${rk.detalle}</p><div class="risk-mit">→ ${rk.mitigacion}</div></div>
+            <span class="rlv ${rk.nivel==='alto'?'rl-a':rk.nivel==='medio'?'rl-m':'rl-b'}">${rk.nivel?.toUpperCase()}</span>
+            <div class="rb">
+              <h5>${rk.titulo}</h5>
+              <p>${rk.detalle}</p>
+              <div class="rb-mit">→ ${rk.mitigacion}</div>
+            </div>
           </div>`).join('')}
       </div>
 
     </div>
 
-    <!-- ACTIONS -->
     <div class="actions">
-      <a href="https://prod6.seace.gob.pe/buscador-publico/contrataciones" target="_blank" class="btn-seace">Ver en SEACE →</a>
-      <button class="btn-new" onclick="reset()">Analizar otro</button>
+      <a href="https://prod6.seace.gob.pe/buscador-publico/contrataciones" target="_blank" class="btn-s">Ver en SEACE →</a>
+      <button class="btn-n" onclick="reset()">Analizar otro TDR</button>
     </div>`;
 }
 
 function reset(){
-  document.getElementById('sec-res').classList.remove('show');
-  document.getElementById('sec-res').innerHTML='';
-  document.getElementById('sec-upload').style.display='block';
+  document.getElementById('pg-res').classList.remove('on');
+  document.getElementById('pg-res').innerHTML='';
+  document.getElementById('pg-up').classList.add('on');
   document.getElementById('ttext').value='';
   clearF();
   window.scrollTo({top:0,behavior:'smooth'});
